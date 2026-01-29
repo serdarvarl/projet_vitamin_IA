@@ -8,11 +8,6 @@ Ce document définit les règles de gestion du code et de collaboration pour le 
 
 *Feature Branches* : Chaque nouvelle tâche (ex: EDA, SQL, ML) doit être développée sur une branche séparée.
 
-```bash
-    Nommage :  
-    (ex:  veya ).
-```
-
 | Nommage | exemple |
 | :--- | :--- |
 | **feature/[nom-de-la-tache]** | `feature/sql-setup` |
