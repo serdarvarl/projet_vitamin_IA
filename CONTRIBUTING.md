@@ -2,7 +2,7 @@
 
 Ce document définit les règles de gestion du code et de collaboration pour le projet. Le respect de ce protocole est obligatoire pour garantir la traçabilité du travail de chaque membre.
 
-### 1. Gestion des Branches (Dallar)
+### 1. Gestion des Branches 
 
 *Main Branch* : La branche main doit toujours contenir un code stable ve fonctionnel. Interdiction de "push" directement sur main sans test préalable.
 
