@@ -2,36 +2,37 @@
 
 Objectif : Utiliser l'IA pour prédire les carences à partir de données cliniques et recommander des aliments via la base CIQUAL.
 
-ÉCHÉANCIER ET JALONS (DEADLINES) :
+### ÉCHÉANCIER ET JALONS (DEADLINES) :
 
-Phase 1 : Enregistrement & Problématique (Deadline : 01/02)
+#### Phase 1 : Enregistrement & Problématique (Deadline : 01/02)
 
-Action : Mail aux professeurs avec les noms des 4 membres + Problématique choisie + Liens des datasets.
+- Action : Mail aux professeurs avec les noms des 4 membres + Problématique choisie + Liens des datasets.
 
-Pénalité : -1pt par semaine de retard.
+- Pénalité : -1pt par semaine de retard.
 
-Phase 2 : Base de Données (Deadline : 16/02)
 
-Action : Importation des CSV (Kaggle & CIQUAL) dans une base SQL.
+#### Phase 2 : Base de Données (Deadline : 16/02)
 
-Livrable : Dump SQL (.sql) à déposer sur Moodle. (Note : 10%)
+- Action : Importation des CSV (Kaggle & CIQUAL) dans une base SQL.
 
-Phase 3 : Analyse de Données - EDA (Deadline : 02/03)
+- Livrable : Dump SQL (.sql) à déposer sur Moodle. (Note : 10%)
 
-Action : Nettoyage des données et visualisation (Corrélations Sun Exposure / Vitamine D, etc.).
+#### Phase 3 : Analyse de Données - EDA (Deadline : 02/03)
 
-Livrable : Notebook Jupyter (Python).
+- Action : Nettoyage des données et visualisation (Corrélations Sun Exposure / Vitamine D, etc.).
 
-Phase 4 : Apprentissage Automatique - ML (Deadline : 16/03)
+- Livrable : Notebook Jupyter (Python).
 
-Action : Entraînement des modèles (Random Forest / XGBoost) pour prédire disease_diagnosis.
+#### Phase 4 : Apprentissage Automatique - ML (Deadline : 16/03)
 
-Livrable : Notebook avec mesures de performance (Accuracy, F1-Score).
+- Action : Entraînement des modèles (Random Forest / XGBoost) pour prédire disease_diagnosis.
 
-Phase 5 : Application Web & Déploiement (Deadline : 30/03)
+- Livrable : Notebook avec mesures de performance (Accuracy, F1-Score).
 
-Action : Création d'une interface (Streamlit) pour tester le modèle en ligne. (Note : 10%)
+#### Phase 5 : Application Web & Déploiement (Deadline : 30/03)
 
-Phase finale : Rapport Technique & Vidéo (Deadline : 13/04)
+- Action : Création d'une interface (Streamlit) pour tester le modèle en ligne. (Note : 10%)
 
-Action : Rédaction du rapport complet (40% de la note) et vidéo de présentation (15%).
+#### Phase finale : Rapport Technique & Vidéo (Deadline : 13/04)
+
+- Action : Rédaction du rapport complet (40% de la note) et vidéo de présentation (15%).
