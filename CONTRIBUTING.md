@@ -36,7 +36,7 @@ Pour éviter les conflits de version, suivez cet ordre précis :
 | **Style** | Changement esthétique (CSS, UI, format) | `Style: mise à jour du design Streamlit` |
 | **Refactor** | Optimisation du code (sans changer la fonction) | `Refactor: optimisation de la boucle de tri` |
 
-### 4. Revue et Merge (Birleştirme)
+### 4. Revue et Merge 
 
 Une fois une tâche terminée, une **Pull Request (PR)** doit être ouverte sur GitHub.
 
