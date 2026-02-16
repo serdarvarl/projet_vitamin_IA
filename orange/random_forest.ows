@@ -230,7 +230,7 @@ Lg==
 		<properties node_id="4" format="literal">{'auto_apply': True, 'class_weight': False, 'controlAreaVisible': True, 'index_output': 0, 'learner_name': '', 'max_depth': 3, 'max_features': 5, 'min_samples_split': 5, 'n_estimators': 100, 'savedWidgetGeometry': b'\x01\xd9\xd0\xcb\x00\x03\x00\x00\x00\x00\x00\x02\x00\x00\x00\x1e\x00\x00\x01\x9b\x00\x00\x01\xc0\x00\x00\x00\x01\x00\x00\x00J\x00\x00\x01\x9a\x00\x00\x01\xd0\x00\x00\x00\x00\x02\x00\x00\x00\x0f\x00\x00\x00\x00\x02\x00\x00\x00:\x00\x00\x01\x9b\x00\x00\x01\xc0', 'use_max_depth': False, 'use_max_features': True, 'use_min_samples_split': True, 'use_random_state': False, '__version__': 1}</properties>
 		<properties node_id="5" format="pickle">gASV2QEAAAAAAAB9lCiMEmFwcGVuZF9wcmVkaWN0aW9uc5SIjBRhcHBlbmRfcHJvYmFiaWxpdGll
 c5SIjAphdXRvY29tbWl0lIiMEmNvbnRyb2xBcmVhVmlzaWJsZZSIjBNzYXZlZFdpZGdldEdlb21l
-dHJ5lENCAdnQywADAAAAAAABAAAALgAABj0AAAM9AAAAAQAAAEoAAAY9AAADPQAAAAAAAAAADwAA
+dHJ5lENCAdnQywADAAAAAAABAAAALgAABj0AAAM9AAAAAQAAAEoAAAY9AAADPQAAAAAAAAAACAAA
 AAABAAAASgAABj0AAAM9lIwQc2VsZWN0ZWRfbGVhcm5lcpSMB2NvcHlyZWeUjA5fcmVjb25zdHJ1
 Y3RvcpSTlIwIYnVpbHRpbnOUjARsaXN0lJOUaA0ph5RSlEsAYYwRc2VsZWN0ZWRfcXVhbnRpdHmU
 SwKMC19fdmVyc2lvbl9flEsBjBBjb250ZXh0X3NldHRpbmdzlF2UjBVvcmFuZ2V3aWRnZXQuc2V0
