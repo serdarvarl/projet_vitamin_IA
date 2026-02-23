@@ -1,0 +1,8 @@
+Paire 1 — 95 lignes/maladie, sélectionnées par nombre de symptômes le plus élevé (cas cliniquement les plus marqués)
+
+Paire 2 — 95 lignes/maladie, sélection aléatoire (pour comparer avec la paire 1)
+
+Paire 3 — 95 lignes/maladie, sélectionnées par carences vitaminiques les plus sévères (taux de vitamines les plus bas)
+
+
+Paire 4 — 50 lignes/maladie, sélection top symptômes + tous les aliments (1894) → parfaite pour justifier SMOTE car très petit dataset

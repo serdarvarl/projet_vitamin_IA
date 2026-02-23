@@ -1,0 +1,1895 @@
+alim_grp_code,alim_code,alim_nom_fr,alim_grp_nom_fr
+0,24999,Dessert (aliment moyen),
+1,8406,Salade de museau de porc,entrées et plats composés
+1,8407,Salade de cervelas,entrées et plats composés
+1,25600,Salade de céleri rémoulade,entrées et plats composés
+1,25601,Salade de thon et légumes,entrées et plats composés
+1,25602,Salade composée avec viande ou poisson,entrées et plats composés
+1,25605,Champignons à la grecque,entrées et plats composés
+1,25606,Salade de pommes de terre,entrées et plats composés
+1,25608,Taboulé ou salade de semoule aux légumes,entrées et plats composés
+1,25609,Salade de pomme de terre à la piémontaise,entrées et plats composés
+1,25610,Salade de museau de boeuf,entrées et plats composés
+1,25614,Salade de riz,entrées et plats composés
+1,25615,Salade de pâtes au fromage et légumes,entrées et plats composés
+1,25619,Salade de pâtes aux légumes et poisson ou viande,entrées et plats composés
+1,25626,Macédoine de légumes en salade,entrées et plats composés
+1,25628,Salade César au poulet (salade verte,entrées et plats composés
+1,25629,Salade végétarienne à base de boulgour et/ou quinoa et légumes,entrées et plats composés
+1,25642,Salade de céleri et carotte rémoulade,entrées et plats composés
+1,25664,Salade de pomme de terre au thon,entrées et plats composés
+1,25665,Salade de pomme de terre à la saucisse,entrées et plats composés
+1,25666,Salade composée à base de crudités,entrées et plats composés
+1,25667,Salade composée à base de crudités et produits de la mer,entrées et plats composés
+1,25668,Salade composée à base de crudités,entrées et plats composés
+1,25669,Salade composée à base de crudités,entrées et plats composés
+1,25670,Salade composée à base de crudités et poulet,entrées et plats composés
+1,26257,Salade de carottes râpées,entrées et plats composés
+1,26258,Salade de betterave,entrées et plats composés
+1,26259,Salade de chou et carotte ou coleslaw,entrées et plats composés
+1,26260,Salade de concombre à la crème/fromage blanc,entrées et plats composés
+1,26261,Salade de lentilles et saucisse fumée,entrées et plats composés
+1,26262,Salade grecque,entrées et plats composés
+1,26263,Salade de riz au thon et légumes,entrées et plats composés
+1,26269,Taboulé ou salade de semoule au poulet,entrées et plats composés
+1,26276,Salade de pâtes au surimi,entrées et plats composés
+1,26277,Salade Alaska au surimi,entrées et plats composés
+1,26278,Salade de pâtes au poulet,entrées et plats composés
+1,26279,Salade de pâtes aux poulet,entrées et plats composés
+1,26280,Salade de pâtes au jambon cru,entrées et plats composés
+1,26281,Salade de chou rouge,entrées et plats composés
+1,26282,Salade de pâtes au poulet et crudités,entrées et plats composés
+1,25900,Soupe aux lentilles,entrées et plats composés
+1,25901,Soupe à la volaille et aux légumes,entrées et plats composés
+1,25903,Soupe aux légumes variés,entrées et plats composés
+1,25904,Soupe de poissons et/ou crustacés,entrées et plats composés
+1,25905,Soupe aux légumes variés,entrées et plats composés
+1,25907,Soupe aux poireaux et pommes de terre,entrées et plats composés
+1,25908,Soupe à la volaille et aux vermicelles,entrées et plats composés
+1,25909,Bouillon de viande et légumes type pot-au-feu,entrées et plats composés
+1,25910,Soupe à l'oignon,entrées et plats composés
+1,25912,Soupe aux champignons,entrées et plats composés
+1,25913,Soupe à la carotte,entrées et plats composés
+1,25914,Soupe à la tomate,entrées et plats composés
+1,25915,Soupe chorba frik,entrées et plats composés
+1,25916,Soupe minestrone,entrées et plats composés
+1,25917,Soupe au pistou,entrées et plats composés
+1,25919,Soupe de poissons et/ou crustacés,entrées et plats composés
+1,25923,Soupe asiatique,entrées et plats composés
+1,25924,Soupe marocaine,entrées et plats composés
+1,25925,Soupe aux poireaux et pommes de terre,entrées et plats composés
+1,25928,Soupe à la volaille et aux légumes,entrées et plats composés
+1,25930,Bouillon de boeuf,entrées et plats composés
+1,25932,Soupe aux asperges,entrées et plats composés
+1,25933,Soupe à la tomate et aux vermicelles,entrées et plats composés
+1,25934,Soupe aux céréales et aux légumes,entrées et plats composés
+1,25935,Soupe à la tomate,entrées et plats composés
+1,25936,Soupe aux champignons,entrées et plats composés
+1,25942,Soupe à l'oignon,entrées et plats composés
+1,25945,Soupe au potiron,entrées et plats composés
+1,25947,Bouillon de volaille,entrées et plats composés
+1,25948,Bouillon de légumes,entrées et plats composés
+1,25949,Soupe à la tomate et aux vermicelles,entrées et plats composés
+1,25950,Soupe à la volaille et aux vermicelles,entrées et plats composés
+1,25953,Soupe au pistou,entrées et plats composés
+1,25954,Soupe au potiron,entrées et plats composés
+1,25955,Soupe asiatique,entrées et plats composés
+1,25956,Soupe minestrone,entrées et plats composés
+1,25957,Soupe au cresson,entrées et plats composés
+1,25958,Soupe au cresson,entrées et plats composés
+1,25962,Soupe aux légumes avec fromage,entrées et plats composés
+1,25963,Soupe aux légumes verts,entrées et plats composés
+1,25964,Soupe aux légumes verts,entrées et plats composés
+1,25965,Soupe aux pois cassés,entrées et plats composés
+1,25967,Soupe froide type gaspacho ou gazpacho,entrées et plats composés
+1,25968,Soupe aux asperges,entrées et plats composés
+1,25969,Soupe (aliment moyen),entrées et plats composés
+1,25972,Soupe miso,entrées et plats composés
+1,25973,Soupe aux légumes et aux vermicelles,entrées et plats composés
+1,25974,Soupe aux légumes et aux vermicelles,entrées et plats composés
+1,25975,Soupe au boeuf et aux vermicelles,entrées et plats composés
+1,25976,Soupe asiatique,entrées et plats composés
+1,1033,Nuggets ou croquette panée de poulet (contenant du soja),entrées et plats composés
+1,8601,Tripes à la mode de Caen (estomac et pied de boeuf,entrées et plats composés
+1,8612,Tripes à la tomate ou à la provençale,entrées et plats composés
+1,25001,Blanquette de veau,entrées et plats composés
+1,25033,Boeuf bourguignon,entrées et plats composés
+1,25035,Sauté d'agneau au curry,entrées et plats composés
+1,25058,Canard en sauce (poivre vert,entrées et plats composés
+1,25063,Lapin à la moutarde,entrées et plats composés
+1,25089,Cordon bleu de volaille,entrées et plats composés
+1,25121,Coq au vin,entrées et plats composés
+1,25125,Paupiette de veau,entrées et plats composés
+1,25126,Paupiette de volaille,entrées et plats composés
+1,25163,Boulettes au boeuf,entrées et plats composés
+1,25172,Viande en sauce (aliment moyen),entrées et plats composés
+1,25173,Escalope panée,entrées et plats composés
+1,25174,Poulet au curry et au lait de coco,entrées et plats composés
+1,25186,Boulettes au porc et au boeuf (à la suédoise),entrées et plats composés
+1,25194,Boulettes au boeuf et à l'agneau (type kefta),entrées et plats composés
+1,25200,Palette à la diable,entrées et plats composés
+1,25201,Langue de boeuf sauce madère,entrées et plats composés
+1,25207,Porc au caramel,entrées et plats composés
+1,25211,Boulettes au boeuf,entrées et plats composés
+1,25213,Paupiette de veau,entrées et plats composés
+1,25221,Boulettes au boeuf et à l'agneau (type kefta),entrées et plats composés
+1,25222,Boulettes au porc et au boeuf (à la suédoise),entrées et plats composés
+1,25504,Brochette de volaille,entrées et plats composés
+1,25505,Brochette de boeuf,entrées et plats composés
+1,25506,Brochette mixte de viande,entrées et plats composés
+1,25512,Nuggets ou croquette panée de volaille,entrées et plats composés
+1,25538,Carpaccio de boeuf,entrées et plats composés
+1,25541,Brochette d'agneau,entrées et plats composés
+1,25565,Yakitori (brochettes japonaises grillées en sauce),entrées et plats composés
+1,25566,Brochette de porc,entrées et plats composés
+1,25585,Brochette de boeuf,entrées et plats composés
+1,25586,Brochette de volaille,entrées et plats composés
+1,36027,Nuggets ou croquette panée de poulet,entrées et plats composés
+1,36035,Poulet,entrées et plats composés
+1,36036,Escalope panée,entrées et plats composés
+1,36318,Escalope panée,entrées et plats composés
+1,25009,Hachis parmentier à la viande,entrées et plats composés
+1,25029,Couscous au mouton,entrées et plats composés
+1,25043,Couscous à la viande ou au poulet,entrées et plats composés
+1,25057,Poêlée de pommes de terre préfrites,entrées et plats composés
+1,25127,Couscous royal (avec plusieurs viandes),entrées et plats composés
+1,25138,Couscous au poulet,entrées et plats composés
+1,25152,Couscous à la viande,entrées et plats composés
+1,25195,Parmentier de canard,entrées et plats composés
+1,25587,Parmentier de canard,entrées et plats composés
+1,25002,Cassoulet,entrées et plats composés
+1,25003,Choucroute garnie,entrées et plats composés
+1,25010,Petit salé ou saucisse aux lentilles,entrées et plats composés
+1,25013,Pot-au-feu,entrées et plats composés
+1,25065,Boeuf aux carottes,entrées et plats composés
+1,25071,Potée auvergnate (chou et porc),entrées et plats composés
+1,25098,Cassoulet au porc,entrées et plats composés
+1,25099,Cassoulet au canard ou oie,entrées et plats composés
+1,25103,Tomate farcie,entrées et plats composés
+1,25106,Chou farci,entrées et plats composés
+1,25111,Chili con carne,entrées et plats composés
+1,25123,Moussaka,entrées et plats composés
+1,25124,Navarin d'agneau aux légumes,entrées et plats composés
+1,25159,Tajine de mouton,entrées et plats composés
+1,25164,Osso buco de veau à la milanaise (jarret de porc,entrées et plats composés
+1,25175,Meloukhia,entrées et plats composés
+1,25190,Poulet basquaise,entrées et plats composés
+1,25204,Tajine de poulet,entrées et plats composés
+1,25205,Chop suey (porc ou poulet,entrées et plats composés
+1,25511,Légumes farcis (sauf tomate),entrées et plats composés
+1,10082,Moules marinières (oignons et vin blanc),entrées et plats composés
+1,10083,Moules farcies (matière grasse,entrées et plats composés
+1,24998,Poisson blanc en sauce,entrées et plats composés
+1,25037,Gratin ou cassolette de poisson et / ou fruits de mer,entrées et plats composés
+1,25038,Gratin ou cassolette de poisson et / ou fruits de mer,entrées et plats composés
+1,25077,Saumon sauce à l'oseille,entrées et plats composés
+1,25086,Poisson blanc à la bordelaise (chapelure,entrées et plats composés
+1,25128,Poisson blanc à la provençale ou niçoise (sauce tomate),entrées et plats composés
+1,25140,Poisson blanc à la florentine (sauce aux épinards),entrées et plats composés
+1,25141,Poisson blanc à la marinière (sauce aux oignons,entrées et plats composés
+1,25142,Poisson blanc à la sauce moutarde,entrées et plats composés
+1,25143,Poisson blanc à la parisienne (sauce aux champignons),entrées et plats composés
+1,25145,Poisson blanc à l'estragon,entrées et plats composés
+1,25146,Poisson blanc sauce oseille,entrées et plats composés
+1,25210,Saumon farci,entrées et plats composés
+1,25539,Brochette de poisson,entrées et plats composés
+1,25540,Brochette de crevettes,entrées et plats composés
+1,26140,Poisson cuit (aliment moyen),entrées et plats composés
+1,26249,Poisson blanc,entrées et plats composés
+1,25031,Paëlla,entrées et plats composés
+1,25107,Couscous au poisson,entrées et plats composés
+1,25154,Gratin de poisson et purée ou brandade aux pommes de terre ou parmentier de poisson,entrées et plats composés
+1,25242,Paëlla (poulet fruit de mer,entrées et plats composés
+1,25456,Sushi ou maki aux produits de la mer,entrées et plats composés
+1,8296,Terrine ou mousse de légumes,entrées et plats composés
+1,8297,Flan de légumes aux oeufs,entrées et plats composés
+1,20194,Haricots blancs à la sauce tomate,entrées et plats composés
+1,20240,Piperade basquaise,entrées et plats composés
+1,20262,Poêlée de légumes assaisonnés sans champignon,entrées et plats composés
+1,20273,Poêlée de légumes assaisonnés à l'asiatiques ou wok de légumes,entrées et plats composés
+1,20274,Poêlée de légumes assaisonnés grillée,entrées et plats composés
+1,20498,"Poêlée de légumes assaisonnés aux champignons (""champêtre"")",entrées et plats composés
+1,25018,Ratatouille cuisinée,entrées et plats composés
+1,25026,Épinard à la crème,entrées et plats composés
+1,25052,Gratin d'aubergine,entrées et plats composés
+1,25056,Gratin dauphinois,entrées et plats composés
+1,25073,Endive au jambon,entrées et plats composés
+1,25101,Gratin de chou-fleur,entrées et plats composés
+1,25162,Gratin de légumes,entrées et plats composés
+1,25196,Riste d'aubergines (aubergines,entrées et plats composés
+1,25199,Palet ou galette de légumes,entrées et plats composés
+1,25208,Palet ou galette de légumes,entrées et plats composés
+1,25220,Choucroute cuisinée aux lardons,entrées et plats composés
+1,25238,Gratin de légumes,entrées et plats composés
+1,25524,Tomate à la provençale,entrées et plats composés
+1,25556,Beignet de légumes,entrées et plats composés
+1,25571,Falafel ou boulette de pois-chiche et/ou fève,entrées et plats composés
+1,25588,Gratin de légumes en sauce blanche type béchamel,entrées et plats composés
+1,25590,Falafel ou boulette de pois-chiche et/ou fève,entrées et plats composés
+1,9082,Blé dur précuit,entrées et plats composés
+1,9085,Nouilles asiatiques cuisinées (boeuf,entrées et plats composés
+1,25019,Ravioli au boeuf,entrées et plats composés
+1,25081,Lasagnes ou canellonis à la viande (bolognaise),entrées et plats composés
+1,25085,Pâtes à la bolognaise (spaghetti,entrées et plats composés
+1,25088,Riz cantonais,entrées et plats composés
+1,25110,Ravioli chinois à la vapeur à la crevette,entrées et plats composés
+1,25122,Gratin de pâtes au jambon,entrées et plats composés
+1,25131,Lasagnes ou cannellonis aux légumes,entrées et plats composés
+1,25135,Pâtes à la carbonara (spaghetti,entrées et plats composés
+1,25139,Lasagnes ou cannellonis au poisson,entrées et plats composés
+1,25149,Pâtes fraîches farcies (ex : raviolis,entrées et plats composés
+1,25150,Couscous de légumes,entrées et plats composés
+1,25155,Pâtes fraîches farcies (ex : raviolis,entrées et plats composés
+1,25157,Pâtes fraîches farcies (ex : raviolis,entrées et plats composés
+1,25158,Pâtes fraîches farcies (ex : raviolis,entrées et plats composés
+1,25181,Pâtes fraîches farcies (ex : raviolis,entrées et plats composés
+1,25182,Pâtes fraîches farcies (ex : raviolis,entrées et plats composés
+1,25183,Nouilles aux crevettes,entrées et plats composés
+1,25187,Risotto,entrées et plats composés
+1,25188,Risotto,entrées et plats composés
+1,25189,Risotto,entrées et plats composés
+1,25192,Ravioli aux légumes,entrées et plats composés
+1,25193,Pâtes fraîches farcies (ex : raviolis,entrées et plats composés
+1,25198,Pâtes en sauce aux fromages (spaghetti,entrées et plats composés
+1,25203,Pâtes fraîches farcies (ex : raviolis,entrées et plats composés
+1,25216,Pâtes fraîches farcies (ex : raviolis,entrées et plats composés
+1,25217,Feuille de vigne farcie au riz ou dolmas,entrées et plats composés
+1,25219,Lasagnes ou cannellonis aux légumes et au fromage de chèvre,entrées et plats composés
+1,25243,Nouilles asiatiques instantanées,entrées et plats composés
+1,25635,Lasagnes ou cannellonis au fromage et aux épinards,entrées et plats composés
+1,4041,Aligot (purée de pomme de terre à la tomme fraîche),entrées et plats composés
+1,19437,Fromage de chèvre pané à dorer,entrées et plats composés
+1,25020,Soufflé au fromage,entrées et plats composés
+1,25137,Tartiflette (pommes de terre,entrées et plats composés
+1,25437,Gougère,entrées et plats composés
+1,25509,Préparation à base de fromage(s) pour fondue savoyarde,entrées et plats composés
+1,25546,Fromage pané au jambon,entrées et plats composés
+1,20914,Galette ou pavé au soja,entrées et plats composés
+1,25223,Bouchées ou émincé végétal au soja et blé (convient aux véganes ou végétaliens),entrées et plats composés
+1,25224,Bouchées ou émincé au soja et blé  (ne convient pas aux véganes ou végétaliens),entrées et plats composés
+1,25225,Nuggets ou croquette panée de blé (sans soja),entrées et plats composés
+1,25226,Nuggets ou croquette panée de soja et blé (ne convient pas aux véganes ou végétaliens),entrées et plats composés
+1,25227,Nuggets ou croquette panée de soja et blé (convient aux véganes ou végétaliens),entrées et plats composés
+1,25228,Pané soja et blé (ne convient pas aux véganes ou végétaliens),entrées et plats composés
+1,25229,Bâtonnet pané soja et blé (convient aux véganes ou végétaliens),entrées et plats composés
+1,25230,Pané soja,entrées et plats composés
+1,25231,Ravioli au tofu,entrées et plats composés
+1,25233,Galette de céréales au fromage (sans soja),entrées et plats composés
+1,25234,Galette de céréales aux légumes (sans soja),entrées et plats composés
+1,25589,Boulette végétale au soja et/ou blé,entrées et plats composés
+1,25591,Galette ou pavé aux lentilles,entrées et plats composés
+1,25592,Galette ou pavé au blé (seitan) et légumes,entrées et plats composés
+1,25593,Galette ou pavé au blé et soja (convient aux véganes ou végétaliens),entrées et plats composés
+1,25594,Galette ou pavé au blé et soja (ne convient pas aux véganes ou végétaliens),entrées et plats composés
+1,25595,Galette ou pavé au soja et fromage,entrées et plats composés
+1,25596,Galette ou pavé au soja et légumes,entrées et plats composés
+1,25597,Galette ou pavé au soja,entrées et plats composés
+1,30181,Haché végétal à base de soja,entrées et plats composés
+1,0,25404,entrées et plats composés
+1,7811,Focaccia,entrées et plats composés
+1,7812,Fougasse,entrées et plats composés
+1,25400,Croque-monsieur,entrées et plats composés
+1,25403,Hot-dog,entrées et plats composés
+1,25413,Hamburger,entrées et plats composés
+1,25414,Cheeseburger,entrées et plats composés
+1,25415,Double cheeseburger,entrées et plats composés
+1,25416,Burger au poisson,entrées et plats composés
+1,25428,Sandwich grec ou kebab,entrées et plats composés
+1,25429,Sandwich grec ou kebab,entrées et plats composés
+1,25431,Sandwich baguette,entrées et plats composés
+1,25434,Sandwich panini,entrées et plats composés
+1,25475,Sandwich baguette,entrées et plats composés
+1,25476,Sandwich baguette,entrées et plats composés
+1,25485,Sandwich baguette,entrées et plats composés
+1,25488,Sandwich baguette,entrées et plats composés
+1,25490,Sandwich baguette,entrées et plats composés
+1,25501,Sandwich panini,entrées et plats composés
+1,25502,Burger au poulet,entrées et plats composés
+1,25513,Pan bagnat,entrées et plats composés
+1,25517,Sandwich baguette,entrées et plats composés
+1,25518,Sandwich baguette,entrées et plats composés
+1,25519,Sandwich baguette,entrées et plats composés
+1,25520,Sandwich baguette,entrées et plats composés
+1,25521,Sandwich baguette,entrées et plats composés
+1,25522,Sandwich (aliment moyen),entrées et plats composés
+1,25523,Toasts ou canapés salés,entrées et plats composés
+1,25530,Sandwich baguette,entrées et plats composés
+1,25531,Sandwich baguette,entrées et plats composés
+1,25532,Sandwich baguette,entrées et plats composés
+1,25533,Sandwich baguette,entrées et plats composés
+1,25535,Sandwich baguette,entrées et plats composés
+1,25536,Sandwich baguette,entrées et plats composés
+1,25542,Croque-madame,entrées et plats composés
+1,25543,Sandwich baguette (aliment moyen),entrées et plats composés
+1,25547,Croque-monsieur,entrées et plats composés
+1,25575,Sandwich pain de mie complet,entrées et plats composés
+1,25576,Sandwich pain de mie complet,entrées et plats composés
+1,25577,Sandwich pain de mie complet,entrées et plats composés
+1,25599,Sandwich pain de mie complet,entrées et plats composés
+1,25632,Sandwich baguette,entrées et plats composés
+1,25633,Sandwich baguette,entrées et plats composés
+1,25634,Sandwich baguette,entrées et plats composés
+1,25638,Sandwich baguette,entrées et plats composés
+1,25639,Sandwich baguette,entrées et plats composés
+1,25640,Sandwich baguette,entrées et plats composés
+1,25641,Sandwich pain de mie complet,entrées et plats composés
+1,25643,Burger au poulet,entrées et plats composés
+1,25644,Cheeseburger,entrées et plats composés
+1,25645,Sandwich pain de mie complet,entrées et plats composés
+1,25646,Wrap végétarien fromage crudités,entrées et plats composés
+1,25647,Wrap poulet crudités,entrées et plats composés
+1,25648,Wrap jambon crudités,entrées et plats composés
+1,25650,Sandwich pain de mie complet,entrées et plats composés
+1,25651,Sandwich pain de mie complet,entrées et plats composés
+1,25652,Sandwich pain de mie complet,entrées et plats composés
+1,25653,Sandwich pain de mie complet,entrées et plats composés
+1,25654,Sandwich pain de mie complet,entrées et plats composés
+1,25655,Sandwich pain viennois,entrées et plats composés
+1,25656,Sandwich pain viennois,entrées et plats composés
+1,25657,Sandwich pain viennois,entrées et plats composés
+1,25658,Sandwich pain viennois,entrées et plats composés
+1,25659,Sandwich pain polaire,entrées et plats composés
+1,25660,Sandwich pain polaire,entrées et plats composés
+1,25661,Sandwich pain polaire,entrées et plats composés
+1,25662,Sandwich pain de mie complet,entrées et plats composés
+1,25663,Sandwich baguette,entrées et plats composés
+1,7814,Cake salé (garniture : fromage,entrées et plats composés
+1,25108,Samossa ou samoussa ou brick garni,entrées et plats composés
+1,25151,Feuilleté ou friand au poisson et/ou fruits de mer,entrées et plats composés
+1,25169,Spécialité chinoise type bouchée à la vapeur,entrées et plats composés
+1,25396,Feuilleté ou friand jambon fromage,entrées et plats composés
+1,25398,Feuilleté ou friand au fromage,entrées et plats composés
+1,25399,Feuilleté ou friand aux escargots,entrées et plats composés
+1,25401,Feuilleté ou friand au fromage,entrées et plats composés
+1,25402,Feuilleté ou friand à la viande,entrées et plats composés
+1,25412,Bouchée à la reine,entrées et plats composés
+1,25418,Croissant au jambon fromage,entrées et plats composés
+1,25419,Rouleau de printemps,entrées et plats composés
+1,25438,Samoussa ou samossa ou brick garni,entrées et plats composés
+1,25503,Bouchée à la reine,entrées et plats composés
+1,25508,Feuilleté ou friand jambon fromage,entrées et plats composés
+1,25551,Beignet de viande,entrées et plats composés
+1,25557,Brick à l'oeuf,entrées et plats composés
+1,25558,Samossa ou samoussa ou brick au boeuf,entrées et plats composés
+1,25559,Brick à la pomme de terre,entrées et plats composés
+1,25578,Feuilleté ou friand salé (aliment moyen),entrées et plats composés
+1,25580,Bouchée à la reine,entrées et plats composés
+1,25582,Nem ou pâté impérial,entrées et plats composés
+1,25583,Nem ou pâté impérial,entrées et plats composés
+1,25584,Nem ou pâté impérial,entrées et plats composés
+1,25674,Nem ou pâté impérial,entrées et plats composés
+1,26266,Croissant au jambon fromage,entrées et plats composés
+3,7000,Pain (aliment moyen),produits céréaliers
+3,7001,Pain blanc (par ex. : baguette,produits céréaliers
+3,7002,Pain au levain,produits céréaliers
+3,7007,Pain de tradition française (par ex. : baguette,produits céréaliers
+3,7009,Pain blanc précuit,produits céréaliers
+3,7010,Pain bis (à la farine T80 ou T110),produits céréaliers
+3,7013,Pain sans gluten précuit,produits céréaliers
+3,7098,Pain aux céréales et/ou aux graines,produits céréaliers
+3,7099,Pain de campagne,produits céréaliers
+3,7100,Pain de campagne,produits céréaliers
+3,7106,Pain complet au seigle,produits céréaliers
+3,7107,Pain aux graines sans gluten,produits céréaliers
+3,7109,Pain de mie complet,produits céréaliers
+3,7110,Pain complet ou intégral (à la farine T150),produits céréaliers
+3,7111,Pain de mie complet,produits céréaliers
+3,7113,Pain de mie aux céréales et/ou graines,produits céréaliers
+3,7114,Pain azyme,produits céréaliers
+3,7115,Pain au son,produits céréaliers
+3,7116,Pain de mie blanc sans gluten,produits céréaliers
+3,7117,Pain de mie blanc,produits céréaliers
+3,7125,Pain de seigle et froment,produits céréaliers
+3,7130,Pain sans gluten,produits céréaliers
+3,7160,Pain blanc,produits céréaliers
+3,7170,Pain panini,produits céréaliers
+3,7180,Pain pita,produits céréaliers
+3,7200,Pain de mie blanc,produits céréaliers
+3,7201,Pain de mie blanc,produits céréaliers
+3,7210,Pain de mie brioché,produits céréaliers
+3,7255,Pain aux céréales et/ou graines,produits céréaliers
+3,7256,Muffin anglais complet,produits céréaliers
+3,7257,Muffin anglais,produits céréaliers
+3,7258,Pain bagel,produits céréaliers
+3,7259,Pain pour burger ou hot dog (bun),produits céréaliers
+3,7260,Pain blanc,produits céréaliers
+3,7261,Pain de campagne,produits céréaliers
+3,7262,Pain pour burger ou hot dog (bun) complet,produits céréaliers
+3,7263,Bretzel,produits céréaliers
+3,7813,Tortilla souple (à garnir),produits céréaliers
+3,7815,Tortilla souple (à garnir),produits céréaliers
+3,23805,Blinis,produits céréaliers
+3,7004,Pain blanc,produits céréaliers
+3,7300,Biscotte classique,produits céréaliers
+3,7301,Biscotte briochée,produits céréaliers
+3,7302,Biscotte au germe de blé,produits céréaliers
+3,7310,Biscotte,produits céréaliers
+3,7330,Biscotte aux céréales,produits céréaliers
+3,7340,Biscotte au blé complet,produits céréaliers
+3,7347,Cracker de table aux graines,produits céréaliers
+3,7348,Cracker de table au fromage et aux graines,produits céréaliers
+3,7349,Cracker de table au blé complet,produits céréaliers
+3,7351,Cracker de table au froment,produits céréaliers
+3,7352,Galette de riz complet soufflé,produits céréaliers
+3,7353,Galette de céréales soufflées,produits céréaliers
+3,7354,Galette de maïs soufflé,produits céréaliers
+3,7357,Galette de céréale(s) soufflée(s),produits céréaliers
+3,7359,Tartine croustillante au seigle,produits céréaliers
+3,7399,Toast ou pain grillé brioché aux raisins secs,produits céréaliers
+3,7400,Pain grillé au froment,produits céréaliers
+3,7402,Pain grillé au blé complet,produits céréaliers
+3,7403,Pain grillé brioché,produits céréaliers
+3,7407,Petit pain grillé suédois au froment,produits céréaliers
+3,7409,Petit pain grillé suédois aux céréales et graines,produits céréaliers
+3,7410,Tartine craquante extrudée,produits céréaliers
+3,7414,Tartine craquante extrudées,produits céréaliers
+3,7419,Petit pain grillé suédois au blé complet,produits céréaliers
+3,7420,Petit pain grillé suédois au blé complet,produits céréaliers
+3,7421,Petit pain grillé suédois aux fruits,produits céréaliers
+3,7422,Petit pain grillé suédois brioché,produits céréaliers
+3,7425,Pain grillé aux céréales,produits céréaliers
+3,7431,Croûton,produits céréaliers
+3,7432,Croûton nature,produits céréaliers
+3,7500,Chapelure,produits céréaliers
+3,7525,Gressin,produits céréaliers
+3,38500,Croûton,produits céréaliers
+3,38501,Croûton,produits céréaliers
+3,9230,Pop-corn ou maïs éclaté,produits céréaliers
+3,9231,Pop-corn ou maïs éclaté,produits céréaliers
+3,9232,Pop-corn ou maïs éclaté,produits céréaliers
+3,38104,Chips,produits céréaliers
+3,38105,Chips de maïs ou tortilla chips,produits céréaliers
+3,38106,Biscuit ou cracker apéritif,produits céréaliers
+3,38107,Biscuit ou cracker apéritif,produits céréaliers
+3,38109,Biscuit apéritif,produits céréaliers
+3,38399,Biscuit ou cracker apéritif (aliment moyen),produits céréaliers
+3,38401,Biscuit ou cracker apéritif,produits céréaliers
+3,38402,Biscuit ou cracker apéritif,produits céréaliers
+3,38403,Biscuit ou cracker apéritif,produits céréaliers
+3,38404,Biscuit ou cracker apéritif,produits céréaliers
+3,38405,Biscuit ou cracker apéritif,produits céréaliers
+3,38406,Cacahuète enrobée d'un biscuit salé ou aromatisé,produits céréaliers
+3,38407,Biscuit ou cracker apéritif,produits céréaliers
+3,38408,Biscuit apéritif,produits céréaliers
+3,38410,Biscuit ou cracker apéritif,produits céréaliers
+3,38411,Biscuit ou cracker apéritif,produits céréaliers
+3,38413,Biscuit ou cracker apéritif,produits céréaliers
+3,38414,Gressin,produits céréaliers
+3,38415,Gressin,produits céréaliers
+3,38416,Biscuit ou cracker apéritif,produits céréaliers
+3,38417,Chips de maïs ou tortilla chips,produits céréaliers
+3,38419,Biscuit ou cracker apéritif,produits céréaliers
+3,38420,Biscuit ou cracker apéritif,produits céréaliers
+3,38421,Biscuit ou cracker apéritif,produits céréaliers
+3,38422,Biscuit ou cracker apéritif,produits céréaliers
+3,4090,Fécule de pomme de terre,produits céréaliers
+3,9410,Farine de blé tendre ou froment T110,produits céréaliers
+3,9415,Farine de blé tendre ou froment T150,produits céréaliers
+3,9435,Farine de blé tendre ou froment T65,produits céréaliers
+3,9436,Farine de blé tendre ou froment T55 (pour pains),produits céréaliers
+3,9437,Farine de blé tendre ou froment avec levure incorporée,produits céréaliers
+3,9440,Farine de blé tendre ou froment T45 (pour pâtisserie),produits céréaliers
+3,9445,Farine de blé tendre ou froment T80,produits céréaliers
+3,9480,Farine d'épeautre (grand épeautre),produits céréaliers
+3,9510,Amidon de maïs ou fécule de maïs,produits céréaliers
+3,9520,Farine de riz,produits céréaliers
+3,9530,Farine de seigle T170,produits céréaliers
+3,9532,Farine de seigle T85,produits céréaliers
+3,9533,Farine de seigle T130,produits céréaliers
+3,9540,Farine de sarrasin,produits céréaliers
+3,9545,Farine de maïs,produits céréaliers
+3,9550,Farine d'orge,produits céréaliers
+3,9555,Farine de millet,produits céréaliers
+3,9570,Farine de châtaigne,produits céréaliers
+3,9580,Farine de pois chiche,produits céréaliers
+3,20915,Farine de soja complète,produits céréaliers
+3,96781,Amidon de riz,produits céréaliers
+3,23399,Pâte brisée,produits céréaliers
+3,23402,Pâte à pizza fine,produits céréaliers
+3,23410,Pâte brisée,produits céréaliers
+3,23412,Pâte brisée,produits céréaliers
+3,23414,Pâte brisée,produits céréaliers
+3,23415,Pâte brisée,produits céréaliers
+3,23416,Pâte brisée,produits céréaliers
+3,23420,Pâte feuilletée,produits céréaliers
+3,23424,Pâte feuilletée,produits céréaliers
+3,23425,Pâte feuilletée,produits céréaliers
+3,23426,Pâte feuilletée,produits céréaliers
+3,23430,Feuille de brick ou khatfa,produits céréaliers
+3,23440,Pâte sablée,produits céréaliers
+3,23442,Pâte sablée,produits céréaliers
+3,23444,Pâte sablée,produits céréaliers
+3,23445,Pâte phyllo ou pâte filo,produits céréaliers
+3,23446,Pâte sablée,produits céréaliers
+3,23448,Pâte sablée,produits céréaliers
+3,37001,Pâte à pizza,produits céréaliers
+3,51550,Feuille de brick ou khatfa,produits céréaliers
+3,96778,Pâte à pizza,produits céréaliers
+5,19000,Lait de grand mélange,produits laitiers
+5,19010,Lait entier,produits laitiers
+5,19016,Lait entier (aliment moyen),produits laitiers
+5,19023,Lait entier,produits laitiers
+5,19024,Lait entier,produits laitiers
+5,19033,Lait demi-écrémé (aliment moyen),produits laitiers
+5,19037,Lait demi-écrémé,produits laitiers
+5,19038,Lait à 1,produits laitiers
+5,19039,Lait,produits laitiers
+5,19041,Lait demi-écrémé,produits laitiers
+5,19042,Lait demi-écrémé,produits laitiers
+5,19050,Lait écrémé,produits laitiers
+5,19051,Lait écrémé,produits laitiers
+5,19060,Lait demi-écrémé (ou à teneur en matière grasse légèrement inférieure),produits laitiers
+5,19200,Lait de chèvre,produits laitiers
+5,19201,Lait de chèvre,produits laitiers
+5,19202,Lait de chèvre,produits laitiers
+5,19225,Lait de jument,produits laitiers
+5,19250,Lait de brebis,produits laitiers
+5,19270,Lait de bufflesse,produits laitiers
+5,19021,Lait en poudre,produits laitiers
+5,19026,Lait concentré sans sucres ajoutés,produits laitiers
+5,19027,Lait concentré sucré,produits laitiers
+5,19044,Lait en poudre,produits laitiers
+5,19054,Lait en poudre,produits laitiers
+5,19500,Lait fermenté à boire,produits laitiers
+5,19508,Lait fermenté ou yaourt à boire,produits laitiers
+5,19516,Lait fermenté à boire,produits laitiers
+5,19534,Lait fermenté ou yaourt à boire,produits laitiers
+5,19535,Lait fermenté ou yaourt à boire,produits laitiers
+5,19536,Lait fermenté ou yaourt à boire,produits laitiers
+5,19538,Lait fermenté à boire,produits laitiers
+5,19539,Lait fermenté type yaourt au bifidus,produits laitiers
+5,19541,Lait fermenté type yaourt au bifidus,produits laitiers
+5,19542,Lait fermenté type yaourt au bifidus,produits laitiers
+5,19543,Lait fermenté type yaourt aux esters de stérol,produits laitiers
+5,19544,Lait fermenté type yaourt au bifidus,produits laitiers
+5,19546,Lait fermenté type yaourt au bifidus,produits laitiers
+5,19550,Yaourt à la grecque nature,produits laitiers
+5,19551,Lait fermenté à boire,produits laitiers
+5,19552,Yaourt à la grecque sur lit de fruits,produits laitiers
+5,19553,Yaourt au lait de brebis,produits laitiers
+5,19554,Yaourt au lait de brebis,produits laitiers
+5,19555,Yaourt au lait de brebis,produits laitiers
+5,19556,Yaourt au lait de chèvre,produits laitiers
+5,19557,Yaourt ou lait fermenté,produits laitiers
+5,19559,Yaourt ou lait fermenté,produits laitiers
+5,19574,Yaourt ou lait fermenté,produits laitiers
+5,19575,Yaourt ou lait fermenté,produits laitiers
+5,19577,Yaourt ou lait fermenté,produits laitiers
+5,19578,Yaourt ou lait fermenté,produits laitiers
+5,19579,Yaourt ou lait fermenté,produits laitiers
+5,19580,Yaourt ou lait fermenté,produits laitiers
+5,19581,Yaourt ou lait fermenté,produits laitiers
+5,19582,Yaourt ou lait fermenté,produits laitiers
+5,19587,Yaourt ou lait fermenté,produits laitiers
+5,19589,Yaourt ou lait fermenté,produits laitiers
+5,19592,Yaourt ou lait fermenté,produits laitiers
+5,19593,Yaourt ou lait fermenté,produits laitiers
+5,19594,Yaourt ou lait fermenté,produits laitiers
+5,19596,Yaourt ou lait fermenté,produits laitiers
+5,19598,Yaourt ou lait fermenté,produits laitiers
+5,19599,Yaourt ou lait fermenté,produits laitiers
+5,19600,Yaourt ou lait fermenté,produits laitiers
+5,19624,Yaourt ou lait fermenté,produits laitiers
+5,19628,Yaourt ou lait fermenté,produits laitiers
+5,19669,Spécialité laitière riche en protéines,produits laitiers
+5,19671,Yaourt ou lait fermenté,produits laitiers
+5,19672,Yaourt ou lait fermenté,produits laitiers
+5,19675,Yaourt ou lait fermenté,produits laitiers
+5,19676,Yaourt ou lait fermenté,produits laitiers
+5,19677,Yaourt ou lait fermenté,produits laitiers
+5,19682,Yaourt ou lait fermenté,produits laitiers
+5,19723,Yaourt ou lait fermenté,produits laitiers
+5,19724,Spécialité laitière riche en protéines,produits laitiers
+5,19726,Yaourt ou lait fermenté,produits laitiers
+5,19727,Yaourt au lait de chèvre,produits laitiers
+5,19728,Yaourt au lait de chèvre,produits laitiers
+5,19733,Yaourt ou lait fermenté,produits laitiers
+5,19801,Lait fermenté à boire ou lait ribot,produits laitiers
+5,19805,Lait fermenté à boire ou lait ribot,produits laitiers
+5,19860,Yaourt à la grecque nature,produits laitiers
+5,19862,Yaourt à la grecque aromatisé,produits laitiers
+5,19865,Kéfir de lait,produits laitiers
+5,19882,Yaourt au lait de brebis,produits laitiers
+5,19501,Fromage blanc,produits laitiers
+5,19572,Fromage frais type petit suisse,produits laitiers
+5,19638,Faisselle au coulis de fruits,produits laitiers
+5,19639,Faisselle,produits laitiers
+5,19641,Faisselle,produits laitiers
+5,19643,Fromage blanc et crème fouettée,produits laitiers
+5,19644,Fromage blanc,produits laitiers
+5,19645,Fromage blanc,produits laitiers
+5,19646,Fromage blanc,produits laitiers
+5,19648,Fromage blanc,produits laitiers
+5,19650,Fromage blanc et crème fouettée,produits laitiers
+5,19654,Fromage blanc ou spécialité laitière,produits laitiers
+5,19656,Fromage blanc ou spécialité laitière,produits laitiers
+5,19657,Fromage blanc ou spécialité laitière,produits laitiers
+5,19659,Fromage blanc ou spécialité laitière,produits laitiers
+5,19660,Fromage blanc ou spécialité laitière,produits laitiers
+5,19663,Fromage frais type petit suisse,produits laitiers
+5,19664,Fromage frais type petit suisse,produits laitiers
+5,19665,Mousse de fromage blanc sur lit de fruits,produits laitiers
+5,19666,Fromage frais type petit suisse,produits laitiers
+5,19691,Fromage blanc ou spécialité laitière,produits laitiers
+5,19697,Fromage blanc ou spécialité laitière,produits laitiers
+5,19705,Fromage blanc ou spécialité laitière,produits laitiers
+5,19707,Fromage blanc ou spécialité laitière,produits laitiers
+5,19708,Fromage blanc ou spécialité laitière,produits laitiers
+5,19709,Fromage blanc ou spécialité laitière,produits laitiers
+5,19711,Fromage blanc,produits laitiers
+5,19712,Fromage blanc,produits laitiers
+5,19713,Fromage blanc,produits laitiers
+5,19714,Fromage blanc ou spécialité laitière,produits laitiers
+5,19715,Fromage blanc ou spécialité laitière,produits laitiers
+5,19716,Fromage blanc,produits laitiers
+5,19718,Fromage blanc ou spécialité laitière,produits laitiers
+5,19719,Fromage frais type petit suisse,produits laitiers
+5,19720,Fromage frais type petit suisse,produits laitiers
+5,19721,Fromage frais type petit suisse,produits laitiers
+5,19722,Fromage frais type petit suisse,produits laitiers
+5,19725,Fromage blanc ou spécialité laitière,produits laitiers
+5,19673,Crème dessert,produits laitiers
+5,19674,Flan aux oeufs,produits laitiers
+5,19678,Lait emprésuré aromatisé,produits laitiers
+5,19679,Lait gélifié aromatisé,produits laitiers
+5,19680,Lait gélifié aromatisé,produits laitiers
+5,19681,Liégeois ou viennois (chocolat,produits laitiers
+5,19684,Oeufs au lait,produits laitiers
+5,19685,Panna cotta,produits laitiers
+5,19686,Spécialité laitière ou dessert lacté,produits laitiers
+5,23534,Gâteau de semoule aux raisins et caramel,produits laitiers
+5,23536,Gâteau de riz au caramel,produits laitiers
+5,39001,Milkshake,produits laitiers
+5,39200,Crème dessert au chocolat,produits laitiers
+5,39206,Mousse au chocolat (base laitière),produits laitiers
+5,39209,Crème caramel,produits laitiers
+5,39211,Crème aux oeufs (petit pot de crème chocolat,produits laitiers
+5,39212,Riz au lait vanille,produits laitiers
+5,39213,Crème brûlée,produits laitiers
+5,39214,Crème dessert à la vanille,produits laitiers
+5,39215,Ile flottante,produits laitiers
+5,39218,Semoule au lait,produits laitiers
+5,39229,Crème dessert à la vanille,produits laitiers
+5,39230,Crème dessert,produits laitiers
+5,39235,Mousse liégeoise (chocolat,produits laitiers
+5,39246,Crème dessert au café,produits laitiers
+5,39247,Crème dessert au caramel,produits laitiers
+5,39249,Mousse aux fruits,produits laitiers
+5,39250,Mousse aux fruits,produits laitiers
+5,39251,Riz au lait,produits laitiers
+5,39252,Riz au lait,produits laitiers
+5,39253,Mousse au chocolat ou café,produits laitiers
+5,39254,Crème dessert au chocolat et billes de céréales chocolatées,produits laitiers
+5,39505,Crème dessert,produits laitiers
+5,39506,Crème dessert au chocolat,produits laitiers
+5,39511,Crème dessert,produits laitiers
+5,19698,Tiramisu au café,produits laitiers
+5,19699,Tiramisu aux fruits,produits laitiers
+5,19852,Mousse à la crème de marrons,produits laitiers
+5,23474,Profiteroles (crème pâtissière et sauce chocolat),produits laitiers
+5,39210,Mousse au chocolat traditionnelle,produits laitiers
+5,39216,Clafoutis aux fruits,produits laitiers
+5,39220,Liégeois aux fruits,produits laitiers
+5,39233,Fondant au chocolat noir et crème anglaise,produits laitiers
+5,39234,Gâteau au chocolat,produits laitiers
+5,39236,Pain perdu,produits laitiers
+5,39400,Lait de poule,produits laitiers
+5,39710,Crème pâtissière instantanée,produits laitiers
+5,19692,Dessert au soja,produits laitiers
+5,19693,Dessert au soja,produits laitiers
+5,19694,Dessert au soja,produits laitiers
+5,19695,Dessert au soja,produits laitiers
+5,19696,Dessert au soja,produits laitiers
+5,20911,Dessert au soja,produits laitiers
+5,20921,Dessert au soja,produits laitiers
+5,20922,Dessert végétal sans soja (amande,produits laitiers
+5,20923,Dessert végétal sans soja (coco,produits laitiers
+5,20925,Dessert au soja,produits laitiers
+5,20926,Dessert au soja,produits laitiers
+5,20927,Dessert végétal sans soja (amande,produits laitiers
+5,20928,Dessert végétal sans soja,produits laitiers
+5,20929,Dessert au soja,produits laitiers
+5,39248,Mousse au chocolat végétale,produits laitiers
+5,12775,Mélange de fromages râpés (ex : spécial gratins,produits laitiers
+5,12999,Fromage (aliment moyen),produits laitiers
+5,12001,Camembert,produits laitiers
+5,12003,Fromage à pâte molle et croûte fleurie,produits laitiers
+5,12004,Fromage à pâte molle et croûte fleurie,produits laitiers
+5,12006,Camembert au lait cru ou thermisé,produits laitiers
+5,12007,Camembert au lait pasteurisé,produits laitiers
+5,12008,Fromage à pâte molle et croûte fleurie,produits laitiers
+5,12010,Coulommiers,produits laitiers
+5,12015,Fromage à pâte molle type carré ou brique,produits laitiers
+5,12020,Brie,produits laitiers
+5,12021,Brie de Meaux,produits laitiers
+5,12022,Brie de Melun,produits laitiers
+5,12025,Carré de l'Est,produits laitiers
+5,12028,Chaource,produits laitiers
+5,12029,Maroilles,produits laitiers
+5,12030,Maroilles,produits laitiers
+5,12031,Neufchâtel,produits laitiers
+5,12033,Fromage à pâte molle,produits laitiers
+5,12034,Fromage à pâte molle et croûte lavée (aliment moyen),produits laitiers
+5,12035,Fromage à pâte molle et croûte lavée,produits laitiers
+5,12036,Maroilles,produits laitiers
+5,12037,Livarot,produits laitiers
+5,12038,Époisses,produits laitiers
+5,12039,Munster,produits laitiers
+5,12040,Langres,produits laitiers
+5,12041,Fromage à pâte molle et croûte lavée,produits laitiers
+5,12042,Pont l'Évêque,produits laitiers
+5,12045,Reblochon,produits laitiers
+5,12049,Saint-Marcellin,produits laitiers
+5,12050,Fromage à pâte molle et croûte mixte (lavée et fleurie) colorée,produits laitiers
+5,12051,Mont d'or ou vacherin du Haut-Doubs (produit en France) ou vacherin-Mont d'Or (produit en Suisse),produits laitiers
+5,12052,Saint-Félicien,produits laitiers
+5,12053,Fromage pour tartiflette (pâte molle et croûte mixte),produits laitiers
+5,12064,Boulette d'Avesne,produits laitiers
+5,12762,Fromage de brebis corse à pâte molle,produits laitiers
+5,12803,Fromage de chèvre lactique affiné,produits laitiers
+5,12807,Sainte-Maure de Touraine (fromage de chèvre),produits laitiers
+5,12810,Fromage de chèvre demi-sec,produits laitiers
+5,12812,Fromage de chèvre bûche,produits laitiers
+5,12813,Fromage de chèvre bûche,produits laitiers
+5,12814,Fromage de chèvre à pâte molle non pressée non cuite et croûte naturelle,produits laitiers
+5,12815,Fromage de chèvre sec,produits laitiers
+5,12820,Fromage de chèvre à pâte molle et croûte fleurie (type camembert,produits laitiers
+5,12824,Fromage de brebis à pâte molle et croûte fleurie,produits laitiers
+5,12830,Chabichou (fromage de chèvre),produits laitiers
+5,12831,Pélardon (fromage de chèvre),produits laitiers
+5,12832,Crottin de chèvre,produits laitiers
+5,12833,Crottin de chèvre,produits laitiers
+5,12834,Crottin de Chavignol (fromage de chèvre),produits laitiers
+5,12836,Picodon (fromage de chèvre),produits laitiers
+5,12839,Pouligny Saint-Pierre (fromage de chèvre),produits laitiers
+5,12842,Sainte-Maure (fromage de chèvre),produits laitiers
+5,12845,Selles-sur-Cher (fromage de chèvre),produits laitiers
+5,12846,Chevrot (fromage de chèvre),produits laitiers
+5,12847,Rocamadour (fromage de chèvre),produits laitiers
+5,12848,Valençay (fromage de chèvre),produits laitiers
+5,12500,Roquefort (fromage de brebis),produits laitiers
+5,12519,Fourme de Montbrison,produits laitiers
+5,12520,Fromage bleu au lait de vache,produits laitiers
+5,12521,Fromage bleu d'Auvergne,produits laitiers
+5,12522,Fourme d'Ambert,produits laitiers
+5,12523,Fromage bleu des Causses,produits laitiers
+5,12524,Gorgonzola,produits laitiers
+5,12526,Bleu de Gex ou fromage bleu du Haut-Jura ou bleu de Septmoncel,produits laitiers
+5,12528,Fromage bleu au lait de vache,produits laitiers
+5,12099,Emmental de Savoie ou emmenthal de Savoie,produits laitiers
+5,12100,Fromage à pâte pressée cuite (aliment moyen),produits laitiers
+5,12105,Beaufort,produits laitiers
+5,12109,Cantal jeune,produits laitiers
+5,12110,Comté,produits laitiers
+5,12112,Abondance,produits laitiers
+5,12113,Gruyère IGP France,produits laitiers
+5,12114,Gruyère,produits laitiers
+5,12115,Emmental ou emmenthal,produits laitiers
+5,12116,Fromage à pâte pressée cuite type emmental ou emmenthal,produits laitiers
+5,12118,Emmental ou emmenthal,produits laitiers
+5,12119,Ossau-Iraty (fromage de brebis),produits laitiers
+5,12120,Parmesan,produits laitiers
+5,12121,Fontina,produits laitiers
+5,12122,Pecorino (fromage de brebis),produits laitiers
+5,12123,Grana Padano,produits laitiers
+5,12705,Fromage à pâte pressée non cuite type maasdam,produits laitiers
+5,12716,Provolone,produits laitiers
+5,12720,Fromage à pâte pressée non cuite,produits laitiers
+5,12721,Fromage à pâte pressée non cuite,produits laitiers
+5,12722,Cantal entre-deux,produits laitiers
+5,12724,Cantal,produits laitiers
+5,12725,Salers,produits laitiers
+5,12726,Cheddar,produits laitiers
+5,12729,Edam,produits laitiers
+5,12735,Mimolette jeune (moins de 6 mois d'affinage),produits laitiers
+5,12736,Gouda,produits laitiers
+5,12737,Mimolette demi-vieille (6 mois d'affinage minimum),produits laitiers
+5,12738,Mimolette vieille (12 mois d'affinage minimum),produits laitiers
+5,12740,Mimolette,produits laitiers
+5,12741,Fromage à pâte pressée non cuite type maasdam,produits laitiers
+5,12742,Mimolette extra-vieille (18 mois d'affinage minimum),produits laitiers
+5,12743,Morbier,produits laitiers
+5,12747,Fromage de brebis à pâte pressée non cuite des Pyrénées,produits laitiers
+5,12748,Saint-Nectaire,produits laitiers
+5,12749,Raclette (fromage),produits laitiers
+5,12751,Saint-Nectaire,produits laitiers
+5,12752,Saint-Nectaire,produits laitiers
+5,12755,Saint-Paulin (fromage à pâte pressée non cuite demi-ferme),produits laitiers
+5,12758,Tomme ou tome de vache,produits laitiers
+5,12760,Tomme ou tome,produits laitiers
+5,12761,Asiago,produits laitiers
+5,12763,Tome des Bauges,produits laitiers
+5,12764,Tête de moine,produits laitiers
+5,12765,Raclette (fromage) fumée,produits laitiers
+5,12766,Raclette (fromage),produits laitiers
+5,12767,Gouda au cumin,produits laitiers
+5,12771,Tomme ou tome de Savoie,produits laitiers
+5,12773,Tomme ou tome des Pyrénées,produits laitiers
+5,12776,Raclette de Savoie (fromage),produits laitiers
+5,12816,Fromage à pâte pressée demi-cuite,produits laitiers
+5,12850,Fromage de chèvre à pâte pressée non cuite,produits laitiers
+5,12300,Fromage fondu en tranchettes,produits laitiers
+5,12302,Spécialité fromagère fondue aromatisée en cubes pour lapéritif (cubes de fromage fondu au lait de vache),produits laitiers
+5,12303,Fromage fondu en portion (triangle),produits laitiers
+5,12304,Fromage fondu en portion (triangle),produits laitiers
+5,12305,Fromage fondu,produits laitiers
+5,12306,Fromage blanc fondu en portion (carré),produits laitiers
+5,12307,Fromage blanc fondu en portion (carré ou bâtonnet),produits laitiers
+5,12311,Crème de camembert,produits laitiers
+5,12325,Cancoillotte (spécialité fromagère fondue),produits laitiers
+5,12355,Spécialité fromagère fondante au fromage blanc et aux noix,produits laitiers
+5,12356,Snack pour enfants à base de fromage fondu et de gressins,produits laitiers
+5,12054,Spécialité fromagère non affinée en coque,produits laitiers
+5,12059,Brocciu ou brucciu corse,produits laitiers
+5,12060,Fromage type feta,produits laitiers
+5,12061,Fromage type feta,produits laitiers
+5,12063,Fromage type feta,produits laitiers
+5,12065,Bouchée apéritive de fromage au lait de vache non affiné,produits laitiers
+5,12066,Feta,produits laitiers
+5,12067,Fromage type feta,produits laitiers
+5,12068,Fromage frais ou spécialité fromagère non affinée,produits laitiers
+5,12069,Fromage frais ou spécialité fromagère non affinée,produits laitiers
+5,12070,Fromage frais ou spécialité fromagère non affinée,produits laitiers
+5,12071,Brousse (fromage de brebis frais au lactosérum),produits laitiers
+5,12072,Burrata,produits laitiers
+5,12073,Fromage frais ou spécialité fromagère non affinée,produits laitiers
+5,12111,Fromage à effilocher ou à dérouler,produits laitiers
+5,12342,Fromage frais ou spécialité fromagère non affinée,produits laitiers
+5,12768,Fromage type feta,produits laitiers
+5,12805,Fromage de chèvre frais,produits laitiers
+5,12819,Fromage de chèvre à tartiner,produits laitiers
+5,12828,Fromage de lactosérum de brebis,produits laitiers
+5,19584,Mascarpone,produits laitiers
+5,19585,Ricotta,produits laitiers
+5,19590,Mozzarella au lait de vache,produits laitiers
+5,19591,"Mozzarella au lait de bufflonne ou buflesse (""di bufala"")",produits laitiers
+5,1027,Spécialité végétale type fromage à tartiner,produits laitiers
+5,1028,Spécialité végétale type fromage,produits laitiers
+5,1029,Spécialité végétale type fromage en tranche ou râpé,produits laitiers
+5,19402,Crème ou spécialité à base de crème légère,produits laitiers
+5,19403,Crème ou spécialité à base de crème légère,produits laitiers
+5,19404,Crème ou spécialité à base de crème légère,produits laitiers
+5,19410,Crème 30% MG,produits laitiers
+5,19411,Crème d'Isigny,produits laitiers
+5,19415,Crème 30% MG,produits laitiers
+5,19417,Crème 30% MG,produits laitiers
+5,19420,Crème chantilly,produits laitiers
+5,19430,Crème 12 à 25% MG,produits laitiers
+5,19431,Crème 12 à 25% MG,produits laitiers
+5,19432,Spécialité à base de crème légère 4-5% MG,produits laitiers
+5,19433,Spécialité à base de crème légère 4% MG environ,produits laitiers
+5,19434,Spécialité culinaire à base de crème et d'aromates 19% MG,produits laitiers
+5,19435,Spécialité culinaire à base de crème légère et d'aromates 12% MG,produits laitiers
+5,19436,Crème 12 à 20% MG,produits laitiers
+6,18009,Eau minérale,eaux et autres boissons
+6,18044,Eau minérale (aliment moyen),eaux et autres boissons
+6,18045,Eau minérale,eaux et autres boissons
+6,18046,Eau minérale,eaux et autres boissons
+6,18066,Eau du robinet,eaux et autres boissons
+6,18430,Eau de source gazeuse ou plate,eaux et autres boissons
+6,76000,Eau minérale Abatilles,eaux et autres boissons
+6,76001,Eau minérale Aix-les-Bains,eaux et autres boissons
+6,76002,Eau minérale Aizac,eaux et autres boissons
+6,76004,Eau minérale Amanda,eaux et autres boissons
+6,76006,Eau minérale Arcens,eaux et autres boissons
+6,76007,Eau minérale Ardesy,eaux et autres boissons
+6,76010,Eau minérale Celtic,eaux et autres boissons
+6,76011,Eau minérale Chambon,eaux et autres boissons
+6,76012,Eau minérale Chantemerle,eaux et autres boissons
+6,76013,Eau minérale Chateauneuf,eaux et autres boissons
+6,76014,Eau minérale Chateldon,eaux et autres boissons
+6,76015,Eau minérale Clos de l'Abbaye,eaux et autres boissons
+6,76016,Eau minérale Contrex,eaux et autres boissons
+6,76017,Eau minérale Dax,eaux et autres boissons
+6,76018,Eau minérale Didier,eaux et autres boissons
+6,76019,Eau minérale Didier,eaux et autres boissons
+6,76020,Eau minérale Evian,eaux et autres boissons
+6,76022,Eau minérale Hépar,eaux et autres boissons
+6,76023,Eau minérale Hydroxydase,eaux et autres boissons
+6,76024,Eau minérale Vernière,eaux et autres boissons
+6,76025,Eau minérale Luchon,eaux et autres boissons
+6,76027,Eau minérale Mont-Roucous,eaux et autres boissons
+6,76029,Eau minérale Orée du bois,eaux et autres boissons
+6,76030,Eau minérale Orezza,eaux et autres boissons
+6,76031,Eau minérale Parot,eaux et autres boissons
+6,76032,Eau minérale Plancoet,eaux et autres boissons
+6,76033,Eau minérale Propiac,eaux et autres boissons
+6,76034,Eau minérale Puits St-Georges,eaux et autres boissons
+6,76035,Eau minérale Quézac,eaux et autres boissons
+6,76036,Eau minérale Reine des basaltes,eaux et autres boissons
+6,76037,Eau minérale Rozana,eaux et autres boissons
+6,76038,Eau minérale Sail-les-Bains,eaux et autres boissons
+6,76039,Eau minérale Salvetat,eaux et autres boissons
+6,76043,Eau minérale St-Amand,eaux et autres boissons
+6,76044,Eau minérale St-Antonin,eaux et autres boissons
+6,76046,Eau minérale St-Diéry,eaux et autres boissons
+6,76047,Eau minérale Ste-Marguerite,eaux et autres boissons
+6,76049,Eau minérale St-Yorre,eaux et autres boissons
+6,76050,Eau minérale Thonon,eaux et autres boissons
+6,76052,Eau minérale Vals-Vivaraise,eaux et autres boissons
+6,76053,Eau minérale Ventadour,eaux et autres boissons
+6,76054,Eau minérale Vernet,eaux et autres boissons
+6,76055,Eau minérale Vichy Célestins,eaux et autres boissons
+6,76056,Eau minérale Vittel,eaux et autres boissons
+6,76057,Eau minérale Volvic,eaux et autres boissons
+6,76058,Eau minérale Volvic active,eaux et autres boissons
+6,76059,Eau minérale Wattwiller,eaux et autres boissons
+6,76060,Eau minérale Perrier,eaux et autres boissons
+6,76061,Eau minérale Badoit,eaux et autres boissons
+6,76062,Eau minérale Avra,eaux et autres boissons
+6,76063,Eau minérale Beckerich,eaux et autres boissons
+6,76065,Eau minérale Chaudfontaine,eaux et autres boissons
+6,76066,Eau minérale Christinen Brunnen,eaux et autres boissons
+6,76067,Eau minérale Courmayeur,eaux et autres boissons
+6,76069,Eau minérale Levissima,eaux et autres boissons
+6,76070,Eau minérale Luso,eaux et autres boissons
+6,76071,Eau minérale Néro,eaux et autres boissons
+6,76072,Eau minérale Penacova,eaux et autres boissons
+6,76074,Eau minérale San Bernardo,eaux et autres boissons
+6,76075,Eau minérale San Pellegrino,eaux et autres boissons
+6,76076,Eau minérale Spa-Reine,eaux et autres boissons
+6,76078,Eau minérale Valvert,eaux et autres boissons
+6,76079,Eau minérale Appollinaris,eaux et autres boissons
+6,76081,Eau minérale Biovive,eaux et autres boissons
+6,76082,Eau minérale La Cairolle,eaux et autres boissons
+6,76083,Eau minérale Cilaos,eaux et autres boissons
+6,76085,Eau minérale La Française,eaux et autres boissons
+6,76086,Eau minérale Montcalm,eaux et autres boissons
+6,76087,Eau minérale Montclar,eaux et autres boissons
+6,76088,Eau minérale Nessel,eaux et autres boissons
+6,76089,Eau minérale Ogeu,eaux et autres boissons
+6,76090,Eau minérale Ogeu,eaux et autres boissons
+6,76091,Eau minérale Prince Noir,eaux et autres boissons
+6,76092,Eau minérale St-Alban,eaux et autres boissons
+6,76093,Eau minérale St-Géron,eaux et autres boissons
+6,76094,Eau minérale St-Michel-de-Mourcairol,eaux et autres boissons
+6,76095,Eau minérale Treignac,eaux et autres boissons
+6,76096,Eau minérale Vals,eaux et autres boissons
+6,76097,Eau minérale Vauban,eaux et autres boissons
+6,76101,Eau minérale Mont-Blanc,eaux et autres boissons
+6,76102,Eau minérale Eden (La Goa),eaux et autres boissons
+6,76103,Eau minérale Velleminfroy,eaux et autres boissons
+6,2000,Jus d'ananas,eaux et autres boissons
+6,2002,Jus multifruit,eaux et autres boissons
+6,2004,Jus de fruits (aliment moyen),eaux et autres boissons
+6,2006,Jus de carotte,eaux et autres boissons
+6,2007,Jus de citron,eaux et autres boissons
+6,2011,Jus multifruit,eaux et autres boissons
+6,2012,Jus d'orange,eaux et autres boissons
+6,2013,Jus d'orange,eaux et autres boissons
+6,2014,Jus de pomme,eaux et autres boissons
+6,2015,Jus de pamplemousse (pomélo),eaux et autres boissons
+6,2016,Jus de raisin,eaux et autres boissons
+6,2017,Jus de grenade,eaux et autres boissons
+6,2018,Jus de pruneau,eaux et autres boissons
+6,2019,Jus de raisin,eaux et autres boissons
+6,2023,Jus de mangue,eaux et autres boissons
+6,2024,Jus de fruit de la passion ou maracudja,eaux et autres boissons
+6,2025,Jus de pamplemousse (pomélo),eaux et autres boissons
+6,2026,Jus de tomate,eaux et autres boissons
+6,2027,Jus de pamplemousse (pomelo),eaux et autres boissons
+6,2028,Jus de citron,eaux et autres boissons
+6,2030,Jus de citron vert,eaux et autres boissons
+6,2031,Jus de citron vert,eaux et autres boissons
+6,2032,Jus de tomate,eaux et autres boissons
+6,2033,Jus multifruit,eaux et autres boissons
+6,2034,Jus de clémentine ou mandarine,eaux et autres boissons
+6,2035,Jus multifruit,eaux et autres boissons
+6,2036,Jus multifruit,eaux et autres boissons
+6,2038,Jus multifruit,eaux et autres boissons
+6,2039,Jus de grenade,eaux et autres boissons
+6,2040,Jus de cerise des Antilles ou d'acérola,eaux et autres boissons
+6,2048,Jus multifruit,eaux et autres boissons
+6,2050,Jus multifruit,eaux et autres boissons
+6,2052,Jus de fruit(s) et de légume(s),eaux et autres boissons
+6,2053,Jus de tomate,eaux et autres boissons
+6,2069,Jus multifruit,eaux et autres boissons
+6,2070,Jus d'orange,eaux et autres boissons
+6,2071,Jus multifruit,eaux et autres boissons
+6,2072,Jus de fruits,eaux et autres boissons
+6,2073,Jus d'ananas,eaux et autres boissons
+6,2074,Jus de pomme,eaux et autres boissons
+6,2075,Jus de légumes,eaux et autres boissons
+6,2077,Jus de fruits,eaux et autres boissons
+6,2377,Jus d'orange sanguine,eaux et autres boissons
+6,2381,Jus de canneberge ou cranberry,eaux et autres boissons
+6,2500,Smoothie,eaux et autres boissons
+6,2009,Nectar multifruit,eaux et autres boissons
+6,2010,Nectar multifruit,eaux et autres boissons
+6,2022,Nectar de fraise,eaux et autres boissons
+6,2043,Nectar d'abricot,eaux et autres boissons
+6,2045,Nectar de papaye,eaux et autres boissons
+6,2054,Nectar de poire,eaux et autres boissons
+6,2060,Nectar multifruit,eaux et autres boissons
+6,2061,Nectar multifruit,eaux et autres boissons
+6,2062,Nectar multifruit,eaux et autres boissons
+6,2063,Nectar multifruit,eaux et autres boissons
+6,2064,Nectar,eaux et autres boissons
+6,2076,Nectar de pomme,eaux et autres boissons
+6,2365,Nectar de fruit de la passion ou maracuja,eaux et autres boissons
+6,2366,Nectar de banane,eaux et autres boissons
+6,2367,Nectar de goyave,eaux et autres boissons
+6,2370,Nectar de mangue,eaux et autres boissons
+6,2371,Nectar de pêche,eaux et autres boissons
+6,2374,Nectar d'ananas,eaux et autres boissons
+6,2375,Nectar d'orange,eaux et autres boissons
+6,18001,Boisson gazeuse aromatisée,eaux et autres boissons
+6,18007,Cocktail ou boisson apéritive sans alcool à base de jus de fruits sans sirop,eaux et autres boissons
+6,18010,Limonade,eaux et autres boissons
+6,18012,Boisson à l'eau minérale ou de source,eaux et autres boissons
+6,18013,Tonic ou bitter,eaux et autres boissons
+6,18014,Tonic ou bitter,eaux et autres boissons
+6,18015,Boisson au thé,eaux et autres boissons
+6,18016,Limonade,eaux et autres boissons
+6,18018,Cola,eaux et autres boissons
+6,18019,Boisson gazeuse aux fruits (teneur en fruits >= 10% et 50%),eaux et autres boissons
+6,18021,Boisson plate aux fruits (teneur en fruits 10%),eaux et autres boissons
+6,18023,Boisson plate aux fruits (teneur en fruits 10%),eaux et autres boissons
+6,18024,Boisson plate aux fruits (teneur en fruits >= 10% et 50%),eaux et autres boissons
+6,18025,Kombucha,eaux et autres boissons
+6,18026,Boisson gazeuse aromatisée,eaux et autres boissons
+6,18028,Boisson à l'eau minérale ou de source,eaux et autres boissons
+6,18029,Boisson rafraîchissante sans alcool (aliment moyen),eaux et autres boissons
+6,18030,Boisson à l'eau minérale ou de source,eaux et autres boissons
+6,18033,Boisson gazeuse aux fruits (teneur en fruits 10%),eaux et autres boissons
+6,18034,Boisson gazeuse aux fruits (teneur en fruits >= 10% et 50%),eaux et autres boissons
+6,18035,Limonade,eaux et autres boissons
+6,18037,Cola,eaux et autres boissons
+6,18039,Diabolo (limonade et sirop),eaux et autres boissons
+6,18048,Boisson gazeuse aux fruits (teneur en jus non spécifiée),eaux et autres boissons
+6,18049,Boisson gazeuse aux fruits (teneur en fruits 10%),eaux et autres boissons
+6,18050,Boisson gazeuse aux fruits (teneur en fruits 10%),eaux et autres boissons
+6,18051,Boisson gazeuse aux fruits (teneur en fruits >= 10% et 50%),eaux et autres boissons
+6,18057,Boisson préparée à partir de boisson concentrée à diluer type menthe,eaux et autres boissons
+6,18058,Boisson préparée à partir de sirop à diluer type menthe,eaux et autres boissons
+6,18060,Cola,eaux et autres boissons
+6,18062,Boisson au thé,eaux et autres boissons
+6,18063,Cola,eaux et autres boissons
+6,18064,Boisson au thé,eaux et autres boissons
+6,18065,Boisson au thé,eaux et autres boissons
+6,18067,Cola,eaux et autres boissons
+6,18068,Cola,eaux et autres boissons
+6,18075,Boisson au thé,eaux et autres boissons
+6,18078,Boisson gazeuse aromatisée,eaux et autres boissons
+6,18294,Boisson plate aux fruits  (teneur en fruits 10%),eaux et autres boissons
+6,18295,Boisson plate aux fruits  (teneur en fruits >= 10% et 50%),eaux et autres boissons
+6,18296,Boisson aux fruits avec de la purée de fruits type smoothie (teneur en fruits >=50%),eaux et autres boissons
+6,18297,Boisson plate aux fruits (teneur en fruits >= 50%),eaux et autres boissons
+6,18298,Boisson plate aux fruits (teneur en fruits >= 50%),eaux et autres boissons
+6,18299,Citronnade,eaux et autres boissons
+6,18300,Boisson aux fruits avec de la purée de fruits type smoothie (teneur en fruits >= 50%),eaux et autres boissons
+6,18304,Boisson plate aux fruits (teneur en fruits >= 10% et 50%),eaux et autres boissons
+6,18305,Boisson plate aux fruits (teneur en fruits >= 10% et 50%),eaux et autres boissons
+6,18306,Boisson à l'aloe vera,eaux et autres boissons
+6,18309,Boisson plate aux fruits (teneur en fruits non spécifiée),eaux et autres boissons
+6,18315,Boisson plate au(x) fruits et au(x) légume(s),eaux et autres boissons
+6,18316,Kéfir d'eau et de fruits,eaux et autres boissons
+6,18324,Boisson énergisante,eaux et autres boissons
+6,18325,Boisson plate aux fruits (teneur en fruits non spécifiée),eaux et autres boissons
+6,18326,Boisson à l'eau minérale ou de source,eaux et autres boissons
+6,18327,Limonade,eaux et autres boissons
+6,18328,Boisson préparée à partir de sirop ou de boisson concentrée à diluer type menthe,eaux et autres boissons
+6,18329,Boisson gazeuse aromatisée,eaux et autres boissons
+6,18339,Boisson plate aux fruits (teneur en fruits >= 10% et 50%),eaux et autres boissons
+6,18340,Boisson gazeuse aux fruits (teneur en fruits 10%),eaux et autres boissons
+6,18341,Boisson gazeuse à la pomme (teneur en fruits >= 50%),eaux et autres boissons
+6,18344,Tonic ou bitter,eaux et autres boissons
+6,18345,Boisson gazeuse aux fruits (teneur en fruits 10%),eaux et autres boissons
+6,18347,Boisson à la sève de bouleau,eaux et autres boissons
+6,18348,Boisson pour le sport,eaux et autres boissons
+6,18349,Boisson pour le sport,eaux et autres boissons
+6,18352,Boisson énergisante,eaux et autres boissons
+6,18353,Boisson énergisante,eaux et autres boissons
+6,18354,Boisson énergisante,eaux et autres boissons
+6,18356,Tonic ou bitter,eaux et autres boissons
+6,18343,Boisson au(x) fruit(s) et au lait,eaux et autres boissons
+6,19114,Boisson lactée aromatisée à la vanille,eaux et autres boissons
+6,19116,Boisson lactée aromatisée au café,eaux et autres boissons
+6,19117,Boisson lactée aromatisée au café,eaux et autres boissons
+6,19118,Boisson lactée aromatisée au chocolat,eaux et autres boissons
+6,19119,Boisson lactée aromatisée au chocolat,eaux et autres boissons
+6,19120,Boisson lactée aromatisée (sans précision sur l'arôme),eaux et autres boissons
+6,19127,Boisson lactée aromatisée à la fraise,eaux et autres boissons
+6,18011,Eau de coco,eaux et autres boissons
+6,18107,Boisson à l'amande,eaux et autres boissons
+6,18110,Boisson à l'amande,eaux et autres boissons
+6,18111,Boisson à l'amande,eaux et autres boissons
+6,18112,Boisson végétale,eaux et autres boissons
+6,18113,Boisson au soja,eaux et autres boissons
+6,18899,Boisson à l'avoine,eaux et autres boissons
+6,18900,Boisson au soja,eaux et autres boissons
+6,18901,Boisson au soja,eaux et autres boissons
+6,18902,Boisson au soja,eaux et autres boissons
+6,18903,Boisson au soja,eaux et autres boissons
+6,18904,Boisson au riz,eaux et autres boissons
+6,18906,Boisson à la châtaigne,eaux et autres boissons
+6,18907,Boisson à la noix de coco,eaux et autres boissons
+6,29209,Boisson au soja et jus de fruits concentrés,eaux et autres boissons
+6,18003,Café,eaux et autres boissons
+6,18005,Café,eaux et autres boissons
+6,18017,Sirop à diluer,eaux et autres boissons
+6,18059,Boisson concentrée à diluer,eaux et autres boissons
+6,18069,Café,eaux et autres boissons
+6,18076,Thé,eaux et autres boissons
+6,18100,Cacao,eaux et autres boissons
+6,18101,Poudre cacaotée ou au chocolat pour boisson,eaux et autres boissons
+6,18102,Poudre maltée,eaux et autres boissons
+6,18150,Chicorée et café,eaux et autres boissons
+6,18152,Chicorée,eaux et autres boissons
+6,18160,Café au lait ou cappuccino,eaux et autres boissons
+6,18163,Café au lait ou cappuccino au chocolat,eaux et autres boissons
+6,18167,Poudre cacaotée ou au chocolat pour boisson,eaux et autres boissons
+6,18168,Poudre cacaotée ou au chocolat pour boisson,eaux et autres boissons
+6,18220,Spécialité à diluer au citron pour boissons ou usages culinaires,eaux et autres boissons
+6,1006,Vin doux,eaux et autres boissons
+6,5100,Pétillant de fruits,eaux et autres boissons
+6,5201,Vin blanc mousseux,eaux et autres boissons
+6,5207,Champagne,eaux et autres boissons
+6,5209,Vin blanc mousseux aromatisé,eaux et autres boissons
+6,5210,Vin (aliment moyen),eaux et autres boissons
+6,5214,Vin rouge,eaux et autres boissons
+6,5215,Vin blanc sec,eaux et autres boissons
+6,5216,Vin rosé,eaux et autres boissons
+6,5000,Bière brune,eaux et autres boissons
+6,5001,"Bière ""coeur de marché"" (4-5° alcool)",eaux et autres boissons
+6,5002,Bière forte (>8° alcool),eaux et autres boissons
+6,5003,Cidre (aliment moyen),eaux et autres boissons
+6,5006,Cidre brut,eaux et autres boissons
+6,5007,Cidre doux,eaux et autres boissons
+6,5008,Bière faiblement alcoolisée (3° alcool),eaux et autres boissons
+6,5009,Bière blanche,eaux et autres boissons
+6,5010,"Bière ""spéciale"" (5-6° alcool)",eaux et autres boissons
+6,5011,"Bière ""de spécialités"" ou d'abbaye",eaux et autres boissons
+6,5020,Cidre traditionnel,eaux et autres boissons
+6,5021,Cidre bouché demi-sec,eaux et autres boissons
+6,5022,Cidre aromatisé aux fruits,eaux et autres boissons
+6,5029,Bière sans alcool,eaux et autres boissons
+6,5030,Bière sans alcool (<1,eaux et autres boissons
+6,1000,Pastis,eaux et autres boissons
+6,1001,Eau de vie de fruits,eaux et autres boissons
+6,1002,Gin,eaux et autres boissons
+6,1003,Liqueur,eaux et autres boissons
+6,1004,Rhum,eaux et autres boissons
+6,1005,Whisky,eaux et autres boissons
+6,1007,Apéritif à base de vin ou vermouth,eaux et autres boissons
+6,1008,Vodka,eaux et autres boissons
+6,1010,Pastis,eaux et autres boissons
+6,1011,Apéritif anisé sans alcool,eaux et autres boissons
+6,1014,Alcool pur,eaux et autres boissons
+6,1015,Marsala,eaux et autres boissons
+6,1016,Marsala aux oeufs,eaux et autres boissons
+6,1021,Crème de cassis,eaux et autres boissons
+6,1023,Eau de vie de vin type armagnac ou cognac,eaux et autres boissons
+6,1024,Eau de vie type calvados,eaux et autres boissons
+6,1026,Saké ou alcool de riz,eaux et autres boissons
+6,1012,Cocktail à base de rhum,eaux et autres boissons
+6,1013,Cocktail à base de whisky,eaux et autres boissons
+6,1017,Sangria,eaux et autres boissons
+6,1018,Kir (vin blanc,eaux et autres boissons
+6,1019,Kir royal (champagne,eaux et autres boissons
+6,1022,Cocktail type punch,eaux et autres boissons
+6,2008,Cocktail ou boisson apéritive sans alcool à base de jus de fruits et de sirop,eaux et autres boissons
+6,5004,Panaché (limonade et bière),eaux et autres boissons
+6,5005,Panaché préemballé (<1° alc.),eaux et autres boissons
+7,31000,Barre chocolatée biscuitée,produits sucrés
+7,31001,Barre chocolatée non biscuitée enrobée,produits sucrés
+7,31002,Barre à la noix de coco,produits sucrés
+7,31004,Chocolat au lait,produits sucrés
+7,31005,Chocolat noir 50 % de cacao environ,produits sucrés
+7,31009,Chocolat au lait aux céréales croustillantes,produits sucrés
+7,31010,Chocolat blanc,produits sucrés
+7,31012,Barre ou confiserie chocolatée au lait,produits sucrés
+7,31018,Chocolat au lait aux fruits secs (noisettes,produits sucrés
+7,31020,Chocolat au lait sans sucres ajoutés,produits sucrés
+7,31026,Chocolat blanc aux fruits secs (noisettes,produits sucrés
+7,31030,Chocolat noir sans sucres ajoutés,produits sucrés
+7,31032,Pâte à tartiner chocolat et noisette,produits sucrés
+7,31041,Confiserie au chocolat dragéifiée,produits sucrés
+7,31042,Cacahuète enrobée de chocolat dragéifiée,produits sucrés
+7,31063,Bouchée chocolat fourrage fruits à coques et/ou praliné,produits sucrés
+7,31066,Rocher chocolat fourré praliné,produits sucrés
+7,31069,Chocolat noir aux fruits (orange,produits sucrés
+7,31070,Chocolat noir aux fruits secs (noisettes,produits sucrés
+7,31071,Barre chocolatée aux fruits secs,produits sucrés
+7,31072,Chocolat noir fourrage confiseur à la menthe,produits sucrés
+7,31073,Gâteau moelleux fourré au chocolat et au lait,produits sucrés
+7,31074,Chocolat noir 70 % de cacao environ,produits sucrés
+7,31080,Chocolat noir fourré praliné,produits sucrés
+7,31084,Chocolat au lait fourré au praliné,produits sucrés
+7,31085,Chocolat noir 40% de cacao et plus,produits sucrés
+7,31091,Bouchée/bonbon au chocolat fourrage gaufrettes ou biscuit,produits sucrés
+7,31098,Barre chocolat au lait avec nougat,produits sucrés
+7,31120,Chocolat,produits sucrés
+7,15058,Cacahuète caramélisée ou chouchou,produits sucrés
+7,15201,Pâte d'amande,produits sucrés
+7,31007,Chewing-gum,produits sucrés
+7,31014,Pâte de fruits,produits sucrés
+7,31021,Ecorce d'orange confite,produits sucrés
+7,31023,Marron glacé,produits sucrés
+7,31027,Fruit confit,produits sucrés
+7,31028,Bonbon dragéifié,produits sucrés
+7,31036,Dragée amande,produits sucrés
+7,31050,Guimauve ou marshmallow,produits sucrés
+7,31052,Praline,produits sucrés
+7,31054,Chewing-gum,produits sucrés
+7,31059,Bonbon dur et sucette,produits sucrés
+7,31060,Bonbon gélifié,produits sucrés
+7,31081,Bonbon tendre,produits sucrés
+7,31092,Calisson d'Aix en Provence,produits sucrés
+7,31093,Guimauve ou marshmallow,produits sucrés
+7,31094,Bonbon dur,produits sucrés
+7,31097,Bonbon tendre,produits sucrés
+7,31112,Bonbon gélifié à la réglisse,produits sucrés
+7,31121,Chewing-gum,produits sucrés
+7,31122,Bonbon tendre,produits sucrés
+7,31124,Bonbon dur type collier,produits sucrés
+7,31125,Pastille rafraîchissante,produits sucrés
+7,31126,Pastille rafraîchissante,produits sucrés
+7,31127,Nougat tendre,produits sucrés
+7,31128,Bonbon dur et sucette,produits sucrés
+7,11299,Crème de pruneaux,produits sucrés
+7,15013,Crème de marron ou confiture de châtaigne,produits sucrés
+7,30886,Gelée,produits sucrés
+7,30887,Confiture,produits sucrés
+7,30888,Marmelade ou confiture d'autres agrumes ou mélange d'agrumes (extra ou classique),produits sucrés
+7,30889,Marmelade ou confiture d'orange,produits sucrés
+7,30990,Confiture de mûre (extra ou classique),produits sucrés
+7,30991,Gelée de mûre (extra ou classique),produits sucrés
+7,30992,Confiture de rhubarbe (extra ou classique),produits sucrés
+7,30993,Confiture de pêche (extra ou classique),produits sucrés
+7,30994,Confiture de figue (extra ou classique),produits sucrés
+7,30995,Confiture de fraise,produits sucrés
+7,30996,Confiture d'abricot,produits sucrés
+7,30997,Confiture de framboise,produits sucrés
+7,30998,Gelée de framboise (extra ou classique),produits sucrés
+7,30999,Confiture ou marmelade,produits sucrés
+7,31006,Confiture ou marmelade ou gelée,produits sucrés
+7,31024,Confiture de fraise (extra ou classique),produits sucrés
+7,31037,Confiture d'abricot (extra ou classique),produits sucrés
+7,31038,Confiture de cerise (extra ou classique),produits sucrés
+7,31039,Marmelade d'orange ou confiture d'orange (extra ou classique),produits sucrés
+7,31040,Confiture de lait,produits sucrés
+7,31053,Confiture de prune,produits sucrés
+7,31062,Confiture de framboise (extra ou classique),produits sucrés
+7,31068,Confiture de myrtille (extra ou classique),produits sucrés
+7,31082,Préparation de fruits divers (en taux de sucres : confitures allégées en sucres préparations de fruits confitures),produits sucrés
+7,31083,Confiture,produits sucrés
+7,31095,Gelée de groseille (extra ou classique),produits sucrés
+7,31129,Préparation aux fruits divers (35% de fruits min,produits sucrés
+7,7225,Pain brioché ou viennois,produits sucrés
+7,7600,Viennoiserie (aliment moyen),produits sucrés
+7,7603,Croissant,produits sucrés
+7,7615,Croissant ordinaire,produits sucrés
+7,7616,Croissant ordinaire,produits sucrés
+7,7619,Croissant pur beurre,produits sucrés
+7,7620,Croissant pur beurre,produits sucrés
+7,7621,Croissant pur beurre,produits sucrés
+7,7650,Croissant aux amandes,produits sucrés
+7,7710,Pain au lait,produits sucrés
+7,7711,Pain au lait,produits sucrés
+7,7712,Pain au lait aux pépites de chocolat,produits sucrés
+7,7719,Panettone (brioche italienne aux raisins secs et écorces d'orange confite),produits sucrés
+7,7720,Pain aux raisins (viennoiserie),produits sucrés
+7,7730,Pain au chocolat,produits sucrés
+7,7733,Pain au chocolat,produits sucrés
+7,7735,Brioche (ou briochettes) aux pépites de chocolat ou fourrée au chocolat,produits sucrés
+7,7738,Brioche fourrée aux fruits,produits sucrés
+7,7739,"Brioche fourrée crème pâtissière (type ""chinois"")",produits sucrés
+7,7740,Brioche nature,produits sucrés
+7,7742,Brioche nature,produits sucrés
+7,7744,Couronne des rois (brioche) aux fruits confits,produits sucrés
+7,7745,Brioche pur beurre (ex : gâche vendéenne) nature,produits sucrés
+7,7746,Brioche,produits sucrés
+7,23467,Chouquette,produits sucrés
+7,23480,Chausson aux pommes,produits sucrés
+7,7355,Galette de riz soufflé,produits sucrés
+7,7356,Galette de maïs soufflé,produits sucrés
+7,7412,Tartine craquante,produits sucrés
+7,7413,Tartine craquante,produits sucrés
+7,23027,Macaron sec,produits sucrés
+7,24000,Biscuit sec,produits sucrés
+7,24001,Biscuit sec nature,produits sucrés
+7,24002,Biscuit sec à teneur garantie en vitamines,produits sucrés
+7,24003,Biscuit sec à teneur garantie en vitamines et minéraux,produits sucrés
+7,24004,Biscuit sec aux fruits,produits sucrés
+7,24006,Biscuit sec au soja,produits sucrés
+7,24008,Biscuit sec fourré aux fruits,produits sucrés
+7,24009,Spéculoos,produits sucrés
+7,24010,Biscuit sec,produits sucrés
+7,24011,Biscuit sec,produits sucrés
+7,24012,Biscuit sec au chocolat,produits sucrés
+7,24013,Biscuit sec,produits sucrés
+7,24014,Biscuit sec avec tablette de chocolat et fourrage au lait,produits sucrés
+7,24015,Biscuit sec petit beurre,produits sucrés
+7,24016,Biscuit sec avec tablette de chocolat,produits sucrés
+7,24017,Biscuit sec petit beurre au chocolat (tablette ou pépites),produits sucrés
+7,24018,Biscuit sec sans gluten,produits sucrés
+7,24019,Biscuit sec sans gluten,produits sucrés
+7,24020,Biscuit sec aux céréales complètes,produits sucrés
+7,24021,Biscuit sec petit beurre au blé complet,produits sucrés
+7,24028,Biscuit sec au sésame,produits sucrés
+7,24029,Biscuit sec au sésame,produits sucrés
+7,24031,Biscuit sec sans chocolat,produits sucrés
+7,24034,Biscuit sec pour petit déjeuner,produits sucrés
+7,24035,Biscuit sec pour petit déjeuner,produits sucrés
+7,24036,Biscuit sec au chocolat,produits sucrés
+7,24037,Biscuit sec fourré à la pâte ou purée de fruits (ex : figue),produits sucrés
+7,24038,Biscuit sec,produits sucrés
+7,24040,Biscuit sec pour petit déjeuner,produits sucrés
+7,24041,Biscuit sec pour petit déjeuner,produits sucrés
+7,24042,Biscuit sec au chocolat,produits sucrés
+7,24048,Biscuit sec,produits sucrés
+7,24049,Biscuit sec,produits sucrés
+7,24050,Biscuit sec,produits sucrés
+7,24051,Biscuit (génoise),produits sucrés
+7,24052,Biscuit sec (tartelette),produits sucrés
+7,24054,Biscuit sec,produits sucrés
+7,24056,Florentin (biscuit sec au chocolat et aux amandes),produits sucrés
+7,24057,Biscuit sec,produits sucrés
+7,24061,Biscuit meringué fourré (chocolat,produits sucrés
+7,24070,Biscuit sec à la noix de coco,produits sucrés
+7,24071,Sablé pâtissier,produits sucrés
+7,24224,"Biscuit au chocolat fourré (""sandwiché"") parfum vanille",produits sucrés
+7,24225,"Goûter sec fourré (""sandwiché"") parfum lait ou vanille",produits sucrés
+7,24230,"Goûter sec fourré (""sandwiché"") parfum chocolat",produits sucrés
+7,24231,"Goûter sec fourré (""sandwiché"") parfum chocolat",produits sucrés
+7,24240,"Goûter sec fourré (""sandwiché"") parfum fruits",produits sucrés
+7,24300,Gaufrette (éventail,produits sucrés
+7,24311,Gaufrette fourrée et/ou enrobée de chocolat,produits sucrés
+7,24312,Gaufrette fourrée,produits sucrés
+7,24313,Gaufrette,produits sucrés
+7,24320,Gaufrette fourrée,produits sucrés
+7,24370,Crêpe dentelle nature,produits sucrés
+7,24371,Crêpe dentelle,produits sucrés
+7,24430,Biscuit sec aux oeufs à la cuillère (cuiller) ou boudoir,produits sucrés
+7,24441,Biscuit sec,produits sucrés
+7,24520,Meringue,produits sucrés
+7,24614,Biscuit sec croquant aux amandes (ex. canistrelli),produits sucrés
+7,24615,Biscuit sec fin ou tuile,produits sucrés
+7,24616,Biscuit sec fin ou tuile,produits sucrés
+7,24654,Biscuit sec ou galette à l'avoine,produits sucrés
+7,24655,Biscuit sec ou galette à l'avoine,produits sucrés
+7,24656,Cookie aux cranberries et au chocolat blanc,produits sucrés
+7,24657,Biscuit sec,produits sucrés
+7,24658,Biscuit sec feuilleté,produits sucrés
+7,24659,Biscuit sec feuilleté,produits sucrés
+7,24660,Biscuit sec feuilleté,produits sucrés
+7,24676,Cookie au chocolat et aux fruits à coque (noisettes,produits sucrés
+7,24678,Biscuit (génoise),produits sucrés
+7,24679,Biscuit sec (tartelette),produits sucrés
+7,24680,Biscuit moelleux fourré à l'orange et enrobé de sucre glace,produits sucrés
+7,24684,Cookie au chocolat,produits sucrés
+7,24685,Cône ou cornet classique,produits sucrés
+7,24686,Biscuit (génoise),produits sucrés
+7,24687,Cookie aux pépites de chocolat et à la noix de coco,produits sucrés
+7,32000,Grains de blé soufflés au miel ou caramel,produits sucrés
+7,32001,Céréales pour petit déjeuner chocolatées,produits sucrés
+7,32003,Céréales pour petit déjeuner (aliment moyen),produits sucrés
+7,32004,Muesli (aliment moyen),produits sucrés
+7,32005,Pétales de maïs nature,produits sucrés
+7,32006,Riz soufflé nature,produits sucrés
+7,32008,Céréales pour petit déjeuner riches en fibres,produits sucrés
+7,32012,Riz soufflé chocolaté,produits sucrés
+7,32013,Céréales pour petit déjeuner chocolatées,produits sucrés
+7,32014,Pétales de maïs nature,produits sucrés
+7,32016,Céréales pour petit déjeuner fourrées au chocolat ou chocolat-noisettes,produits sucrés
+7,32017,Céréales pour petit déjeuner fourrées au chocolat ou chocolat-noisettes,produits sucrés
+7,32018,Céréales pour petit déjeuner fourrées au lait ou à la vanille,produits sucrés
+7,32022,Pétales de céréales au chocolat,produits sucrés
+7,32023,Pétales de céréales aux fruits,produits sucrés
+7,32025,Pétales de céréales aux fruits à coque,produits sucrés
+7,32028,Pétales de céréales au chocolat,produits sucrés
+7,32029,Pétales de céréales aux fruits,produits sucrés
+7,32030,Pétales de céréales,produits sucrés
+7,32031,Céréales pour petit déjeuner,produits sucrés
+7,32032,Céréales pour petit déjeuner,produits sucrés
+7,32033,Céréales pour petit déjeuner riches en fibres,produits sucrés
+7,32034,Céréales pour petit déjeuner riches en fibres,produits sucrés
+7,32035,Céréales pour petit déjeuner riches en fibres,produits sucrés
+7,32036,Céréales pour petit déjeuner riches en fibres,produits sucrés
+7,32037,Céréales pour petit déjeuner au chocolat et caramel,produits sucrés
+7,32038,Céréales pour petit déjeuner au chocolat et caramel,produits sucrés
+7,32039,Céréales pour petit déjeuner fourrées au lait ou à la vanille,produits sucrés
+7,32040,Grains de blé soufflés au miel ou caramel,produits sucrés
+7,32041,Mélange de flocons de céréales,produits sucrés
+7,32042,Pétales de céréales,produits sucrés
+7,32043,Pétales de céréales,produits sucrés
+7,32107,Pétales de maïs glacés au sucre,produits sucrés
+7,32108,Muesli croustillant aux fruits,produits sucrés
+7,32109,Muesli croustillant au chocolat,produits sucrés
+7,32110,Muesli floconneux aux fruits,produits sucrés
+7,32111,Muesli croustillant aux fruits,produits sucrés
+7,32112,Muesli croustillant au chocolat,produits sucrés
+7,32113,Muesli floconneux aux fruits,produits sucrés
+7,32116,Céréales pour petit déjeuner très riches en fibres,produits sucrés
+7,32121,Pétales de maïs glacés au sucre,produits sucrés
+7,32129,Boules de maïs soufflées au miel,produits sucrés
+7,32130,Blé khorasan complet soufflé,produits sucrés
+7,32131,Riz soufflé chocolaté,produits sucrés
+7,32133,Boules de maïs soufflées au miel,produits sucrés
+7,32138,Muesli floconneux aux fruits,produits sucrés
+7,32139,Muesli enrichi en vitamines et minéraux (aliment moyen),produits sucrés
+7,32140,Flocons d'avoine,produits sucrés
+7,32141,Muesli non enrichi en vitamines et minéraux (aliment moyen),produits sucrés
+7,32142,Céréales pour petit déjeuner au miel ou caramel,produits sucrés
+7,32143,Céréales pour petit déjeuner au miel ou caramel,produits sucrés
+7,32144,Muesli croustillant aux fruits à coque et/ou graines uniquement,produits sucrés
+7,32145,Muesli croustillant aux fruits à coque et/ou graines uniquement,produits sucrés
+7,31100,Barre céréalière pour petit déjeuner au lait,produits sucrés
+7,31101,"Barre céréalière ""équilibre"" aux fruits",produits sucrés
+7,31102,"Barre céréalière ""équilibre"" au chocolat",produits sucrés
+7,31104,Barre céréalière diététique hypocalorique,produits sucrés
+7,31106,Barre céréalière au chocolat,produits sucrés
+7,31113,Barre céréalière aux fruits,produits sucrés
+7,31114,Barre céréalière aux amandes ou noisettes,produits sucrés
+7,31115,Barre céréalière au chocolat et aux fruits,produits sucrés
+7,19688,Baba au rhum,produits sucrés
+7,23000,Gâteau (aliment moyen),produits sucrés
+7,23001,Cheesecake,produits sucrés
+7,23005,Gâteau Paris-Brest (pâte à choux crème mousseline praliné),produits sucrés
+7,23006,Forêt noire,produits sucrés
+7,23007,Gâteau mousse de fruits sur génoise,produits sucrés
+7,23008,Entremets type Opéra,produits sucrés
+7,23009,Fraisier ou framboisier,produits sucrés
+7,23021,Baba au rhum,produits sucrés
+7,23022,Canelé,produits sucrés
+7,23023,Kouign amann,produits sucrés
+7,23024,Macaron moelleux fourré à la confiture ou à la crème,produits sucrés
+7,23030,Bûche de Noël pâtissière,produits sucrés
+7,23031,Brownie au chocolat et aux fruits à coques,produits sucrés
+7,23032,Brownie au chocolat,produits sucrés
+7,23033,Rocher coco ou congolais (petit gâteau à la noix de coco),produits sucrés
+7,23050,Biscuit de Savoie,produits sucrés
+7,23080,Quatre-quarts (beurre,produits sucrés
+7,23081,Quatre-quarts (beurre,produits sucrés
+7,23082,Barre pâtissière,produits sucrés
+7,23103,Gâteau moelleux au citron,produits sucrés
+7,23120,Gâteau breton fourré à la crème de pruneaux,produits sucrés
+7,23121,Far breton aux pruneaux,produits sucrés
+7,23122,Kouign Amann,produits sucrés
+7,23200,Pain d'épices,produits sucrés
+7,23220,Pain d'épices fourré aux fruits ou nonnette,produits sucrés
+7,23300,Baklava ou baklawa (pâtisserie orientale aux amandes et sirop),produits sucrés
+7,23301,Corne de gazelle (pâtisserie orientale aux amandes en forme de croissant recouverte de sucre glace),produits sucrés
+7,23455,Chou à la crème,produits sucrés
+7,23456,Chou à la crème chantilly,produits sucrés
+7,23457,Chou à la crème pâtissière,produits sucrés
+7,23477,Éclair,produits sucrés
+7,23479,Tarte aux fruits et crème pâtissière,produits sucrés
+7,23481,Tarte normande aux pommes (garniture farine,produits sucrés
+7,23485,Tarte au citron,produits sucrés
+7,23490,Tarte ou tartelette aux pommes,produits sucrés
+7,23491,Tarte aux fraises,produits sucrés
+7,23493,Crumble aux pommes,produits sucrés
+7,23494,Tarte aux abricots,produits sucrés
+7,23495,Tarte aux fruits rouges,produits sucrés
+7,23496,Tarte tatin aux pommes,produits sucrés
+7,23497,Tarte au chocolat,produits sucrés
+7,23498,Tarte ou tartelette aux fruits (aliment moyen),produits sucrés
+7,23525,Flan pâtissier aux oeufs ou à la parisienne,produits sucrés
+7,23531,Charlotte aux fruits,produits sucrés
+7,23540,Gâteau moka ou gâteau au café,produits sucrés
+7,23585,Gâteau au chocolat,produits sucrés
+7,23586,Gâteau au chocolat type fondant ou mi-cuit,produits sucrés
+7,23588,Gâteau ou cake au yaourt,produits sucrés
+7,23594,Gâteau moelleux nature type génoise,produits sucrés
+7,23680,Galette des rois feuilletée,produits sucrés
+7,23684,Galette des rois feuilletée,produits sucrés
+7,23799,Crêpe,produits sucrés
+7,23800,Crêpe,produits sucrés
+7,23801,Galette de sarrasin,produits sucrés
+7,23802,Gâteau basque à la crème pâtissière,produits sucrés
+7,23803,Gâteau basque aux cerises,produits sucrés
+7,23804,Crêpe fourrée au chocolat et aux billes de céréales croustillantes,produits sucrés
+7,23815,Crêpe fourrée au sucre,produits sucrés
+7,23820,Crêpe fourrée à la confiture,produits sucrés
+7,23821,Crêpe fourrée au chocolat ou à la pâte à tartiner chocolat et noisettes,produits sucrés
+7,23827,Pancake (petite crêpe épaisse),produits sucrés
+7,23828,Pancake (petite crêpe épaisse),produits sucrés
+7,23829,Crêpe fourrée au chocolat,produits sucrés
+7,23830,Crêpe fourrée fraise,produits sucrés
+7,23849,Gaufre fine fourrée au miel,produits sucrés
+7,23850,Gaufre bruxelloise ou liégeoise nature,produits sucrés
+7,23851,Gaufre moelleuse (type bruxelloise ou liégeoise),produits sucrés
+7,23852,Gaufre moelleuse (type bruxelloise ou liégeoise),produits sucrés
+7,23853,Gaufre croustillante (fine ou sèche),produits sucrés
+7,23880,Beignet ou donut rond moelleux,produits sucrés
+7,23881,Beignet ou donut fourré aux fruits (fourrage type confiture),produits sucrés
+7,23885,Beignet ou donut fourré ou nappé goût chocolat ou chocolat noisette,produits sucrés
+7,23900,Pâtisserie (aliment moyen),produits sucrés
+7,23909,Cake aux fruits (confits et/ou raisins secs),produits sucrés
+7,23925,Gâteau marbré au chocolat,produits sucrés
+7,23935,Gâteau moelleux nature,produits sucrés
+7,23937,Gâteau moelleux aux fruits,produits sucrés
+7,23938,Gâteau moelleux aux fruits à coque,produits sucrés
+7,23939,Gâteau moelleux fourré au chocolat,produits sucrés
+7,23941,Gâteau moelleux fourré aux fruits type mini-roulé ou mini-cake fourré,produits sucrés
+7,23943,Gâteau moelleux aux pépites de chocolat,produits sucrés
+7,23944,Gâteau moelleux fourré au chocolat et enrobé ou nappé de chocolat,produits sucrés
+7,23945,Gâteau moelleux fourré au chocolat et au lait,produits sucrés
+7,23951,Muffin,produits sucrés
+7,23952,Muffin,produits sucrés
+7,24630,Madeleine,produits sucrés
+7,24631,Madeleine au chocolat (nappage,produits sucrés
+7,24632,Madeleine ordinaire,produits sucrés
+7,24663,Tarte aux poires amandine,produits sucrés
+7,24664,Gâteau aux amandes type financier,produits sucrés
+7,24666,Mille-feuille,produits sucrés
+7,24674,Gâteau moelleux sans gluten (cake,produits sucrés
+7,24675,Gâteau moelleux sans gluten (cake,produits sucrés
+8,39500,Glace à l'eau ou sorbet ou crème glacée,glaces et sorbets
+8,31035,Barre glacée chocolatée,glaces et sorbets
+8,39503,Glace ou crème glacée,glaces et sorbets
+8,39509,Glace ou crème glacée,glaces et sorbets
+8,39515,Glace ou crème glacée,glaces et sorbets
+8,39517,Glace au yaourt,glaces et sorbets
+8,39520,Glace ou crème glacée,glaces et sorbets
+8,39521,Glace ou crème glacée,glaces et sorbets
+8,39522,Glace ou crème glacée,glaces et sorbets
+8,39523,Glace ou crème glacée,glaces et sorbets
+8,39527,Glace ou crème glacée,glaces et sorbets
+8,39531,Glace ou crème glacée,glaces et sorbets
+8,39535,Glace ou crème glacée,glaces et sorbets
+8,31013,Sorbet,glaces et sorbets
+8,39524,Sorbet,glaces et sorbets
+8,39525,Sorbet,glaces et sorbets
+8,39526,Glace à l'eau,glaces et sorbets
+8,39528,Sorbet,glaces et sorbets
+8,23472,Profiterole avec glace vanille et sauce chocolat,glaces et sorbets
+8,39401,Pêche melba,glaces et sorbets
+8,39502,Dessert glacé type mystère ou vacherin,glaces et sorbets
+8,39512,Dessert glacé type sundae,glaces et sorbets
+8,39516,Dessert glacé feuilleté,glaces et sorbets
+8,39518,Omelette norvégienne,glaces et sorbets
+8,39519,Poire belle Hélène,glaces et sorbets
+8,39529,Nougat glacé,glaces et sorbets
+8,39530,Citron givré ou orange givrée (sorbet),glaces et sorbets
+8,39532,Coupe glacée type café ou chocolat liégeois,glaces et sorbets
+8,39533,Bûche glacée,glaces et sorbets
+8,39534,Coupe glacée parfum pêche Melba ou poire Belle-Hélène,glaces et sorbets
+9,16400,Beurre à 80% MG minimum,matières grasses
+9,16401,Huile de beurre ou beurre concentré,matières grasses
+9,16402,Beurre à 80% MG,matières grasses
+9,16403,Beurre à 80% MG,matières grasses
+9,16404,Beurre à 80% MG minimum,matières grasses
+9,16410,Beurre à 60-62% MG,matières grasses
+9,16411,Beurre à 60-62% MG,matières grasses
+9,16412,Beurre ou assimilé allégé (léger ou à teneur réduite en matière grasse),matières grasses
+9,16413,Beurre sans précision sur la teneur en matière grasse (allégé ou non),matières grasses
+9,16414,Beurre ou assimilé sans précision sur la teneur en matière grasse,matières grasses
+9,16415,Beurre à 39-41% MG,matières grasses
+9,16416,Beurre à 39-41% MG,matières grasses
+9,16713,Matière grasse laitière à 15-25% MG,matières grasses
+9,16030,Huile ou beurre de cacao,matières grasses
+9,16040,Huile ou graisse de coco,matières grasses
+9,16050,Huile ou graisse de coco,matières grasses
+9,16060,Huile ou graisse de coco (coprah),matières grasses
+9,16080,Matière grasse ou graisse végétale solide (type margarine) pour friture ou graisse à frire,matières grasses
+9,16110,Huile ou beurre de karité,matières grasses
+9,16128,Huile pour friture,matières grasses
+9,16150,Huile de palme,matières grasses
+9,16200,Huile ou graisse de palmiste,matières grasses
+9,17001,Huile végétale (aliment moyen),matières grasses
+9,17020,Huile de noyaux d'abricot,matières grasses
+9,17030,Huile d'amande,matières grasses
+9,17040,Huile d'arachide,matières grasses
+9,17100,Huile d'avocat,matières grasses
+9,17110,Huile de germe de blé,matières grasses
+9,17130,Huile de colza,matières grasses
+9,17170,Huile de coton,matières grasses
+9,17180,Huile de lin,matières grasses
+9,17190,Huile de maïs,matières grasses
+9,17210,Huile de noisette,matières grasses
+9,17220,Huile de noix,matières grasses
+9,17270,Huile d'olive vierge extra,matières grasses
+9,17325,Huile de pavot,matières grasses
+9,17350,Huile de pépins de raisin,matières grasses
+9,17390,Huile de son de riz,matières grasses
+9,17400,Huile de sésame,matières grasses
+9,17420,Huile de soja,matières grasses
+9,17440,Huile de tournesol,matières grasses
+9,17700,Huile combinée (mélange d'huiles),matières grasses
+9,17701,Huile combinée,matières grasses
+9,17800,Huile de cameline,matières grasses
+9,17850,Huile de chanvre,matières grasses
+9,17900,Huile d'argan ou d'argane,matières grasses
+9,16588,Matière grasse tartinable à teneur en MG <= 41%,matières grasses
+9,16589,Matière grasse tartinable à teneur en MG > 62%,matières grasses
+9,16590,Matière grasse tartinable à teneur en MG > 62%,matières grasses
+9,16591,Matière grasse tartinable à teneur en MG > 41% et <= 62%,matières grasses
+9,16592,Matière grasse tartinable à teneur en MG <= 41%,matières grasses
+9,16593,Matière grasse tartinable à teneur en MG > 62%,matières grasses
+9,16594,Matière grasse tartinable à teneur en MG > 41% et <= 62%,matières grasses
+9,16595,Matière grasse tartinable à teneur en MG > 41% et <= 62%,matières grasses
+9,16596,Matière grasse tartinable à teneur en MG > 41% et <= 62%,matières grasses
+9,16597,Matière grasse tartinable à teneur en MG > 41% et <= 62%,matières grasses
+9,16598,Matière grasse tartinable à teneur en MG <= 41%,matières grasses
+9,16599,Matière grasse tartinable à teneur en MG <= 41%,matières grasses
+9,16600,Matière grasse tartinable à teneur en MG <= 41%,matières grasses
+9,16601,Matière grasse tartinable,matières grasses
+9,16602,Matière grasse tartinable,matières grasses
+9,16603,Matière grasse tartinable,matières grasses
+9,17630,Huile de foie de morue,matières grasses
+9,17640,Huile de sardine,matières grasses
+9,17645,Huile de saumon,matières grasses
+9,17650,Huile de hareng,matières grasses
+9,16520,Saindoux,matières grasses
+9,16530,Lard gras,matières grasses
+9,16540,Graisse de poulet,matières grasses
+9,16550,Graisse de canard,matières grasses
+9,16560,Graisse d'oie,matières grasses
+9,16570,Graisse de dinde,matières grasses
+10,11184,Sauce (aliment moyen),aides culinaires et ingrédients divers
+10,11008,Ketchup,aides culinaires et ingrédients divers
+10,11051,Sauce tartare,aides culinaires et ingrédients divers
+10,11054,Mayonnaise (70% MG min.),aides culinaires et ingrédients divers
+10,11073,Ketchup allégé en sucres,aides culinaires et ingrédients divers
+10,11079,Mayonnaise à teneur réduite en matière grasse ou mayonnaise allégée,aides culinaires et ingrédients divers
+10,11100,Sauce barbecue,aides culinaires et ingrédients divers
+10,11104,Sauce soja,aides culinaires et ingrédients divers
+10,11108,Sauce vinaigrette à l'huile d'olive (50 à 75% d'huile),aides culinaires et ingrédients divers
+10,11109,Sauce vinaigrette allégée en matière grasse (25 à 50% d'huile),aides culinaires et ingrédients divers
+10,11110,Sauce vinaigrette (50 à 75% d'huile),aides culinaires et ingrédients divers
+10,11112,Harissa (sauce au piment),aides culinaires et ingrédients divers
+10,11120,Sauce bourguignonne,aides culinaires et ingrédients divers
+10,11157,Sauce moutarde,aides culinaires et ingrédients divers
+10,11166,Sauce au yaourt,aides culinaires et ingrédients divers
+10,11167,Sauce américaine,aides culinaires et ingrédients divers
+10,11168,Sauce aïoli,aides culinaires et ingrédients divers
+10,11187,Sauce crudités ou sauce salade,aides culinaires et ingrédients divers
+10,11194,Sauce nuoc mâm ou sauce au poisson,aides culinaires et ingrédients divers
+10,11196,Sauce burger,aides culinaires et ingrédients divers
+10,11198,Sauce crudités ou sauce salade,aides culinaires et ingrédients divers
+10,11203,Sauce kebab,aides culinaires et ingrédients divers
+10,11205,Sauce rouille,aides culinaires et ingrédients divers
+10,11212,Sauce au poivre,aides culinaires et ingrédients divers
+10,11213,Sauce froide (aliment moyen),aides culinaires et ingrédients divers
+10,11216,Sauce soja sucrée,aides culinaires et ingrédients divers
+10,11217,Sauce pour nems à base de nuoc-mam dilué,aides culinaires et ingrédients divers
+10,11219,Sauce végétale type bolognaise,aides culinaires et ingrédients divers
+10,11223,Sauce d'huître,aides culinaires et ingrédients divers
+10,11240,Sauce algérienne,aides culinaires et ingrédients divers
+10,11243,Sauce andalouse,aides culinaires et ingrédients divers
+10,11244,Sauce cocktail,aides culinaires et ingrédients divers
+10,11245,Sauce pommes frites,aides culinaires et ingrédients divers
+10,11246,Sauce samouraï,aides culinaires et ingrédients divers
+10,11247,Sauce au curry,aides culinaires et ingrédients divers
+10,11248,Sauce Caesar,aides culinaires et ingrédients divers
+10,11301,Sauce teriyaki,aides culinaires et ingrédients divers
+10,11101,Sauce béchamel,aides culinaires et ingrédients divers
+10,11102,Sauce béarnaise,aides culinaires et ingrédients divers
+10,11105,Sauce hollandaise,aides culinaires et ingrédients divers
+10,11107,Sauce tomate aux oignons,aides culinaires et ingrédients divers
+10,11111,Sauce armoricaine,aides culinaires et ingrédients divers
+10,11114,Sauce tomate à la viande ou sauce bolognaise,aides culinaires et ingrédients divers
+10,11115,Sauce au poivre vert,aides culinaires et ingrédients divers
+10,11121,Sauce madère,aides culinaires et ingrédients divers
+10,11122,Sauce à l'échalote à la crème,aides culinaires et ingrédients divers
+10,11128,Sauce carbonara,aides culinaires et ingrédients divers
+10,11129,Sauce chasseur,aides culinaires et ingrédients divers
+10,11132,Sauce au curry,aides culinaires et ingrédients divers
+10,11140,Sauce au beurre blanc,aides culinaires et ingrédients divers
+10,11143,Sauce béchamel au beurre,aides culinaires et ingrédients divers
+10,11158,Sauce au beurre,aides culinaires et ingrédients divers
+10,11159,Sauce à la crème,aides culinaires et ingrédients divers
+10,11160,Sauce aux champignons,aides culinaires et ingrédients divers
+10,11161,Sauce à la crème aux épices,aides culinaires et ingrédients divers
+10,11162,Sauce à la crème aux herbes,aides culinaires et ingrédients divers
+10,11163,Sauce aigre douce,aides culinaires et ingrédients divers
+10,11164,Sauce au vin rouge,aides culinaires et ingrédients divers
+10,11170,Sauce basquaise ou sauce aux poivrons,aides culinaires et ingrédients divers
+10,11177,Sauce tomate aux champignons,aides culinaires et ingrédients divers
+10,11178,Sauce tomate aux olives,aides culinaires et ingrédients divers
+10,11179,Sauce pesto,aides culinaires et ingrédients divers
+10,11182,Sauce au poivre,aides culinaires et ingrédients divers
+10,11189,Sauce au fromage pour risotto ou pâtes,aides culinaires et ingrédients divers
+10,11191,Sauce au roquefort,aides culinaires et ingrédients divers
+10,11192,Sauce aux champignons et à la crème,aides culinaires et ingrédients divers
+10,11199,Sauce grand veneur,aides culinaires et ingrédients divers
+10,11202,Sauce indienne type tandoori ou tikka masala,aides culinaires et ingrédients divers
+10,11207,Sauce tomate aux petits légumes,aides culinaires et ingrédients divers
+10,11208,Sauce tomate au fromage,aides culinaires et ingrédients divers
+10,11210,Sauce pesto rosso,aides culinaires et ingrédients divers
+10,11218,Sauce chaude (aliment moyen),aides culinaires et ingrédients divers
+10,11302,Sauce à l'oseille,aides culinaires et ingrédients divers
+10,51502,Meloukhia,aides culinaires et ingrédients divers
+10,11300,Sauce au chocolat,aides culinaires et ingrédients divers
+10,13998,Coulis de fruits rouges (framboises,aides culinaires et ingrédients divers
+10,39700,Crème anglaise,aides culinaires et ingrédients divers
+10,11004,Cornichon,aides culinaires et ingrédients divers
+10,11013,Moutarde,aides culinaires et ingrédients divers
+10,11018,Vinaigre,aides culinaires et ingrédients divers
+10,11021,Moutarde à l'ancienne,aides culinaires et ingrédients divers
+10,11040,Câpres,aides culinaires et ingrédients divers
+10,11055,Oignon au vinaigre,aides culinaires et ingrédients divers
+10,11090,Vinaigre de cidre,aides culinaires et ingrédients divers
+10,11091,Vinaigre balsamique,aides culinaires et ingrédients divers
+10,11097,Cornichon,aides culinaires et ingrédients divers
+10,11220,Vinaigre de vin rouge,aides culinaires et ingrédients divers
+10,13032,Olive noire,aides culinaires et ingrédients divers
+10,13033,Olive verte,aides culinaires et ingrédients divers
+10,13131,Olive noire,aides culinaires et ingrédients divers
+10,13147,Olives vertes,aides culinaires et ingrédients divers
+10,13184,Olive (aliment moyen),aides culinaires et ingrédients divers
+10,13186,Olive noire (aliment moyen),aides culinaires et ingrédients divers
+10,20916,Miso,aides culinaires et ingrédients divers
+10,5217,Vin cuisiné (alcool évaporé),aides culinaires et ingrédients divers
+10,5219,Alcool fort (type rhum),aides culinaires et ingrédients divers
+10,9621,Son de blé,aides culinaires et ingrédients divers
+10,9640,Son d'avoine,aides culinaires et ingrédients divers
+10,9641,Son de maïs,aides culinaires et ingrédients divers
+10,9643,Son de riz,aides culinaires et ingrédients divers
+10,9660,Germe de blé,aides culinaires et ingrédients divers
+10,11001,Bouillon de boeuf,aides culinaires et ingrédients divers
+10,11007,Gélatine,aides culinaires et ingrédients divers
+10,11009,Levure de bière en paillettes,aides culinaires et ingrédients divers
+10,11010,Levure de boulanger fraîche,aides culinaires et ingrédients divers
+10,11041,Bouillon de légumes,aides culinaires et ingrédients divers
+10,11043,Tapenade,aides culinaires et ingrédients divers
+10,11045,Levure de boulanger déshydratée,aides culinaires et ingrédients divers
+10,11046,Levure chimique ou poudre à lever,aides culinaires et ingrédients divers
+10,11065,Vanille,aides culinaires et ingrédients divers
+10,11098,Vanille,aides culinaires et ingrédients divers
+10,11169,Fond de veau pour sauces et cuisson,aides culinaires et ingrédients divers
+10,11171,Fond de volaille pour sauces et cuisson,aides culinaires et ingrédients divers
+10,11172,Court-bouillon pour poissons,aides culinaires et ingrédients divers
+10,11174,Bouillon de volaille,aides culinaires et ingrédients divers
+10,11175,Gelée au madère,aides culinaires et ingrédients divers
+10,11176,Gelée au madère,aides culinaires et ingrédients divers
+10,11221,Extrait de levure,aides culinaires et ingrédients divers
+10,11303,Fumet de poisson,aides culinaires et ingrédients divers
+10,11304,Fond de veau,aides culinaires et ingrédients divers
+10,11507,Bicarbonate de soude,aides culinaires et ingrédients divers
+10,18041,Lait de coco,aides culinaires et ingrédients divers
+10,20918,Sirop pour fruits appertisés au sirop,aides culinaires et ingrédients divers
+10,20919,Sirop léger pour fruits appertisés au sirop,aides culinaires et ingrédients divers
+10,20924,Sirop léger pour poire appertisée,aides culinaires et ingrédients divers
+10,25525,Sauce tomate cuisinée pour pizza,aides culinaires et ingrédients divers
+10,25970,Bouillon de viande et légumes type pot-au-feu,aides culinaires et ingrédients divers
+10,25971,Bouillon de viande et légumes type pot-au-feu,aides culinaires et ingrédients divers
+10,31047,Gélifiant pour confitures,aides culinaires et ingrédients divers
+10,31108,Gelée royale,aides culinaires et ingrédients divers
+10,31109,Pollen,aides culinaires et ingrédients divers
+10,31111,Pollen,aides culinaires et ingrédients divers
+10,37000,Base de pizza (pâte et sauce à la crème),aides culinaires et ingrédients divers
+10,37002,Base de pizza (pâte et sauce à la tomate),aides culinaires et ingrédients divers
+10,42200,Lécithine de soja,aides culinaires et ingrédients divers
+10,11017,Sel blanc alimentaire,aides culinaires et ingrédients divers
+10,11044,Sel au céleri,aides culinaires et ingrédients divers
+10,11058,Sel blanc alimentaire,aides culinaires et ingrédients divers
+10,11082,Fleur de sel,aides culinaires et ingrédients divers
+10,11083,Sel marin gris,aides culinaires et ingrédients divers
+10,11096,Sel blanc alimentaire,aides culinaires et ingrédients divers
+10,11005,Curry,aides culinaires et ingrédients divers
+10,11006,Gingembre,aides culinaires et ingrédients divers
+10,11015,Poivre noir,aides culinaires et ingrédients divers
+10,11019,Poivre blanc,aides culinaires et ingrédients divers
+10,11025,Cannelle,aides culinaires et ingrédients divers
+10,11026,Coriandre,aides culinaires et ingrédients divers
+10,11039,Safran,aides culinaires et ingrédients divers
+10,11042,Cumin,aides culinaires et ingrédients divers
+10,11048,Noix de muscade,aides culinaires et ingrédients divers
+10,11049,Paprika,aides culinaires et ingrédients divers
+10,11052,Clou de girofle,aides culinaires et ingrédients divers
+10,11053,Laurier,aides culinaires et ingrédients divers
+10,11056,Quatre épices,aides culinaires et ingrédients divers
+10,11057,Vanille,aides culinaires et ingrédients divers
+10,11061,Pavot,aides culinaires et ingrédients divers
+10,11064,Carvi,aides culinaires et ingrédients divers
+10,11066,Fenouil,aides culinaires et ingrédients divers
+10,11074,Gingembre,aides culinaires et ingrédients divers
+10,11075,Cardamome,aides culinaires et ingrédients divers
+10,11077,Fenugrec,aides culinaires et ingrédients divers
+10,11081,Epice (aliment moyen),aides culinaires et ingrédients divers
+10,11088,Poivre de Cayenne ou piment de Cayenne,aides culinaires et ingrédients divers
+10,11089,Curcuma,aides culinaires et ingrédients divers
+10,11000,Ail,aides culinaires et ingrédients divers
+10,11002,Cerfeuil,aides culinaires et ingrédients divers
+10,11003,Ciboule ou ciboulette,aides culinaires et ingrédients divers
+10,11014,Persil,aides culinaires et ingrédients divers
+10,11016,Raifort,aides culinaires et ingrédients divers
+10,11027,Menthe,aides culinaires et ingrédients divers
+10,11033,Basilic,aides culinaires et ingrédients divers
+10,11068,Romarin,aides culinaires et ingrédients divers
+10,11069,Sauge,aides culinaires et ingrédients divers
+10,11070,Thym,aides culinaires et ingrédients divers
+10,11080,Herbes aromatiques fraîches (aliment moyen),aides culinaires et ingrédients divers
+10,11092,Estragon,aides culinaires et ingrédients divers
+10,11093,Aneth,aides culinaires et ingrédients divers
+10,11094,Coriandre,aides culinaires et ingrédients divers
+10,11306,Ail,aides culinaires et ingrédients divers
+10,11307,Ail,aides culinaires et ingrédients divers
+10,10999,Cerfeuil,aides culinaires et ingrédients divers
+10,11023,Ail séché,aides culinaires et ingrédients divers
+10,11024,Persil,aides culinaires et ingrédients divers
+10,11029,Menthe,aides culinaires et ingrédients divers
+10,11032,Basilic,aides culinaires et ingrédients divers
+10,11034,Marjolaine,aides culinaires et ingrédients divers
+10,11035,Origan,aides culinaires et ingrédients divers
+10,11036,Romarin,aides culinaires et ingrédients divers
+10,11037,Sauge,aides culinaires et ingrédients divers
+10,11038,Thym,aides culinaires et ingrédients divers
+10,11050,Estragon,aides culinaires et ingrédients divers
+10,11060,Herbes de Provence,aides culinaires et ingrédients divers
+10,11062,Sarriette,aides culinaires et ingrédients divers
+10,11063,Aneth,aides culinaires et ingrédients divers
+10,11095,Ciboulette,aides culinaires et ingrédients divers
+10,51500,Meloukhia,aides culinaires et ingrédients divers
+10,11084,Agar (algue),aides culinaires et ingrédients divers
+10,11085,Agar (algue),aides culinaires et ingrédients divers
+10,11086,Spiruline (Spirulina sp.),aides culinaires et ingrédients divers
+10,20982,Spiruline (algue),aides culinaires et ingrédients divers
+10,20983,Criste marine,aides culinaires et ingrédients divers
+10,20985,Laitue de mer (Ulva sp.),aides culinaires et ingrédients divers
+10,20986,Kombu royal (Saccharina latissima),aides culinaires et ingrédients divers
+10,20987,Nori (Porphyra sp.,aides culinaires et ingrédients divers
+10,20988,Dulse (Palmaria palmata),aides culinaires et ingrédients divers
+10,20989,Maërl ou lithothamne (Lithothamnion),aides culinaires et ingrédients divers
+10,20990,Kombu ou kombu japonais (Saccharina japonica),aides culinaires et ingrédients divers
+10,20991,Kombu breton (Laminaria digitata),aides culinaires et ingrédients divers
+10,20992,Haricot de mer (Himanthalia elongata),aides culinaires et ingrédients divers
+10,20993,Gracilaire ou ogonori (Gracilaria verrucosa),aides culinaires et ingrédients divers
+10,20994,Fucus vésiculeux (Fucus serratus ou Fucus vesiculosus),aides culinaires et ingrédients divers
+10,20995,Ao-nori (Ulva sp.,aides culinaires et ingrédients divers
+10,20996,Lichen de mer ou pioca ou goémon rouge (Chondrus crispus),aides culinaires et ingrédients divers
+10,20997,Chlorelle (chlorella),aides culinaires et ingrédients divers
+10,20998,Ascophylle noueux ou goémon noir (Ascophyllum nodosum),aides culinaires et ingrédients divers
+10,20999,Wakamé atlantique (Alaria esculenta),aides culinaires et ingrédients divers
+10,42000,Substitut de repas hypocalorique,aides culinaires et ingrédients divers
+10,42003,Substitut de repas hypocalorique,aides culinaires et ingrédients divers
+10,42004,Substitut de repas hypocalorique,aides culinaires et ingrédients divers
+10,42005,Substitut de repas hypocalorique,aides culinaires et ingrédients divers
+10,11214,Préparation culinaire à base de soja,aides culinaires et ingrédients divers
+10,20591,Protéine de soja texturée,aides culinaires et ingrédients divers
+10,20903,Isolat de soja,aides culinaires et ingrédients divers
+10,20904,Tofu nature,aides culinaires et ingrédients divers
+10,20906,Tofu soyeux,aides culinaires et ingrédients divers
+10,20912,Tofu fumé,aides culinaires et ingrédients divers
+10,20917,Tempeh,aides culinaires et ingrédients divers
+10,25598,Seitan,aides culinaires et ingrédients divers
+10,11215,Caviar de tomates,aides culinaires et ingrédients divers
+10,11222,Ktipiti,aides culinaires et ingrédients divers
+10,19863,Tzatziki à base de yaourt,aides culinaires et ingrédients divers
+10,19864,Tzatziki à base de fromage frais,aides culinaires et ingrédients divers
+10,25620,Guacamole,aides culinaires et ingrédients divers
+10,25621,Houmous,aides culinaires et ingrédients divers
+10,25624,Caviar d'aubergine,aides culinaires et ingrédients divers
+11,3000,Lait 1er âge,aliments infantiles
+11,3002,Lait 2e âge,aliments infantiles
+11,13159,Boisson aux fruits pour bébé dès 4/6mois,aliments infantiles
+11,13160,Boisson à base de plantes pour bébé,aliments infantiles
+11,13161,Boisson infantile céréales lactées aux légumes pour dîner dès 4/6 mois,aliments infantiles
+11,13162,Boisson infantile céréales lactées aux fruits pour le goûter dès 4/6 mois,aliments infantiles
+11,13163,Boisson infantile céréales lactées pour le petit déjeuner dès 4/6 mois,aliments infantiles
+11,13169,Boisson infantile céréales lactées pour le petit déjeuner dès 8/9 mois,aliments infantiles
+11,13170,Boisson infantile céréales lactées pour le petit déjeuner dès 12 mois,aliments infantiles
+11,13171,Boisson infantile lactées aux fruits pour le goûter dès 4/6 mois (sans céréales),aliments infantiles
+11,13172,Boisson infantile céréales lactées aux légumes pour diner dès 12 mois,aliments infantiles
+11,13173,Boisson infantile céréales lactées pour le petit déjeuner,aliments infantiles
+11,13182,Boisson infantile céréales lactées (aliment moyen),aliments infantiles
+11,19012,Lait de croissance infantile,aliments infantiles
+11,19013,Lait 1er âge,aliments infantiles
+11,19014,Lait 2e âge,aliments infantiles
+11,19015,Lait infantile pour prématurés,aliments infantiles
+11,20246,Petit pot légumes,aliments infantiles
+11,20247,Petit pot légumes,aliments infantiles
+11,20248,Plat légumes,aliments infantiles
+11,20249,Plat légumes,aliments infantiles
+11,20250,Plat légumes,aliments infantiles
+11,20251,Plat légumes,aliments infantiles
+11,20252,Soupe pour bébé légumes et pomme de terre,aliments infantiles
+11,20253,Soupe pour bébé légumes,aliments infantiles
+11,20254,Plat légumes,aliments infantiles
+11,42603,Plat légumes,aliments infantiles
+11,42604,Plat légumes,aliments infantiles
+11,42605,Plat légumes,aliments infantiles
+11,42606,Plat légumes,aliments infantiles
+11,13157,Petit pot fruit avec banane pour bébé,aliments infantiles
+11,13158,Petit pot fruit sans banane pour bébé,aliments infantiles
+11,13164,Dessert infantile lacté type crème dessert,aliments infantiles
+11,13165,Dessert infantile lacté au riz ou à la semoule,aliments infantiles
+11,13166,Dessert infantile lacté,aliments infantiles
+11,13167,Céréales instantanées,aliments infantiles
+11,13168,Céréales instantanées,aliments infantiles
+11,24689,Biscuit pour bébé,aliments infantiles
+11,42501,Poudre cacaotée pour bébé,aliments infantiles
