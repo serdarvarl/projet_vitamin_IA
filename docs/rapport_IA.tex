@@ -1,0 +1,642 @@
+\documentclass[12pt,a4paper]{article}
+
+% ─── Packages ───────────────────────────────────────────────────────────────
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{tabularx}
+
+\geometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm}
+
+% ─── Couleurs ────────────────────────────────────────────────────────────────
+\definecolor{bleu}{RGB}{41, 98, 155}
+\definecolor{vert}{RGB}{56, 142, 60}
+\definecolor{rouge}{RGB}{183, 28, 28}
+\definecolor{gris}{RGB}{97, 97, 97}
+\definecolor{codebg}{RGB}{245, 245, 245}
+
+% ─── Titres ──────────────────────────────────────────────────────────────────
+\titleformat{\section}{\large\bfseries\color{bleu}}{}{0em}{\thesection\quad}
+\titleformat{\subsection}{\normalsize\bfseries\color{bleu!80!black}}{}{0em}{\thesubsection\quad}
+\titleformat{\subsubsection}{\normalsize\itshape\color{gris}}{}{0em}{\thesubsubsection\quad}
+
+% ─── En-têtes ────────────────────────────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\textcolor{gris}{\small Prédiction des carences en vitamines --- Rapport IA}}
+\lhead{\textcolor{gris}{\small L3 MIASHS --- 2025/2026}}
+\cfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% ─── Hyperliens ──────────────────────────────────────────────────────────────
+\hypersetup{colorlinks=true, linkcolor=bleu, urlcolor=bleu}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\begin{document}
+
+% ─── Page de titre ───────────────────────────────────────────────────────────
+\begin{titlepage}
+    \centering
+    \vspace*{2cm}
+    {\LARGE\bfseries\color{bleu}
+        Prédiction des carences en vitamines\\[0.4em]
+        par apprentissage automatique}\\[2cm]
+    {\large Rapport --- Partie Intelligence Artificielle}\\[1.5cm]
+    \rule{\linewidth}{0.5pt}\\[1cm]
+    {\normalsize
+        \textbf{Équipe :} Bekakria Ahmed, Moutchachou Lydia, Ibnmtar Hazem, Varol Serdar\\[0.5em]
+        \textbf{Formation :} L3 MIASHS\\[0.5em]
+        \textbf{Dépôt :} \href{https://github.com/serdarvarl/projet_vitamin_IA}%
+            {github.com/serdarvarl/projet\_vitamin\_IA}\\[0.5em]
+        \textbf{Année :} 2025--2026
+    }\\[1cm]
+    \rule{\linewidth}{0.5pt}\\[2cm]
+    \begin{abstract}
+        \noindent
+        Ce rapport présente la conception et l'évaluation d'un système de
+        classification automatique des carences en vitamines à partir de données
+        cliniques, biologiques et comportementales de patients.
+        Trois algorithmes ont été comparés --- forêt aléatoire, SVM et k-NN ---
+        sur un jeu de données fortement déséquilibré (ratio 15,9:1, $n=4\,000$).
+        Une étude d'ablation à quatre dimensions a permis d'identifier que
+        les biomarqueurs sériques sont indispensables ($-$17,4\,\% F1 sans eux)
+        tandis que les variables lifestyle, souvent écartées a priori, apportent
+        un gain significatif ($+$5,3\,\% F1).
+        La configuration finale --- forêt aléatoire sur 30 variables avec SMOTE et
+        normalisation --- est évaluée sur un \emph{holdout} propre (30\,\%, jamais vu)
+        et atteint \textbf{94,06\,\% F1 pondéré} (94,00\,\% d'exactitude),
+        dont une détection parfaite du scorbut (F1 = 1,00).
+    \end{abstract}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Introduction}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Contexte et motivation}
+
+Les carences en vitamines représentent un problème de santé publique mondial.
+Leur diagnostic repose classiquement sur des dosages biologiques parfois coûteux
+et une interprétation clinique experte. Un outil d'aide automatique, capable
+d'identifier le type de carence à partir des données disponibles en consultation,
+constituerait un appui précieux, notamment dans les structures de soins à ressources
+limitées.
+
+Ce projet développe un tel système en deux composantes :
+(1) un classificateur qui prédit le type de carence à partir d'un profil patient,
+(2) un moteur de recommandation qui propose des aliments correcteurs issus de la
+base de référence française CIQUAL (ANSES).
+Ce rapport couvre exclusivement la première composante.
+
+\subsection{Structure du rapport}
+
+Le rapport suit un ordre \emph{logique} plutôt que chronologique, afin de
+présenter une progression cohérente des choix méthodologiques :
+données → prétraitement → modèles → étude d'ablation → évaluation finale non biaisée.
+L'ensemble des figures est rassemblé en annexe avec des renvois systématiques dans
+le texte.
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Données}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Source}
+
+Le jeu de données est issu de Kaggle
+(\emph{Vitamin Deficiency Disease Prediction Dataset}) et contient
+\textbf{4\,000 observations} patient décrites par \textbf{34 variables}
+réparties en quatre groupes fonctionnels.
+
+\subsection{Variables disponibles}
+
+\begin{description}[leftmargin=2em]
+    \item[Socio-démographiques et comportementales (10)] âge, genre, IMC,
+        tabac, alcool, activité physique, type de régime alimentaire, exposition
+        solaire, revenu, région géographique.
+    \item[Apports nutritionnels en \% des AJR (8)] vitamines A, C, D, E, B12,
+        folate, calcium, fer.
+    \item[Biomarqueurs sériques (4)] hémoglobine (g/dL), vitamine D sérique
+        (ng/mL), vitamine B12 sérique (pg/mL), folate sérique (ng/mL).
+    \item[Symptômes cliniques (8 retenus)] cécité nocturne, fatigue,
+        gingivorragies, douleurs osseuses, faiblesse musculaire, engourdissements,
+        troubles mnésiques, pâleur cutanée.
+\end{description}
+
+La variable cible \texttt{disease\_diagnosis} prend cinq modalités.
+
+\subsection{Distribution des classes et déséquilibre}
+
+\begin{table}[H]
+\centering
+\caption{Distribution des classes ($n = 4\,000$)}
+\label{tab:classes}
+\begin{tabular}{lrr}
+\toprule
+\textbf{Classe} & \textbf{Effectif} & \textbf{Proportion (\%)} \\
+\midrule
+Healthy               & 1\,509 & 37,7 \\
+Anemia                & 1\,245 & 31,1 \\
+Rickets\_Osteomalacia & 1\,029 & 25,7 \\
+Night\_Blindness      &    122 &  3,1 \\
+Scurvy                &     95 &  2,4 \\
+\midrule
+\textbf{Total}        & \textbf{4\,000} & \textbf{100,0} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Le ratio entre la classe majoritaire (Healthy) et la plus rare (Scurvy) est de
+\textbf{15,9 : 1}. Ce déséquilibre sévère implique qu'un classifieur trivial
+atteignant 37,7\,\% d'exactitude en prédisant toujours \og Healthy \fg serait
+illusoirement performant. Il justifie l'utilisation du \textbf{F1 pondéré}
+comme métrique principale, et le recours à SMOTE pour le rééchantillonnage.
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Cadre expérimental}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Prétraitement}
+
+\paragraph{Encodage.}
+La variable cible est encodée par \texttt{LabelEncoder}.
+Les variables catégorielles (genre, type de régime, etc.) sont également encodées
+avant passage aux modèles.
+
+\paragraph{Normalisation.}
+Un \texttt{StandardScaler} est appliqué à l'ensemble des variables numériques.
+Il est ajusté uniquement sur les données d'entraînement afin d'éviter toute fuite
+vers les données de validation ou de test.
+
+\paragraph{Rééchantillonnage : SMOTE.}
+La technique SMOTE (\emph{Synthetic Minority Over-sampling Technique}) génère
+des exemples synthétiques en interpolant entre des points réels de la classe
+minoritaire et leurs $k$ plus proches voisins ($k=3$).
+SMOTE est appliqué \emph{à l'intérieur de chaque pli de validation croisée},
+jamais sur les données de test, ce qui garantit une évaluation sur des observations
+réelles uniquement.
+
+L'effet de SMOTE sur la distribution est illustré en
+annexe~\ref{ann:smote}. Après application, chaque classe compte
+\textbf{1\,056 exemples} dans le jeu d'entraînement (2\,800 observations
+$\times$ 70\,\% $\rightarrow$ 5\,280 après SMOTE).
+
+\subsection{Problème de contamination du jeu de test et solution adoptée}
+
+\paragraph{Problème identifié.}
+Les versions 1 à 4 des notebooks partagent le même jeu de test (séparation
+\texttt{random\_state=42}, 20\,\%). Or, chaque choix de configuration
+(features, hyperparamètres) était guidé, implicitement ou explicitement, par les
+résultats observés sur ce jeu. Ce mécanisme introduit un \textbf{biais de sélection}
+(\emph{multiple testing bias}) qui gonfle artificiellement les performances
+estimées.
+
+\paragraph{Solution : holdout propre (v5).}
+La version 5 crée un nouveau jeu de test entièrement indépendant
+(\texttt{random\_state=999}, 30\,\%) qui n'a \emph{jamais} servi à orienter
+un quelconque choix de modélisation. La configuration finale est entraînée
+sur 70\,\% des données et évaluée une unique fois sur ce holdout.
+
+\begin{table}[H]
+\centering
+\caption{Découpage des données (v5 holdout)}
+\label{tab:split}
+\begin{tabular}{lrrl}
+\toprule
+\textbf{Partition} & \textbf{Observations} & \textbf{Proportion} & \textbf{Rôle} \\
+\midrule
+Entraînement & 2\,800 & 70\,\% & Fit + validation croisée \\
+Holdout test & 1\,200 & 30\,\% & Évaluation finale unique \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+La distribution du holdout reflète fidèlement celle du jeu complet grâce à la
+stratification : Healthy 37,8\,\%, Anemia 31,1\,\%, Rickets 25,8\,\%,
+Night\_Blindness 3,1\,\%, Scurvy 2,3\,\%.
+
+\subsection{Validation croisée}
+
+La validation croisée est réalisée par \texttt{StratifiedKFold} à 5 plis
+(versions 1--2) puis \texttt{RepeatedStratifiedKFold} (5 plis $\times$
+3 répétitions = 15 cycles, version 3 et étude d'ablation), qui fournit une
+estimation plus robuste de la variance.
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Modèles comparés}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+Trois algorithmes ont été retenus pour leur complémentarité en termes de biais,
+variance et interprétabilité.
+
+\subsection{Forêt aléatoire (Random Forest)}
+
+Ensemble de $N$ arbres de décision entraînés sur des sous-échantillons bootstrap
+avec sélection aléatoire d'un sous-ensemble de variables à chaque nœud
+(\emph{feature bagging}). La prédiction finale est la classe majoritaire.
+Avantages : robustesse au bruit, pas de normalisation strictement requise,
+importance des variables calculable.
+
+\paragraph{Paramètres (optimisés par RandomizedSearchCV, 30 itérations) :}
+\texttt{n\_estimators=340}, \texttt{max\_depth=19}, \texttt{min\_samples\_split=8},
+\texttt{min\_samples\_leaf=3}, \texttt{max\_features='log2'}.
+
+\subsection{Machine à vecteurs de support (SVM)}
+
+Séparateur à marge maximale dans un espace transformé par noyau RBF.
+Avantages : efficace en grande dimension, bon comportement sur données
+normalisées.
+
+\paragraph{Paramètres optimisés :}
+\texttt{kernel='rbf'}, \texttt{C=9,19}, \texttt{gamma='scale'}.
+
+\subsection{$k$ plus proches voisins (k-NN)}
+
+Classification par vote majoritaire parmi les $k$ observations d'entraînement
+les plus proches selon une distance choisie.
+Avantages : simplicité, non paramétrique.
+
+\paragraph{Paramètres optimisés :}
+\texttt{n\_neighbors=6}, \texttt{weights='distance'},
+\texttt{metric='manhattan'}.
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Étude d'ablation (version 4)}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Principe}
+
+L'étude d'ablation évalue l'impact de chaque composante du pipeline en la
+retirant une par une, toutes choses égales par ailleurs, et en mesurant la
+variation de F1 pondéré par validation croisée (RepeatedStratifiedKFold,
+5$\times$3). Cette approche est plus informative qu'une comparaison globale
+car elle quantifie la contribution \emph{causale} de chaque élément.
+
+\subsection{Modèle de référence}
+
+Le modèle de référence combine :
+\textbf{biomarqueurs} (12 variables) + \textbf{symptômes} (8 variables),
+SMOTE activé, normalisation activée.
+
+\begin{table}[H]
+\centering
+\caption{Performances du modèle de référence}
+\label{tab:reference}
+\begin{tabular}{lcc}
+\toprule
+\textbf{Métrique} & \textbf{CV F1} & \textbf{Test F1} \\
+\midrule
+Référence (Bio + Sympt, SMOTE, Scaler) & 0,9232 $\pm$ 0,0108 & 0,9139 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Résultats des quatre ablations}
+
+\begin{table}[H]
+\centering
+\caption{Résultats complets de l'étude d'ablation (v4)}
+\label{tab:ablation}
+\begin{tabular}{llccc}
+\toprule
+\textbf{Ablation} & \textbf{Configuration} & \textbf{CV F1} & \textbf{Test F1}
+    & \textbf{$\Delta$ F1 test} \\
+\midrule
+Référence & Bio + Sympt + SMOTE + Scaler & 0,9232 & 0,9139 & --- \\
+\midrule
+1 --- Sans SMOTE & Bio + Sympt + Scaler (seul) & 0,9230 & 0,9222 & $+$0,0083 \\
+\rowcolor{vert!10}
+2 --- Avec Lifestyle & Bio + Sympt + \textbf{Lifestyle} + SMOTE + Scaler
+    & 0,9651 & 0,9665 & $\mathbf{+0,0526}$ \\
+3 --- Sans Bio & Sympt seuls + SMOTE + Scaler & 0,7481 & 0,7403
+    & \textcolor{rouge}{$-$0,1736} \\
+4 --- Sans Scaler & Bio + Sympt + SMOTE (seul) & 0,9244 & 0,9224 & $+$0,0085 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Les figures détaillées de chaque ablation sont présentées en
+annexes~\ref{ann:abl1}--\ref{ann:abl_recap}.
+
+\subsection{Interprétation}
+
+\paragraph{Ablation 1 : SMOTE ($\Delta = +0,0083$).}
+Retirer SMOTE améliore légèrement le F1 test ($+$0,83\,\%). Sur données de test
+\emph{réelles et non augmentées}, la forêt aléatoire est suffisamment robuste
+pour gérer le déséquilibre sans synthèse artificielle. SMOTE est toutefois
+conservé dans la configuration finale car son effet stabilisateur sur la
+validation croisée (réduction de la variance) justifie son usage lors de
+l'entraînement.
+
+\paragraph{Ablation 2 : variables lifestyle ($\Delta = +0,0526$).}
+C'est la découverte majeure. Ajouter les 10 variables socio-comportementales
+(âge, IMC, exposition solaire, etc.) apporte \textbf{+5,3\,\% F1}, soit le gain
+le plus important de l'étude. Ce résultat contre-intuitif s'explique par la
+corrélation de ces variables avec certaines carences : le rachitisme est par
+exemple fortement lié à l'exposition solaire et à la région géographique, et
+l'anémie est corrélée au niveau d'activité physique et au régime alimentaire.
+Ces variables fournissent une information contextuelle que les biomarqueurs seuls
+ne capturent pas toujours.
+
+\paragraph{Ablation 3 : biomarqueurs ($\Delta = -0,1736$).}
+La suppression des biomarqueurs sériques provoque une \textbf{chute de
+17,4\,\% F1}. Les biomarqueurs sont de loin la composante la plus critique du
+modèle. Le modèle ne reposant que sur les symptômes cliniques atteint 74,0\,\%
+de F1, confirmant que les dosages biologiques sont irremplaçables pour un
+diagnostic fiable.
+
+\paragraph{Ablation 4 : normalisation ($\Delta = +0,0085$).}
+La forêt aléatoire est insensible à l'échelle des variables (elle utilise
+des seuils binaires), ce qui explique que retirer le \texttt{StandardScaler}
+ne dégrade pas les performances. La normalisation reste utile pour la cohérence
+du pipeline (SVM, k-NN en bénéficient).
+
+\subsection{Configuration retenue}
+
+L'étude d'ablation conduit à adopter une configuration \emph{étendue} à
+\textbf{30 variables} : 12 biomarqueurs + 8 symptômes + 10 variables lifestyle,
+avec SMOTE et normalisation.
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Évaluation finale non biaisée (version 5)}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Comparaison avec les résultats précédents}
+
+\begin{table}[H]
+\centering
+\caption{Correction du biais de sélection : v4 vs v5}
+\label{tab:v4v5}
+\begin{tabular}{llccc}
+\toprule
+\textbf{Version} & \textbf{Jeu de test} & \textbf{F1} & \textbf{Exactitude}
+    & \textbf{Biaisé ?} \\
+\midrule
+V4 & Même test set (vu plusieurs fois) & 0,9665 & 0,9663 & \textcolor{rouge}{Oui} \\
+\rowcolor{vert!10}
+V5 & Holdout propre (jamais utilisé)   & \textbf{0,9406} & \textbf{0,9400}
+    & \textcolor{vert}{Non} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+La baisse de 2,6 points de F1 entre v4 et v5 n'est pas une régression du modèle :
+elle reflète la \textbf{correction du biais de sélection}. Les performances v5
+constituent l'estimation réaliste des capacités du modèle sur de nouvelles données.
+
+\subsection{Résultats par classe (holdout, $n = 1\,200$)}
+
+\begin{table}[H]
+\centering
+\caption{Rapport de classification --- Random Forest final (v5, holdout)}
+\label{tab:perf_classe}
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Classe} & \textbf{Précision} & \textbf{Rappel} & \textbf{F1}
+    & \textbf{Support} \\
+\midrule
+Anemia                & 0,96 & 0,92 & 0,94 & 373 \\
+Healthy               & 0,98 & 0,95 & 0,97 & 453 \\
+Night\_Blindness      & 0,85 & 0,92 & 0,88 &  37 \\
+Rickets\_Osteomalacia & 0,87 & 0,94 & 0,91 & 309 \\
+Scurvy                & 1,00 & 1,00 & 1,00 &  28 \\
+\midrule
+\textbf{Macro avg}    & 0,93 & 0,95 & 0,94 & 1\,200 \\
+\textbf{Weighted avg} & 0,94 & 0,94 & 0,94 & 1\,200 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+La matrice de confusion du holdout est présentée en annexe~\ref{ann:holdout_cm}.
+
+\paragraph{Points saillants.}
+\begin{itemize}[leftmargin=2em]
+    \item \textbf{Scurvy (F1 = 1,00)} : détection parfaite des 28 cas de test,
+        malgré un support de seulement 2,3\,\% du holdout. SMOTE et la forte
+        spécificité clinique du scorbut (gingivorragies + carence sévère en
+        vitamine C) expliquent cette performance.
+    \item \textbf{Night\_Blindness (F1 = 0,88)} : la classe la plus difficile,
+        avec seulement 37 cas en test et un spectre symptomatique partiellement
+        partagé avec d'autres carences.
+    \item \textbf{Rickets\_Osteomalacia (F1 = 0,91)} : légère confusion avec
+        l'anémie (23 cas mal classés), deux pathologies partageant des marqueurs
+        de carence proches.
+\end{itemize}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Analyse de l'importance des variables}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+L'importance des variables est estimée par la réduction moyenne de l'impureté
+de Gini à travers les arbres de la forêt (voir annexe~\ref{ann:feat_imp}).
+
+\begin{table}[H]
+\centering
+\caption{Top 8 des variables par importance (Random Forest)}
+\label{tab:feat_imp}
+\begin{tabular}{clrc}
+\toprule
+\textbf{Rang} & \textbf{Variable} & \textbf{Importance} & \textbf{Groupe} \\
+\midrule
+1 & serum\_vitamin\_d\_ng\_ml   & 0,1847 & Biomarqueur \\
+2 & hemoglobin\_g\_dl           & 0,1623 & Biomarqueur \\
+3 & serum\_folate\_ng\_ml       & 0,1205 & Biomarqueur \\
+4 & serum\_vitamin\_b12\_pg\_ml & 0,1089 & Biomarqueur \\
+5 & vitamin\_d\_percent\_rda    & 0,0965 & Apport nutritionnel \\
+6 & folate\_percent\_rda        & 0,0832 & Apport nutritionnel \\
+7 & calcium\_percent\_rda       & 0,0543 & Apport nutritionnel \\
+8 & vitamin\_a\_percent\_rda    & 0,0457 & Apport nutritionnel \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+La vitamine D sérique (\texttt{serum\_vitamin\_d\_ng\_ml}) représente à elle
+seule \textbf{18,5\,\%} de la puissance prédictive, ce qui est cohérent avec
+son rôle dans le rachitisme, pathologie représentant 25,7\,\% du jeu de données.
+Les quatre premiers rangs sont exclusivement occupés par des biomarqueurs, ce
+qui confirme et nuance à la fois l'ablation 3 : les biomarqueurs \emph{dominent},
+mais les variables lifestyle enrichissent la discrimination contextuelle.
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Discussion}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Synthèse des résultats}
+
+La forêt aléatoire est le modèle le plus performant sur ce problème, avec un F1
+de 94,06\,\% sur holdout propre. Le SVM atteint 89,26\,\% et le k-NN 82,08\,\%
+sur les mêmes données (évaluation v3). La supériorité de la forêt aléatoire
+s'explique par sa capacité à modéliser des interactions non linéaires entre
+variables hétérogènes (continues et binaires) sans hypothèse de distribution.
+
+\subsection{Enseignements de l'étude d'ablation}
+
+L'ablation révèle une hiérarchie claire des contributions :
+\begin{enumerate}[leftmargin=2em]
+    \item \textbf{Biomarqueurs sériques} : composante critique ($-$17,4\,\% sans eux) ;
+    \item \textbf{Variables lifestyle} : apport surprenant ($+$5,3\,\%, contre-intuitif) ;
+    \item \textbf{Symptômes cliniques} : contribution modérée ;
+    \item \textbf{SMOTE et normalisation} : effets marginaux sur la forêt aléatoire.
+\end{enumerate}
+
+Le résultat sur les variables lifestyle invite à reconsidérer l'exclusion
+systématique des variables socio-comportementales dans les modèles biomédicaux :
+elles capturent des facteurs de risque environnementaux (exposition solaire $\to$
+rachitisme, régime végétalien $\to$ carence B12) que les seuls dosages ne reflètent
+pas toujours.
+
+\subsection{Limites}
+
+\begin{itemize}[leftmargin=2em]
+    \item \textbf{Dataset synthétique} : le jeu de données Kaggle est généré
+        algorithmiquement. Les distributions biologiques simulées peuvent s'écarter
+        d'une cohorte clinique réelle, ce qui restreint la portée des conclusions.
+    \item \textbf{Support des classes minoritaires} : 28 cas de scorbut dans le
+        holdout --- un F1 de 1,00 sur cet effectif reste peu généralisable.
+    \item \textbf{Variable cible unique} : le modèle prédit une carence par patient
+        alors que \texttt{has\_multiple\_deficiencies} indique la fréquence de
+        carences combinées.
+\end{itemize}
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Conclusion}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+Ce projet démontre la faisabilité d'un classificateur automatique des carences
+en vitamines atteignant \textbf{94,06\,\% de F1 pondéré} sur un holdout non biaisé
+($n = 1\,200$), avec une détection parfaite du scorbut et une bonne robustesse sur
+les classes minoritaires.
+
+Trois résultats méthodologiques sont à retenir :
+\begin{enumerate}[leftmargin=2em]
+    \item Les biomarqueurs sériques sont le levier prédictif principal ;
+    \item Les variables lifestyle, souvent écartées, améliorent significativement
+        la discrimination ;
+    \item La réutilisation d'un même jeu de test gonfle les performances de 2,6\,\%
+        --- un biais fréquent que l'évaluation holdout permet de corriger.
+\end{enumerate}
+
+Le modèle est sérialisé (\texttt{random\_forest\_final.pkl}) et opérationnel pour
+intégration dans l'application Streamlit de recommandation alimentaire (phase
+suivante du projet).
+
+% ═══════════════════════════════════════════════════════════════════════════════
+% ANNEXES
+% ═══════════════════════════════════════════════════════════════════════════════
+\newpage
+\appendix
+\titleformat{\section}{\large\bfseries\color{bleu}}{}{0em}{Annexe~\thesection\ ---\ }
+
+\section{Effet de SMOTE sur la distribution des classes}
+\label{ann:smote}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.80\linewidth]{../notebooks/smote_comparison.png}
+    \caption{Distribution avant et après SMOTE (jeu d'entraînement)}
+\end{figure}
+
+\section{Ablation 1 — Impact de SMOTE}
+\label{ann:abl1}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.80\linewidth]{../notebooks/ablation1_smote.png}
+    \caption{Comparaison avec/sans SMOTE}
+\end{figure}
+
+\section{Ablation 2 — Impact des variables lifestyle}
+\label{ann:abl2}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.80\linewidth]{../notebooks/ablation2_lifestyle.png}
+    \caption{Gain apporté par les variables socio-comportementales (+5,3\,\% F1)}
+\end{figure}
+
+\section{Ablation 3 — Impact des biomarqueurs}
+\label{ann:abl3}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.80\linewidth]{../notebooks/ablation3_bio.png}
+    \caption{Chute de performance sans biomarqueurs ($-$17,4\,\% F1)}
+\end{figure}
+
+\section{Ablation 4 — Impact de la normalisation}
+\label{ann:abl4}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.80\linewidth]{../notebooks/ablation4_scaler.png}
+    \caption{Comparaison avec/sans StandardScaler}
+\end{figure}
+
+\section{Récapitulatif de l'étude d'ablation}
+\label{ann:abl_recap}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.80\linewidth]{../notebooks/ablation_recap_final.png}
+    \caption{Synthèse des quatre ablations}
+\end{figure}
+
+\section{Matrice de confusion — Holdout final (v5)}
+\label{ann:holdout_cm}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.70\linewidth]{../notebooks/holdout_confusion_matrix.png}
+    \caption{Matrice de confusion sur le holdout ($n=1\,200$) --- F1 = 0,9406, Exactitude = 0,9400}
+\end{figure}
+
+\section{Matrices de confusion — Modèles v2 (comparaison RF/SVM/k-NN)}
+\label{ann:conf_v2}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{../notebooks/matrices_confusion_v2.png}
+    \caption{Matrices de confusion des trois modèles --- version 2}
+\end{figure}
+
+\section{Comparaison globale des modèles}
+\label{ann:comparaison}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\linewidth]{../notebooks/comparaison_modeles.png}
+    \caption{Comparaison F1 validation croisée vs test (RF, SVM, k-NN)}
+\end{figure}
+
+\section{Importance des variables}
+\label{ann:feat_imp}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.80\linewidth]{../notebooks/feature_importance.png}
+    \caption{Importance des variables --- Random Forest}
+\end{figure}
+
+\section{Courbes d'apprentissage}
+\label{ann:learning}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.80\linewidth]{../notebooks/learning_curves_v3.png}
+    \caption{Courbes d'apprentissage --- F1 entraînement vs validation (RF v3)}
+\end{figure}
+
+\section{Courbes ROC (One-vs-Rest)}
+\label{ann:roc}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.80\linewidth]{../notebooks/roc_curves_v3.png}
+    \caption{Courbes ROC par classe --- Random Forest v3 (AUC $>$ 0,95 pour toutes les classes)}
+\end{figure}
+
+\end{document}
