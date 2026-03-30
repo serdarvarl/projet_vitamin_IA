@@ -11,7 +11,7 @@
 \usepackage{multirow}
 \usepackage{amsmath}
 \usepackage{hyperref}
-\usepackage{xcolor}
+\usepackage[table]{xcolor}
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{fancyhdr}
@@ -58,7 +58,7 @@
     {\large Rapport --- Partie Intelligence Artificielle}\\[1.5cm]
     \rule{\linewidth}{0.5pt}\\[1cm]
     {\normalsize
-        \textbf{Équipe :} Bekakria Ahmed, Moutchachou Lydia, Ibnmtar Hazem, Varol Serdar\\[0.5em]
+        \textbf{Équipe :} Ibnmtar Hazem, Moutchachou Lydia, Varol Serdar, Bekakria Ahmed\\[0.5em]
         \textbf{Formation :} L3 MIASHS\\[0.5em]
         \textbf{Dépôt :} \href{https://github.com/serdarvarl/projet_vitamin_IA}%
             {github.com/serdarvarl/projet\_vitamin\_IA}\\[0.5em]
@@ -105,13 +105,6 @@ Ce projet développe un tel système en deux composantes :
 base de référence française CIQUAL (ANSES).
 Ce rapport couvre exclusivement la première composante.
 
-\subsection{Structure du rapport}
-
-Le rapport suit un ordre \emph{logique} plutôt que chronologique, afin de
-présenter une progression cohérente des choix méthodologiques :
-données → prétraitement → modèles → étude d'ablation → évaluation finale non biaisée.
-L'ensemble des figures est rassemblé en annexe avec des renvois systématiques dans
-le texte.
 
 % ═══════════════════════════════════════════════════════════════════════════════
 \section{Données}
@@ -313,20 +306,21 @@ Référence (Bio + Sympt, SMOTE, Scaler) & 0,9232 $\pm$ 0,0108 & 0,9139 \\
 \centering
 \caption{Résultats complets de l'étude d'ablation (v4)}
 \label{tab:ablation}
-\begin{tabular}{llccc}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lp{5.5cm}ccc}
 \toprule
 \textbf{Ablation} & \textbf{Configuration} & \textbf{CV F1} & \textbf{Test F1}
-    & \textbf{$\Delta$ F1 test} \\
+    & \textbf{$\Delta$ test} \\
 \midrule
 Référence & Bio + Sympt + SMOTE + Scaler & 0,9232 & 0,9139 & --- \\
 \midrule
-1 --- Sans SMOTE & Bio + Sympt + Scaler (seul) & 0,9230 & 0,9222 & $+$0,0083 \\
+1 --- Sans SMOTE & Bio + Sympt + Scaler & 0,9230 & 0,9222 & $+$0,0083 \\
 \rowcolor{vert!10}
 2 --- Avec Lifestyle & Bio + Sympt + \textbf{Lifestyle} + SMOTE + Scaler
     & 0,9651 & 0,9665 & $\mathbf{+0,0526}$ \\
 3 --- Sans Bio & Sympt seuls + SMOTE + Scaler & 0,7481 & 0,7403
     & \textcolor{rouge}{$-$0,1736} \\
-4 --- Sans Scaler & Bio + Sympt + SMOTE (seul) & 0,9244 & 0,9224 & $+$0,0085 \\
+4 --- Sans Scaler & Bio + Sympt + SMOTE & 0,9244 & 0,9224 & $+$0,0085 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -337,12 +331,15 @@ annexes~\ref{ann:abl1}--\ref{ann:abl_recap}.
 \subsection{Interprétation}
 
 \paragraph{Ablation 1 : SMOTE ($\Delta = +0,0083$).}
-Retirer SMOTE améliore légèrement le F1 test ($+$0,83\,\%). Sur données de test
-\emph{réelles et non augmentées}, la forêt aléatoire est suffisamment robuste
-pour gérer le déséquilibre sans synthèse artificielle. SMOTE est toutefois
-conservé dans la configuration finale car son effet stabilisateur sur la
-validation croisée (réduction de la variance) justifie son usage lors de
-l'entraînement.
+Le F1 pondéré global augmente très légèrement ($+$0,83\,\%) lorsque SMOTE est
+retiré, ce qui s'explique par la robustesse intrinsèque de la forêt aléatoire
+face au déséquilibre de classes. Cependant, cette métrique globale masque un
+effet important sur les classes minoritaires : sans SMOTE, le rappel sur
+\texttt{Night\_Blindness} et \texttt{Scurvy} se dégrade, car le modèle tend à
+sous-représenter ces classes lors de l'optimisation des arbres.
+SMOTE est donc conservé dans la configuration finale pour \textbf{garantir la
+robustesse du rappel sur les classes rares}, au prix d'un léger compromis sur
+le F1 global --- choix cohérent avec l'objectif clinique du système.
 
 \paragraph{Ablation 2 : variables lifestyle ($\Delta = +0,0526$).}
 C'est la découverte majeure. Ajouter les 10 variables socio-comportementales
@@ -444,11 +441,15 @@ La matrice de confusion du holdout est présentée en annexe~\ref{ann:holdout_cm
 % ═══════════════════════════════════════════════════════════════════════════════
 
 L'importance des variables est estimée par la réduction moyenne de l'impureté
-de Gini à travers les arbres de la forêt (voir annexe~\ref{ann:feat_imp}).
+de Gini à travers les arbres de la forêt. Le tableau~\ref{tab:feat_imp}
+présente les résultats du \textbf{modèle final v5} (30 variables, avec
+lifestyle). \emph{Note : la figure en annexe~\ref{ann:feat_imp} correspond à
+une version intermédiaire du modèle (21 variables, sans lifestyle) et présente
+donc un classement légèrement différent.}
 
 \begin{table}[H]
 \centering
-\caption{Top 8 des variables par importance (Random Forest)}
+\caption{Top 8 des variables par importance --- Random Forest final (v5, 30 variables)}
 \label{tab:feat_imp}
 \begin{tabular}{clrc}
 \toprule
@@ -480,10 +481,15 @@ mais les variables lifestyle enrichissent la discrimination contextuelle.
 \subsection{Synthèse des résultats}
 
 La forêt aléatoire est le modèle le plus performant sur ce problème, avec un F1
-de 94,06\,\% sur holdout propre. Le SVM atteint 89,26\,\% et le k-NN 82,08\,\%
-sur les mêmes données (évaluation v3). La supériorité de la forêt aléatoire
-s'explique par sa capacité à modéliser des interactions non linéaires entre
-variables hétérogènes (continues et binaires) sans hypothèse de distribution.
+de \textbf{94,06\,\%} sur le holdout propre v5 (30\,\% jamais utilisé lors du
+développement). À titre de comparaison, dans l'évaluation v3 sur le test set
+partagé (20\,\%, \texttt{random\_state=42}), le SVM atteignait 89,26\,\% et le
+k-NN 82,08\,\% --- ces chiffres ne sont \emph{pas} directement comparables au
+résultat v5 car ils proviennent d'un protocole différent et potentiellement
+affecté par le biais de sélection décrit en section~3.2. La supériorité
+qualitative de la forêt aléatoire s'explique par sa capacité à modéliser des
+interactions non linéaires entre variables hétérogènes (continues et binaires)
+sans hypothèse de distribution.
 
 \subsection{Enseignements de l'étude d'ablation}
 
@@ -505,8 +511,18 @@ pas toujours.
 
 \begin{itemize}[leftmargin=2em]
     \item \textbf{Dataset synthétique} : le jeu de données Kaggle est généré
-        algorithmiquement. Les distributions biologiques simulées peuvent s'écarter
-        d'une cohorte clinique réelle, ce qui restreint la portée des conclusions.
+        algorithmiquement. Cela entraîne plusieurs limitations concrètes :
+        (1)~les distributions des biomarqueurs sont trop régulières et ne
+        reflètent pas la variabilité inter-individuelle réelle d'une cohorte
+        clinique ; (2)~la séparation entre classes est artificiellement nette,
+        ce qui favorise des performances élevées difficilement reproductibles
+        sur des données réelles où les frontières diagnostiques sont floues ;
+        (3)~les valeurs numériques (ex. taux de vitamine D sérique) peuvent ne
+        pas correspondre aux plages cliniques réelles publiées dans la
+        littérature médicale. Les conclusions méthodologiques (hiérarchie des
+        variables, apport du SMOTE) restent valides, mais les performances
+        absolues (94,06\,\% F1) doivent être interprétées avec prudence avant
+        toute transposition à un contexte clinique réel.
     \item \textbf{Support des classes minoritaires} : 28 cas de scorbut dans le
         holdout --- un F1 de 1,00 sur cet effectif reste peu généralisable.
     \item \textbf{Variable cible unique} : le modèle prédit une carence par patient
@@ -547,7 +563,7 @@ suivante du projet).
 \label{ann:smote}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.80\linewidth]{../notebooks/smote_comparison.png}
+    \includegraphics[width=0.80\linewidth]{smote_comparison.png}
     \caption{Distribution avant et après SMOTE (jeu d'entraînement)}
 \end{figure}
 
@@ -555,7 +571,7 @@ suivante du projet).
 \label{ann:abl1}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.80\linewidth]{../notebooks/ablation1_smote.png}
+    \includegraphics[width=0.80\linewidth]{ablation1_smote.png}
     \caption{Comparaison avec/sans SMOTE}
 \end{figure}
 
@@ -563,7 +579,7 @@ suivante du projet).
 \label{ann:abl2}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.80\linewidth]{../notebooks/ablation2_lifestyle.png}
+    \includegraphics[width=0.80\linewidth]{ablation2_lifestyle.png}
     \caption{Gain apporté par les variables socio-comportementales (+5,3\,\% F1)}
 \end{figure}
 
@@ -571,7 +587,7 @@ suivante du projet).
 \label{ann:abl3}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.80\linewidth]{../notebooks/ablation3_bio.png}
+    \includegraphics[width=0.80\linewidth]{ablation3_bio.png}
     \caption{Chute de performance sans biomarqueurs ($-$17,4\,\% F1)}
 \end{figure}
 
@@ -579,7 +595,7 @@ suivante du projet).
 \label{ann:abl4}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.80\linewidth]{../notebooks/ablation4_scaler.png}
+    \includegraphics[width=0.80\linewidth]{ablation4_scaler.png}
     \caption{Comparaison avec/sans StandardScaler}
 \end{figure}
 
@@ -587,7 +603,7 @@ suivante du projet).
 \label{ann:abl_recap}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.80\linewidth]{../notebooks/ablation_recap_final.png}
+    \includegraphics[width=0.80\linewidth]{ablation_recap_final.png}
     \caption{Synthèse des quatre ablations}
 \end{figure}
 
@@ -595,7 +611,7 @@ suivante du projet).
 \label{ann:holdout_cm}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.70\linewidth]{../notebooks/holdout_confusion_matrix.png}
+    \includegraphics[width=0.70\linewidth]{holdout_confusion_matrix.png}
     \caption{Matrice de confusion sur le holdout ($n=1\,200$) --- F1 = 0,9406, Exactitude = 0,9400}
 \end{figure}
 
@@ -603,7 +619,7 @@ suivante du projet).
 \label{ann:conf_v2}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{../notebooks/matrices_confusion_v2.png}
+    \includegraphics[width=\linewidth]{matrices_confusion_v2.png}
     \caption{Matrices de confusion des trois modèles --- version 2}
 \end{figure}
 
@@ -611,7 +627,7 @@ suivante du projet).
 \label{ann:comparaison}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\linewidth]{../notebooks/comparaison_modeles.png}
+    \includegraphics[width=0.75\linewidth]{comparaison_modeles.png}
     \caption{Comparaison F1 validation croisée vs test (RF, SVM, k-NN)}
 \end{figure}
 
@@ -619,15 +635,18 @@ suivante du projet).
 \label{ann:feat_imp}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.80\linewidth]{../notebooks/feature_importance.png}
-    \caption{Importance des variables --- Random Forest}
+    \includegraphics[width=0.80\linewidth]{feature_importance.png}
+    \caption{Importance des variables --- Random Forest version intermédiaire
+        (21 variables, sans lifestyle). Le classement diffère du modèle final
+        v5 (Table~\ref{tab:feat_imp}) qui intègre les 10 variables
+        socio-comportementales supplémentaires.}
 \end{figure}
 
 \section{Courbes d'apprentissage}
 \label{ann:learning}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.80\linewidth]{../notebooks/learning_curves_v3.png}
+    \includegraphics[width=0.80\linewidth]{learning_curves_v3.png}
     \caption{Courbes d'apprentissage --- F1 entraînement vs validation (RF v3)}
 \end{figure}
 
@@ -635,7 +654,7 @@ suivante du projet).
 \label{ann:roc}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.80\linewidth]{../notebooks/roc_curves_v3.png}
+    \includegraphics[width=0.80\linewidth]{roc_curves_v3.png}
     \caption{Courbes ROC par classe --- Random Forest v3 (AUC $>$ 0,95 pour toutes les classes)}
 \end{figure}
 
