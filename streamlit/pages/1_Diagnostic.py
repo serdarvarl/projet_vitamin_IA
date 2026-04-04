@@ -16,18 +16,23 @@ CIQUAL_ODS = os.path.join(REPO, "data_csv", "raw", "Table_Ciqual_V2.ods")
 def load_ciqual():
     if not os.path.exists(CIQUAL_ODS):
         return None
-    df = pd.read_excel(CIQUAL_ODS, engine="odf")
-    # Convertir les colonnes numériques (valeurs avec virgule)
-    nutrient_cols = [c for c in df.columns if "mg" in c or "µg" in c or "kcal" in c
-                     or "kJ" in c or "g100" in c or "g/100" in c
-                     or any(x in c for x in ["Fer", "Calcium", "Vitamine", "Folate"])]
+    try:
+        df = pd.read_excel(CIQUAL_ODS, engine="odf")
+    except Exception as e:
+        st.error(f"Impossible de lire Table_Ciqual_V2.ods : {e}\n"
+                 "Installez odfpy : pip install odfpy")
+        return None
+    # Convertir toutes les colonnes potentiellement numériques
     for col in df.columns:
         if df[col].dtype == object:
             try:
-                df[col] = pd.to_numeric(
+                converted = pd.to_numeric(
                     df[col].astype(str).str.replace(",", ".").str.strip(),
-                    errors="ignore"
+                    errors="coerce"
                 )
+                # Ne remplacer que si au moins 30% des valeurs sont numériques
+                if converted.notna().mean() > 0.3:
+                    df[col] = converted
             except Exception:
                 pass
     return df
@@ -35,22 +40,22 @@ def load_ciqual():
 # Mapping maladie → colonnes riche_ et colonne teneur pour tri
 DISEASE_CIQUAL = {
     "Anemia": {
-        "col_tri": "Fer (mg100 g)",
+        "col_mots": ["Fer (", "Fer("],
         "label_filtre": "les plus riches en Fer (sources naturelles)",
         "groupes_exclus": ["produits céréaliers", "boissons"],
     },
     "Rickets_Osteomalacia": {
-        "col_tri": "VitamineD (",
+        "col_mots": ["VitamineD", "Vitamine D"],
         "label_filtre": "les plus riches en Vitamine D",
         "groupes_exclus": ["boissons"],
     },
     "Night_Blindness": {
-        "col_tri": "tinol(",
+        "col_mots": ["tinol", "Retinol", "R\xe9tinol", "vitamine A", "Vitamine A"],
         "label_filtre": "les plus riches en Vitamine A / Rétinol",
-        "groupes_exclus": ["boissons", "compléments"],
+        "groupes_exclus": ["boissons"],
     },
     "Scurvy": {
-        "col_tri": "VitamineC (",
+        "col_mots": ["VitamineC", "Vitamine C"],
         "label_filtre": "les plus riches en Vitamine C",
         "groupes_exclus": ["boissons"],
     },
@@ -59,10 +64,18 @@ DISEASE_CIQUAL = {
 # Mots-clés à exclure (aliments enrichis artificiellement ou peu pratiques)
 EXCLUSIONS = [
     "enrichi", "enrichie", "enrichies", "enrichis",
-    "complément", "supplément", "fortifié",
-    "déshydraté", "déshydratée", "séché", "séchée",  # herbes séchées (irréaliste)
+    "compl", "suppl", "fortifi",
+    "desh", "s\xe9ch\xe9", "s\xe9ch\xe9e",
     "algue", "chlorelle", "spiruline", "lithothamne",
 ]
+
+def _find_col(df, mots):
+    """Trouve la première colonne dont le nom contient un des mots-clés."""
+    for mot in mots:
+        matches = [c for c in df.columns if mot in c]
+        if matches:
+            return matches[0]
+    return None
 
 def get_ciqual_aliments(disease, df_ciqual, top_n=12):
     """Retourne les aliments CIQUAL les plus riches (sources naturelles) pour une maladie."""
@@ -70,50 +83,60 @@ def get_ciqual_aliments(disease, df_ciqual, top_n=12):
         return None
     info = DISEASE_CIQUAL[disease]
 
-    # Trouver la colonne de tri (recherche partielle sur le nom)
-    col_match = [c for c in df_ciqual.columns if info["col_tri"] in c]
-    if not col_match:
+    try:
+        # Trouver la colonne de tri
+        col_tri = _find_col(df_ciqual, info["col_mots"])
+        if col_tri is None:
+            return None
+
+        df = df_ciqual.copy()
+
+        # S'assurer que la colonne est numérique
+        df[col_tri] = pd.to_numeric(
+            df[col_tri].astype(str).str.replace(",", ".").str.strip(),
+            errors="coerce"
+        )
+
+        # Exclure les aliments enrichis ou peu pratiques (comparaison simple sans accents)
+        nom_lower = df["alim_nom_fr"].astype(str).str.lower()
+        excl_mask = pd.Series([False] * len(df), index=df.index)
+        for kw in EXCLUSIONS:
+            excl_mask = excl_mask | nom_lower.str.contains(kw, na=False, regex=False)
+        df = df[~excl_mask]
+
+        # Exclure certains groupes alimentaires
+        groupes_excl = info.get("groupes_exclus", [])
+        if groupes_excl and "alim_grp_nom_fr" in df.columns:
+            grp_col = df["alim_grp_nom_fr"].astype(str).str.lower()
+            grp_mask = pd.Series([False] * len(df), index=df.index)
+            for g in groupes_excl:
+                grp_mask = grp_mask | grp_col.str.contains(g, na=False, regex=False)
+            df = df[~grp_mask]
+
+        # Garder seulement les aliments avec une vraie teneur > 0
+        df = df[pd.to_numeric(df[col_tri], errors="coerce") > 0].dropna(
+            subset=[col_tri, "alim_nom_fr"]
+        )
+
+        if df.empty:
+            return None
+
+        # Trier par teneur décroissante
+        result = (df[["alim_nom_fr", "alim_grp_nom_fr", col_tri]]
+                  .sort_values(col_tri, ascending=False)
+                  .drop_duplicates("alim_nom_fr")
+                  .head(top_n)
+                  .reset_index(drop=True))
+        result.index = result.index + 1
+
+        # Renommer les colonnes proprement
+        unite = col_tri.split("(")[-1].rstrip(")").strip() if "(" in col_tri else "?"
+        result.columns = ["Aliment", "Groupe alimentaire", f"Teneur ({unite}/100g)"]
+        return result
+
+    except Exception as e:
+        st.warning(f"Erreur recommandations CIQUAL : {e}")
         return None
-    col_tri = col_match[0]
-
-    df = df_ciqual.copy()
-
-    # Convertir la colonne de tri en numérique
-    df[col_tri] = pd.to_numeric(
-        df[col_tri].astype(str).str.replace(",", ".").str.strip(),
-        errors="coerce"
-    )
-
-    # Exclure les aliments enrichis ou peu pratiques
-    excl_mask = df["alim_nom_fr"].astype(str).str.lower().apply(
-        lambda x: any(kw in x for kw in EXCLUSIONS)
-    )
-    df = df[~excl_mask]
-
-    # Exclure certains groupes alimentaires
-    groupes_excl = info.get("groupes_exclus", [])
-    if groupes_excl and "alim_grp_nom_fr" in df.columns:
-        grp_col = df["alim_grp_nom_fr"].astype(str).str.lower()
-        grp_mask = pd.Series([False] * len(df), index=df.index)
-        for g in groupes_excl:
-            grp_mask = grp_mask | grp_col.str.contains(g, na=False)
-        df = df[~grp_mask]
-
-    # Garder seulement les aliments avec une vraie teneur (> 0)
-    df = df[df[col_tri] > 0].dropna(subset=[col_tri, "alim_nom_fr"])
-
-    # Trier par teneur décroissante
-    result = (df[["alim_nom_fr", "alim_grp_nom_fr", col_tri]]
-              .sort_values(col_tri, ascending=False)
-              .drop_duplicates("alim_nom_fr")
-              .head(top_n)
-              .reset_index(drop=True))
-    result.index = result.index + 1
-
-    # Renommer les colonnes
-    unite = col_tri.split("(")[-1].rstrip(")").strip() if "(" in col_tri else ""
-    result.columns = ["Aliment", "Groupe alimentaire", f"Teneur ({unite}/100g)"]
-    return result
 
 st.set_page_config(
     page_title="VitaIA — Diagnostic",
@@ -214,18 +237,22 @@ def load_model():
         (os.path.join(REPO, "notebooks", "models_final"), "final",
          "v5 final — Random Forest 30 features (holdout F1 = 94,06 %)"),
         (os.path.join(REPO, "notebooks", "models_v3"), "v3",
-         "v3 — Random Forest 21 features (évaluation antérieure)"),
+         "v3 — Random Forest 21 features"),
     ]:
         mp = os.path.join(folder, f"best_model_{suffix}.pkl")
         lp = os.path.join(folder, f"label_encoder_{suffix}.pkl")
         fp = os.path.join(folder, f"feature_cols_{suffix}.pkl")
         sp = os.path.join(folder, f"scaler_{suffix}.pkl")
         if os.path.exists(mp) and os.path.exists(lp) and os.path.exists(fp):
-            model  = pickle.load(open(mp, "rb"))
-            le     = pickle.load(open(lp, "rb"))
-            feats  = pickle.load(open(fp, "rb"))
-            scaler = pickle.load(open(sp, "rb")) if os.path.exists(sp) else None
-            return model, le, feats, scaler, label
+            try:
+                model  = pickle.load(open(mp, "rb"))
+                le     = pickle.load(open(lp, "rb"))
+                feats  = pickle.load(open(fp, "rb"))
+                scaler = pickle.load(open(sp, "rb")) if os.path.exists(sp) else None
+                return model, le, feats, scaler, label
+            except Exception as e:
+                st.warning(f"Erreur chargement modèle ({suffix}) : {e}")
+                continue
     return None, None, None, None, None
 
 model, le, feature_cols, scaler, model_label = load_model()
@@ -236,8 +263,9 @@ st.markdown("Renseignez les données cliniques pour obtenir une prédiction de c
 
 if model is None:
     st.error(
-        "Aucun modèle trouvé. Lancez d'abord le notebook `modeles_IA_v5_holdout_final.ipynb` "
-        "ou `modeles_IA_v3.ipynb` pour générer les fichiers `.pkl`."
+        "**Modèle introuvable.** Lancez d'abord un notebook pour générer les fichiers `.pkl` :\n\n"
+        "```\nnotebooks/modeles_IA_v3.ipynb\n```\n\n"
+        "Consultez le fichier `streamlit/LANCER_APP.md` pour les instructions complètes."
     )
     st.stop()
 
