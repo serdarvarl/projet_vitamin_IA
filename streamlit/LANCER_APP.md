@@ -40,7 +40,7 @@ source .venv/bin/activate
 ### 3. Installer les dépendances
 
 ```bash
-pip install streamlit plotly pandas numpy scikit-learn imbalanced-learn odfpy openpyxl
+pip install -r streamlit/requirements.txt
 ```
 
 ---
