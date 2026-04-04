@@ -8,7 +8,112 @@ import streamlit as st
 import plotly.graph_objects as go
 
 # ── Paths ─────────────────────────────────────────────────────────────────────
-REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+REPO       = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+CIQUAL_ODS = os.path.join(REPO, "data_csv", "raw", "Table_Ciqual_V2.ods")
+
+# ── Chargement CIQUAL ─────────────────────────────────────────────────────────
+@st.cache_data(show_spinner="Chargement de la base CIQUAL...")
+def load_ciqual():
+    if not os.path.exists(CIQUAL_ODS):
+        return None
+    df = pd.read_excel(CIQUAL_ODS, engine="odf")
+    # Convertir les colonnes numériques (valeurs avec virgule)
+    nutrient_cols = [c for c in df.columns if "mg" in c or "µg" in c or "kcal" in c
+                     or "kJ" in c or "g100" in c or "g/100" in c
+                     or any(x in c for x in ["Fer", "Calcium", "Vitamine", "Folate"])]
+    for col in df.columns:
+        if df[col].dtype == object:
+            try:
+                df[col] = pd.to_numeric(
+                    df[col].astype(str).str.replace(",", ".").str.strip(),
+                    errors="ignore"
+                )
+            except Exception:
+                pass
+    return df
+
+# Mapping maladie → colonnes riche_ et colonne teneur pour tri
+DISEASE_CIQUAL = {
+    "Anemia": {
+        "col_tri": "Fer (mg100 g)",
+        "label_filtre": "les plus riches en Fer (sources naturelles)",
+        "groupes_exclus": ["produits céréaliers", "boissons"],
+    },
+    "Rickets_Osteomalacia": {
+        "col_tri": "VitamineD (",
+        "label_filtre": "les plus riches en Vitamine D",
+        "groupes_exclus": ["boissons"],
+    },
+    "Night_Blindness": {
+        "col_tri": "tinol(",
+        "label_filtre": "les plus riches en Vitamine A / Rétinol",
+        "groupes_exclus": ["boissons", "compléments"],
+    },
+    "Scurvy": {
+        "col_tri": "VitamineC (",
+        "label_filtre": "les plus riches en Vitamine C",
+        "groupes_exclus": ["boissons"],
+    },
+}
+
+# Mots-clés à exclure (aliments enrichis artificiellement ou peu pratiques)
+EXCLUSIONS = [
+    "enrichi", "enrichie", "enrichies", "enrichis",
+    "complément", "supplément", "fortifié",
+    "déshydraté", "déshydratée", "séché", "séchée",  # herbes séchées (irréaliste)
+    "algue", "chlorelle", "spiruline", "lithothamne",
+]
+
+def get_ciqual_aliments(disease, df_ciqual, top_n=12):
+    """Retourne les aliments CIQUAL les plus riches (sources naturelles) pour une maladie."""
+    if df_ciqual is None or disease not in DISEASE_CIQUAL:
+        return None
+    info = DISEASE_CIQUAL[disease]
+
+    # Trouver la colonne de tri (recherche partielle sur le nom)
+    col_match = [c for c in df_ciqual.columns if info["col_tri"] in c]
+    if not col_match:
+        return None
+    col_tri = col_match[0]
+
+    df = df_ciqual.copy()
+
+    # Convertir la colonne de tri en numérique
+    df[col_tri] = pd.to_numeric(
+        df[col_tri].astype(str).str.replace(",", ".").str.strip(),
+        errors="coerce"
+    )
+
+    # Exclure les aliments enrichis ou peu pratiques
+    excl_mask = df["alim_nom_fr"].astype(str).str.lower().apply(
+        lambda x: any(kw in x for kw in EXCLUSIONS)
+    )
+    df = df[~excl_mask]
+
+    # Exclure certains groupes alimentaires
+    groupes_excl = info.get("groupes_exclus", [])
+    if groupes_excl and "alim_grp_nom_fr" in df.columns:
+        grp_col = df["alim_grp_nom_fr"].astype(str).str.lower()
+        grp_mask = pd.Series([False] * len(df), index=df.index)
+        for g in groupes_excl:
+            grp_mask = grp_mask | grp_col.str.contains(g, na=False)
+        df = df[~grp_mask]
+
+    # Garder seulement les aliments avec une vraie teneur (> 0)
+    df = df[df[col_tri] > 0].dropna(subset=[col_tri, "alim_nom_fr"])
+
+    # Trier par teneur décroissante
+    result = (df[["alim_nom_fr", "alim_grp_nom_fr", col_tri]]
+              .sort_values(col_tri, ascending=False)
+              .drop_duplicates("alim_nom_fr")
+              .head(top_n)
+              .reset_index(drop=True))
+    result.index = result.index + 1
+
+    # Renommer les colonnes
+    unite = col_tri.split("(")[-1].rstrip(")").strip() if "(" in col_tri else ""
+    result.columns = ["Aliment", "Groupe alimentaire", f"Teneur ({unite}/100g)"]
+    return result
 
 st.set_page_config(
     page_title="VitaIA — Diagnostic",
@@ -292,15 +397,37 @@ if submitted:
         )
         st.plotly_chart(fig, use_container_width=True)
 
-    # ── Recommandations alimentaires ─────────────────────────────────────────
+    # ── Recommandations alimentaires CIQUAL ──────────────────────────────────
     st.markdown("---")
     st.markdown("### Recommandations alimentaires")
-    col_food, col_tip = st.columns([1, 1], gap="large")
-    with col_food:
-        st.markdown("**Aliments à privilégier :**")
-        for food in reco["aliments"]:
-            st.markdown(f'<span class="food-chip">{food}</span>', unsafe_allow_html=True)
-    with col_tip:
+
+    df_ciqual = load_ciqual()
+
+    if pred_label != "Healthy":
+        df_aliments = get_ciqual_aliments(pred_label, df_ciqual)
+        info_ciqual = DISEASE_CIQUAL.get(pred_label, {})
+
+        col_food, col_tip = st.columns([3, 2], gap="large")
+        with col_food:
+            if df_aliments is not None and not df_aliments.empty:
+                st.markdown(
+                    f"**Top aliments {info_ciqual.get('label_filtre','')} "
+                    f"— Base CIQUAL / ANSES ({len(df_aliments)} résultats) :**"
+                )
+                st.dataframe(
+                    df_aliments[["Aliment", "Groupe alimentaire"]],
+                    use_container_width=True,
+                    hide_index=False,
+                )
+            else:
+                st.markdown("**Aliments recommandés :**")
+                for food in reco["aliments"]:
+                    st.markdown(f'<span class="food-chip">{food}</span>',
+                                unsafe_allow_html=True)
+        with col_tip:
+            st.info(f"**Conseil :** {reco['conseil']}")
+    else:
+        st.markdown("**Aucune carence détectée** — maintenez une alimentation équilibrée.")
         st.info(f"**Conseil :** {reco['conseil']}")
 
     st.markdown("---")
