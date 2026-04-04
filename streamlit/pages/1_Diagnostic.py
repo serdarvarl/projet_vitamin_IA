@@ -12,7 +12,7 @@ REPO = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 st.set_page_config(
     page_title="VitaIA — Diagnostic",
-    page_icon="🔍",
+    page_icon="💊",
     layout="wide",
 )
 
@@ -20,31 +20,33 @@ st.set_page_config(
 st.markdown("""
 <style>
     .section-label {
-        font-size: 0.78rem;
+        font-size: 0.75rem;
         font-weight: 700;
-        color: #1a237e;
+        color: #90caf9;
         text-transform: uppercase;
-        letter-spacing: 1.2px;
-        border-bottom: 2px solid #3949ab;
-        padding-bottom: 3px;
-        margin: 1.4rem 0 0.8rem;
+        letter-spacing: 1.4px;
+        border-bottom: 2px solid #42a5f5;
+        padding-bottom: 4px;
+        margin: 1.6rem 0 1rem;
     }
     .result-box {
         border-radius: 12px;
         padding: 1.6rem 1.4rem;
         margin-bottom: 1.2rem;
+        background: rgba(255,255,255,0.05) !important;
     }
-    .result-title { font-size: 1.7rem; font-weight: 700; }
-    .result-msg   { font-size: 1rem; margin-top: 6px; opacity: 0.92; }
-    .prob-row     { display: flex; align-items: center; margin: 4px 0; gap: 8px; font-size: 0.85rem; }
+    .result-title { font-size: 1.6rem; font-weight: 700; }
+    .result-msg   { font-size: 1rem; margin-top: 8px; color: #e0e0e0; }
+    .prob-row     { display: flex; align-items: center; margin: 5px 0; gap: 10px; font-size: 0.85rem; color: #e0e0e0; }
     .prob-label   { width: 210px; flex-shrink: 0; }
     .food-chip {
         display: inline-block;
-        background: #f5f5f5;
-        border: 1px solid #ddd;
+        background: rgba(66, 165, 245, 0.18);
+        color: #90caf9 !important;
+        border: 1px solid #42a5f5;
         border-radius: 6px;
-        padding: 4px 11px;
-        margin: 3px;
+        padding: 5px 13px;
+        margin: 4px;
         font-size: 0.84rem;
     }
     #MainMenu { visibility: hidden; }
@@ -55,7 +57,7 @@ st.markdown("""
 # ── Recommandations (fallback si pas de CIQUAL) ───────────────────────────────
 RECO = {
     "Healthy": {
-        "emoji": "✅", "color": "#2e7d32", "bg": "#f1f8e9",
+        "color": "#69f0ae", "border": "#00c853",
         "titre": "Aucune carence détectée",
         "message": "Continuez avec une alimentation variée et équilibrée.",
         "aliments": ["Fruits et légumes variés", "Céréales complètes", "Légumineuses",
@@ -63,40 +65,40 @@ RECO = {
         "conseil": "Maintenir l'exposition solaire régulière et l'activité physique.",
     },
     "Anemia": {
-        "emoji": "🔴", "color": "#b71c1c", "bg": "#ffebee",
+        "color": "#ef9a9a", "border": "#e53935",
         "titre": "Anémie (carence en fer / B12 / folate)",
         "message": "Carence probable en fer et/ou vitamine B12 ou folate.",
-        "aliments": ["Foie de bœuf", "Lentilles et pois chiches", "Viande rouge",
+        "aliments": ["Foie de boeuf", "Lentilles et pois chiches", "Viande rouge",
                      "Épinards", "Huîtres", "Haricots rouges", "Tofu", "Graines de courge"],
         "conseil": "Associer fer végétal + vitamine C pour améliorer l'absorption. "
                    "Éviter thé/café lors des repas.",
     },
     "Rickets_Osteomalacia": {
-        "emoji": "🦴", "color": "#e65100", "bg": "#fff3e0",
+        "color": "#ffcc80", "border": "#fb8c00",
         "titre": "Rachitisme / Ostéomalacie (carence en vitamine D)",
         "message": "Carence probable en vitamine D et/ou calcium.",
-        "aliments": ["Saumon, thon, maquereau", "Jaune d'œuf", "Champignons exposés au soleil",
+        "aliments": ["Saumon, thon, maquereau", "Jaune d'oeuf", "Champignons exposés au soleil",
                      "Lait et yaourts enrichis en vitamine D", "Sardines en boîte", "Fromages à pâte dure"],
-        "conseil": "Augmenter l'exposition solaire (15–30 min/jour). Consulter un médecin "
+        "conseil": "Augmenter l'exposition solaire (15-30 min/jour). Consulter un médecin "
                    "pour une supplémentation en vitamine D3.",
     },
     "Night_Blindness": {
-        "emoji": "👁️", "color": "#f57f17", "bg": "#fffde7",
+        "color": "#fff176", "border": "#fdd835",
         "titre": "Cécité nocturne (carence en vitamine A)",
         "message": "Carence probable en vitamine A.",
         "aliments": ["Carottes", "Patate douce", "Foie de volaille",
-                     "Épinards et brocolis", "Mangue et abricots", "Lait entier", "Œufs (jaune)"],
+                     "Épinards et brocolis", "Mangue et abricots", "Lait entier", "Oeufs (jaune)"],
         "conseil": "La vitamine A est liposoluble : consommer avec un corps gras. "
                    "Éviter les suppléments en excès (toxicité possible).",
     },
     "Scurvy": {
-        "emoji": "🍊", "color": "#6a1b9a", "bg": "#f3e5f5",
+        "color": "#ce93d8", "border": "#8e24aa",
         "titre": "Scorbut (carence sévère en vitamine C)",
         "message": "Carence sévère probable en vitamine C.",
         "aliments": ["Kiwi (plus concentré)", "Poivron rouge et jaune",
                      "Orange et citron", "Fraises", "Brocoli", "Persil frais", "Cassis"],
         "conseil": "Consommer cru ou peu cuit (vitamine C fragile à la chaleur). "
-                   "200–500 mg/jour corrige rapidement la carence.",
+                   "200-500 mg/jour corrige rapidement la carence.",
     },
 }
 
@@ -124,7 +126,7 @@ def load_model():
 model, le, feature_cols, scaler, model_label = load_model()
 
 # ── Titre ─────────────────────────────────────────────────────────────────────
-st.title("🔍 Diagnostic patient")
+st.title("Diagnostic patient")
 st.markdown("Renseignez les données cliniques pour obtenir une prédiction de carence en vitamines.")
 
 if model is None:
@@ -134,7 +136,6 @@ if model is None:
     )
     st.stop()
 
-st.info(f"**Modèle chargé :** {model_label}", icon="🤖")
 st.markdown("---")
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -143,34 +144,34 @@ st.markdown("---")
 with st.form("diagnostic_form"):
 
     # Apports nutritionnels
-    st.markdown('<div class="section-label">📊 Apports nutritionnels (% des AJR)</div>',
+    st.markdown('<div class="section-label">Apports nutritionnels (% des AJR)</div>',
                 unsafe_allow_html=True)
     c1, c2, c3, c4 = st.columns(4)
-    vit_a   = c1.number_input("Vitamine A (%)",   0.0, 300.0, 80.0, 1.0)
-    vit_c   = c2.number_input("Vitamine C (%)",   0.0, 300.0, 80.0, 1.0)
-    vit_d   = c3.number_input("Vitamine D (%)",   0.0, 300.0, 60.0, 1.0)
-    vit_e   = c4.number_input("Vitamine E (%)",   0.0, 300.0, 80.0, 1.0)
+    vit_a   = c1.number_input("Vitamine A (%)",   0.0, 300.0, 100.0, 1.0)
+    vit_c   = c2.number_input("Vitamine C (%)",   0.0, 300.0, 100.0, 1.0)
+    vit_d   = c3.number_input("Vitamine D (%)",   0.0, 300.0, 100.0, 1.0)
+    vit_e   = c4.number_input("Vitamine E (%)",   0.0, 300.0, 100.0, 1.0)
     c5, c6, c7, c8 = st.columns(4)
-    vit_b12 = c5.number_input("Vitamine B12 (%)", 0.0, 300.0, 80.0, 1.0)
-    folate  = c6.number_input("Folate (%)",        0.0, 300.0, 80.0, 1.0)
-    calcium = c7.number_input("Calcium (%)",       0.0, 300.0, 80.0, 1.0)
-    iron    = c8.number_input("Fer (%)",           0.0, 300.0, 80.0, 1.0)
+    vit_b12 = c5.number_input("Vitamine B12 (%)", 0.0, 300.0, 100.0, 1.0)
+    folate  = c6.number_input("Folate (%)",        0.0, 300.0, 100.0, 1.0)
+    calcium = c7.number_input("Calcium (%)",       0.0, 300.0, 100.0, 1.0)
+    iron    = c8.number_input("Fer (%)",           0.0, 300.0, 100.0, 1.0)
 
     # Biomarqueurs
-    st.markdown('<div class="section-label">🧪 Biomarqueurs sériques</div>',
+    st.markdown('<div class="section-label">Biomarqueurs sériques</div>',
                 unsafe_allow_html=True)
     b1, b2, b3, b4 = st.columns(4)
-    hemo       = b1.number_input("Hémoglobine (g/dL)",        4.0,  20.0,  13.5, 0.1,
-                                  help="Normale : 12–17 g/dL")
+    hemo       = b1.number_input("Hémoglobine (g/dL)",          4.0,  20.0,  13.5, 0.1,
+                                  help="Normale : 12–17 g/dL (H) / 12–15 g/dL (F)")
     ser_vit_d  = b2.number_input("Vitamine D sérique (ng/mL)", 5.0, 120.0,  30.0, 0.5,
-                                  help="Carence < 12 ng/mL")
-    ser_b12    = b3.number_input("Vitamine B12 (pg/mL)",      50.0,1200.0, 350.0, 5.0,
-                                  help="Carence < 200 pg/mL")
-    ser_folate = b4.number_input("Folate sérique (ng/mL)",     1.0,  40.0,  12.0, 0.5,
-                                  help="Carence < 3 ng/mL")
+                                  help="Optimal ≥ 30 · Insuffisance 12–30 · Carence < 12")
+    ser_b12    = b3.number_input("Vitamine B12 (pg/mL)",       50.0,1200.0, 400.0, 5.0,
+                                  help="Normale 200–900 pg/mL · Carence < 200")
+    ser_folate = b4.number_input("Folate sérique (ng/mL)",      1.0,  40.0,  10.0, 0.5,
+                                  help="Normale > 3 ng/mL · Optimal 5–20")
 
     # Symptômes
-    st.markdown('<div class="section-label">🩺 Symptômes cliniques</div>',
+    st.markdown('<div class="section-label">Symptômes cliniques</div>',
                 unsafe_allow_html=True)
     s1, s2, s3, s4 = st.columns(4)
     night_blind = s1.checkbox("Cécité nocturne")
@@ -185,7 +186,7 @@ with st.form("diagnostic_form"):
 
     st.markdown("<br>", unsafe_allow_html=True)
     submitted = st.form_submit_button(
-        "🔮 Analyser le profil patient", use_container_width=True, type="primary"
+        "Analyser le profil patient", use_container_width=True, type="primary"
     )
 
 # ═══════════════════════════════════════════════════════════════════════════════
@@ -232,8 +233,8 @@ if submitted:
 
     # ── Résultat principal ────────────────────────────────────────────────────
     st.markdown(f"""
-    <div class="result-box" style="background:{reco['bg']};border:2px solid {reco['color']}">
-        <div class="result-title" style="color:{reco['color']}">{reco['emoji']} {reco['titre']}</div>
+    <div class="result-box" style="border:2px solid {reco['border']}">
+        <div class="result-title" style="color:{reco['color']}">{reco['titre']}</div>
         <div class="result-msg">{reco['message']}</div>
     </div>
     """, unsafe_allow_html=True)
@@ -274,8 +275,7 @@ if submitted:
             r=values + [values[0]], theta=cats + [cats[0]],
             fill="toself", name="Patient",
             line=dict(color=reco["color"], width=2),
-            fillcolor=reco["color"].replace(")", ",0.15)").replace("rgb", "rgba")
-                       if reco["color"].startswith("rgb") else reco["color"] + "33",
+            fillcolor="rgba(100,100,200,0.15)",
         ))
         fig.add_trace(go.Scatterpolar(
             r=[80] * len(cats) + [80], theta=cats + [cats[0]],
@@ -294,12 +294,12 @@ if submitted:
 
     # ── Recommandations alimentaires ─────────────────────────────────────────
     st.markdown("---")
-    st.markdown(f"### 🥗 Recommandations alimentaires")
+    st.markdown("### Recommandations alimentaires")
     col_food, col_tip = st.columns([1, 1], gap="large")
     with col_food:
         st.markdown("**Aliments à privilégier :**")
         for food in reco["aliments"]:
-            st.markdown(f'<span class="food-chip">🍽 {food}</span>', unsafe_allow_html=True)
+            st.markdown(f'<span class="food-chip">{food}</span>', unsafe_allow_html=True)
     with col_tip:
         st.info(f"**Conseil :** {reco['conseil']}")
 

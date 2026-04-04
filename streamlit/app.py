@@ -22,37 +22,44 @@ st.markdown("""
 
     /* Cartes métriques personnalisées */
     .metric-card {
-        background: white;
-        border: 1px solid #e3e8f0;
+        background: rgba(255,255,255,0.05);
+        border: 1px solid #42a5f5;
         border-radius: 10px;
         padding: 1.2rem 1rem;
         text-align: center;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
-    .metric-card .val { font-size: 2rem; font-weight: 700; color: #1a237e; }
-    .metric-card .lbl { font-size: 0.82rem; color: #666; margin-top: 4px; }
+    .metric-card .val { font-size: 2rem; font-weight: 700; color: #90caf9; }
+    .metric-card .lbl { font-size: 0.82rem; color: #b0bec5; margin-top: 4px; }
 
     /* Encart "Comment ça marche" */
     .step-box {
-        background: #f5f7ff;
-        border-left: 4px solid #3949ab;
+        background: rgba(66,165,245,0.08);
+        border-left: 4px solid #42a5f5;
         border-radius: 0 8px 8px 0;
         padding: 0.9rem 1.1rem;
         margin-bottom: 0.7rem;
         font-size: 0.95rem;
+        color: #e0e0e0;
     }
-    .step-box strong { color: #1a237e; }
+    .step-box strong { color: #90caf9; }
 
     /* Team */
     .team-chip {
         display: inline-block;
-        background: #e8eaf6;
-        color: #1a237e;
+        background: rgba(66,165,245,0.15);
+        color: #90caf9 !important;
+        border: 1px solid #42a5f5;
         border-radius: 20px;
         padding: 4px 14px;
         margin: 4px;
         font-size: 0.88rem;
         font-weight: 500;
+        text-decoration: none !important;
+        transition: background 0.2s;
+    }
+    a.team-chip:hover {
+        background: rgba(66,165,245,0.35);
+        cursor: pointer;
     }
 
     /* Cacher le menu Streamlit par défaut */
@@ -64,7 +71,7 @@ st.markdown("""
 # ── Hero ──────────────────────────────────────────────────────────────────────
 st.markdown("""
 <div class="vita-hero">
-    <h1>💊 VitaIA</h1>
+    <h1>VitaIA</h1>
     <p>Prédiction des carences en vitamines par apprentissage automatique</p>
 </div>
 """, unsafe_allow_html=True)
@@ -111,7 +118,7 @@ with left:
     st.markdown("### Comment utiliser l'application")
     for step in [
         ("1. Diagnostic", "Renseignez les données cliniques du patient dans le formulaire"),
-        ("2. Prédiction", "Le modèle retourne le diagnostic probable avec un score de confiance"),
+        ("2. Prediction", "Le modèle retourne le diagnostic probable avec un score de confiance"),
         ("3. Recommandations", "Des aliments correcteurs issus de la base CIQUAL (ANSES) sont proposés"),
         ("4. Résultats", "Consultez les performances détaillées du modèle et l'étude d'ablation"),
     ]:
@@ -135,12 +142,24 @@ with right:
     corrige le biais de sélection : les 94,06 % de F1 constituent une estimation
     non biaisée des performances sur de nouvelles données.
 
-    > Scurvy détecté à **100 %** malgré seulement 2,3 % du dataset.
+    > Scorbut détecté à **100 %** malgré seulement 2,3 % du dataset.
     """)
 
     st.markdown("### Équipe")
-    for name in ["Ibnmtar Hazem", "Moutchachou Lydia", "Varol Serdar", "Bekakria Ahmed"]:
-        st.markdown(f'<span class="team-chip">👤 {name}</span>', unsafe_allow_html=True)
+    team = [
+        ("Ibnmtar Hazem",    "https://github.com/IbnmtarHazem"),
+        ("Moutchachou Lydia", "https://github.com/lydiamtch"),
+        ("Varol Serdar",     "https://github.com/serdarvarl"),
+        ("Bekakria Ahmed",   "https://github.com/ahmed-abc73"),
+    ]
+    for name, url in team:
+        if url:
+            st.markdown(
+                f'<a href="{url}" target="_blank" class="team-chip">{name}</a>',
+                unsafe_allow_html=True
+            )
+        else:
+            st.markdown(f'<span class="team-chip">{name}</span>', unsafe_allow_html=True)
 
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown(

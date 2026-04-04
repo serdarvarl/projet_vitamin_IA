@@ -14,23 +14,24 @@ st.set_page_config(
 st.markdown("""
 <style>
     .section-label {
-        font-size: 0.78rem; font-weight: 700; color: #1a237e;
-        text-transform: uppercase; letter-spacing: 1.2px;
-        border-bottom: 2px solid #3949ab; padding-bottom: 3px;
+        font-size: 0.75rem; font-weight: 700; color: #90caf9;
+        text-transform: uppercase; letter-spacing: 1.4px;
+        border-bottom: 2px solid #42a5f5; padding-bottom: 4px;
         margin: 1.6rem 0 1rem;
     }
     .metric-card {
-        background: white; border: 1px solid #e3e8f0;
+        background: rgba(255,255,255,0.05);
+        border: 1px solid #42a5f5;
         border-radius: 10px; padding: 1.1rem 0.9rem;
-        text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        text-align: center;
     }
-    .metric-card .val { font-size: 1.8rem; font-weight: 700; color: #1a237e; }
-    .metric-card .lbl { font-size: 0.78rem; color: #666; margin-top: 3px; }
+    .metric-card .val { font-size: 1.8rem; font-weight: 700; color: #90caf9; }
+    .metric-card .lbl { font-size: 0.78rem; color: #b0bec5; margin-top: 3px; }
     #MainMenu { visibility: hidden; } footer { visibility: hidden; }
 </style>
 """, unsafe_allow_html=True)
 
-st.title("📊 Résultats de l'étude")
+st.title("Résultats de l'étude")
 st.markdown("Performances du modèle Random Forest final et étude d'ablation.")
 
 # ── Métriques clés ────────────────────────────────────────────────────────────
