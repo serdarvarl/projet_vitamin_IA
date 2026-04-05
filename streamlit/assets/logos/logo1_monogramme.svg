@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Fond cercle -->
+  <circle cx="100" cy="100" r="96" fill="#1a3a5c"/>
+  <circle cx="100" cy="100" r="96" fill="none" stroke="#2e6da4" stroke-width="4"/>
+
+  <!-- Lettre V -->
+  <text x="22" y="130" font-family="Georgia, serif" font-size="90" font-weight="700"
+        fill="#ffffff" letter-spacing="-4">V</text>
+
+  <!-- IA en surimpression, décalé -->
+  <text x="95" y="128" font-family="Georgia, serif" font-size="52" font-weight="700"
+        fill="#2e6da4">IA</text>
+
+  <!-- Ligne de séparation décorative -->
+  <line x1="30" y1="148" x2="170" y2="148" stroke="#2e6da4" stroke-width="2"/>
+
+  <!-- Sous-titre -->
+  <text x="100" y="168" font-family="Arial, sans-serif" font-size="13" font-weight="400"
+        fill="#a8c4e0" text-anchor="middle" letter-spacing="3">VITAMIN AI</text>
+</svg>

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Croix médicale -->
+  <rect x="75" y="30" width="50" height="140" rx="8" fill="#1a3a5c"/>
+  <rect x="30" y="75" width="140" height="50" rx="8" fill="#1a3a5c"/>
+
+  <!-- Croix accent (liseré bleu) -->
+  <rect x="75" y="30" width="50" height="140" rx="8" fill="none" stroke="#2e6da4" stroke-width="3"/>
+  <rect x="30" y="75" width="140" height="50" rx="8" fill="none" stroke="#2e6da4" stroke-width="3"/>
+
+  <!-- Centre blanc -->
+  <rect x="75" y="75" width="50" height="50" fill="#1a3a5c"/>
+
+  <!-- Texte IA au centre -->
+  <text x="100" y="110" font-family="Arial, sans-serif" font-size="30" font-weight="800"
+        fill="#ffffff" text-anchor="middle">IA</text>
+
+  <!-- Petits points décoratifs aux extrémités -->
+  <circle cx="100" cy="38" r="5" fill="#4fc3f7"/>
+  <circle cx="100" cy="162" r="5" fill="#4fc3f7"/>
+  <circle cx="38" cy="100" r="5" fill="#4fc3f7"/>
+  <circle cx="162" cy="100" r="5" fill="#4fc3f7"/>
+
+  <!-- Texte bas -->
+  <text x="100" y="185" font-family="Arial, sans-serif" font-size="13" font-weight="700"
+        fill="#1a3a5c" text-anchor="middle" letter-spacing="3">VitaIA</text>
+</svg>

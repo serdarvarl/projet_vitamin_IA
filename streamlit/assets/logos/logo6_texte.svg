@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 100" width="280" height="100">
+  <!-- Fond -->
+  <rect width="280" height="100" fill="#ffffff"/>
+
+  <!-- Barre verticale accent gauche -->
+  <rect x="18" y="18" width="5" height="64" rx="2" fill="#2e6da4"/>
+
+  <!-- "Vita" en navy -->
+  <text x="35" y="68" font-family="Georgia, serif" font-size="52" font-weight="700"
+        fill="#1a3a5c" letter-spacing="-1">Vita</text>
+
+  <!-- "IA" en bleu accent -->
+  <text x="162" y="68" font-family="Georgia, serif" font-size="52" font-weight="700"
+        fill="#2e6da4" letter-spacing="-1">IA</text>
+
+  <!-- Soulignement partiel sous "IA" -->
+  <rect x="162" y="74" width="60" height="3" rx="1" fill="#2e6da4"/>
+
+  <!-- Sous-titre -->
+  <text x="36" y="88" font-family="Arial, sans-serif" font-size="9.5" font-weight="400"
+        fill="#5a6878" letter-spacing="2.5">VITAMIN DEFICIENCY · AI</text>
+</svg>

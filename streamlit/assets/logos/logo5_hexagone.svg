@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Hexagone principal -->
+  <polygon points="100,18 172,58 172,138 100,178 28,138 28,58"
+           fill="#1a3a5c" stroke="#2e6da4" stroke-width="4"/>
+
+  <!-- Hexagone intérieur décoratif -->
+  <polygon points="100,38 152,68 152,128 100,158 48,128 48,68"
+           fill="none" stroke="#2e6da4" stroke-width="1.5" opacity="0.4"/>
+
+  <!-- Goutte de sang stylisée -->
+  <path d="M100 55 C100 55, 75 85, 75 105 C75 120, 87 132, 100 132
+             C113 132, 125 120, 125 105 C125 85, 100 55, 100 55 Z"
+        fill="#2e6da4"/>
+
+  <!-- Reflet goutte -->
+  <ellipse cx="91" cy="95" rx="6" ry="10" fill="#ffffff" opacity="0.25" transform="rotate(-20,91,95)"/>
+
+  <!-- Lettre A stylisée dans la goutte -->
+  <text x="100" y="118" font-family="Arial, sans-serif" font-size="22" font-weight="800"
+        fill="#ffffff" text-anchor="middle">AI</text>
+
+  <!-- Texte bas -->
+  <text x="100" y="193" font-family="Arial, sans-serif" font-size="13" font-weight="700"
+        fill="#1a3a5c" text-anchor="middle" letter-spacing="3">VitaIA</text>
+</svg>

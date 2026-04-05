@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <!-- Pilule fond -->
+  <rect x="30" y="70" width="140" height="60" rx="30" ry="30" fill="#1a3a5c"/>
+
+  <!-- Moitié droite pilule (accent) -->
+  <path d="M100 70 h40 a30 30 0 0 1 0 60 h-40 Z" fill="#2e6da4"/>
+
+  <!-- Ligne séparatrice -->
+  <line x1="100" y1="70" x2="100" y2="130" stroke="#ffffff" stroke-width="2"/>
+
+  <!-- Nœuds réseau neuronal côté gauche -->
+  <circle cx="55" cy="85" r="5" fill="#ffffff" opacity="0.9"/>
+  <circle cx="55" cy="115" r="5" fill="#ffffff" opacity="0.9"/>
+  <circle cx="78" cy="100" r="6" fill="#ffffff"/>
+  <!-- Connexions -->
+  <line x1="55" y1="85" x2="78" y2="100" stroke="#ffffff" stroke-width="1.5" opacity="0.7"/>
+  <line x1="55" y1="115" x2="78" y2="100" stroke="#ffffff" stroke-width="1.5" opacity="0.7"/>
+
+  <!-- IA côté droit -->
+  <text x="118" y="108" font-family="Arial, sans-serif" font-size="28" font-weight="800"
+        fill="#ffffff" text-anchor="middle">IA</text>
+
+  <!-- Texte bas -->
+  <text x="100" y="158" font-family="Arial, sans-serif" font-size="15" font-weight="700"
+        fill="#1a3a5c" text-anchor="middle" letter-spacing="2">VitaIA</text>
+  <text x="100" y="174" font-family="Arial, sans-serif" font-size="9"
+        fill="#5a6878" text-anchor="middle" letter-spacing="1.5">VITAMIN DEFICIENCY AI</text>
+</svg>

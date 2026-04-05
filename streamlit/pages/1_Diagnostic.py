@@ -1,6 +1,7 @@
 import sys
 import os
 import pickle
+import base64
 
 import numpy as np
 import pandas as pd
@@ -10,6 +11,7 @@ import plotly.graph_objects as go
 # ── Paths ─────────────────────────────────────────────────────────────────────
 REPO       = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 CIQUAL_ODS = os.path.join(REPO, "data_csv", "raw", "Table_Ciqual_V2.ods")
+LOGO_PATH  = os.path.join(os.path.dirname(__file__), "..", "assets", "logos", "logo2_pilule_neurone.svg")
 
 # ── Chargement CIQUAL ─────────────────────────────────────────────────────────
 @st.cache_data(show_spinner="Chargement de la base CIQUAL...")
@@ -147,45 +149,83 @@ st.set_page_config(
 # ── CSS ───────────────────────────────────────────────────────────────────────
 st.markdown("""
 <style>
+    /* Bandeau page */
+    .page-header {
+        background: #1a3a5c;
+        color: #fff;
+        padding: 1.6rem 2rem;
+        margin-bottom: 2rem;
+        border-bottom: 4px solid #2e6da4;
+    }
+    .page-header h2 { margin: 0 0 0.25rem; font-size: 1.7rem; font-weight: 700; letter-spacing: 0.3px; }
+    .page-header p  { margin: 0; color: #c8d8e8; font-size: 0.92rem; }
+
+    /* Conteneur formulaire */
+    .form-card {
+        background: #fff;
+        border: 1px solid #d8e2ec;
+        box-shadow: 0 2px 12px rgba(26,58,92,0.07);
+        padding: 1.8rem 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    /* Titres de section dans le formulaire */
     .section-label {
-        font-size: 0.75rem;
+        font-size: 0.72rem;
         font-weight: 700;
-        color: #90caf9;
+        color: #2e6da4;
         text-transform: uppercase;
         letter-spacing: 1.4px;
-        border-bottom: 2px solid #42a5f5;
-        padding-bottom: 4px;
-        margin: 1.6rem 0 1rem;
+        border-bottom: 2px solid #2e6da4;
+        padding-bottom: 5px;
+        margin: 0 0 1.1rem;
     }
+
+    /* Résultat diagnostic */
     .result-box {
-        border-radius: 12px;
-        padding: 1.6rem 1.4rem;
-        margin-bottom: 1.2rem;
-        background: rgba(255,255,255,0.05) !important;
+        border-left: 5px solid;
+        padding: 1.4rem 1.8rem;
+        margin-bottom: 1.5rem;
+        background: #f8fafc;
+        box-shadow: 0 2px 10px rgba(26,58,92,0.07);
     }
-    .result-title { font-size: 1.6rem; font-weight: 700; }
-    .result-msg   { font-size: 1rem; margin-top: 8px; color: #e0e0e0; }
-    .prob-row     { display: flex; align-items: center; margin: 5px 0; gap: 10px; font-size: 0.85rem; color: #e0e0e0; }
-    .prob-label   { width: 210px; flex-shrink: 0; }
+    .result-title { font-size: 1.35rem; font-weight: 700; margin-bottom: 6px; }
+    .result-msg   { font-size: 0.95rem; color: #424242; }
+
+    /* Barres de probabilité */
+    .prob-row   { display: flex; align-items: center; margin: 6px 0; gap: 10px; font-size: 0.85rem; color: #212529; }
+    .prob-label { width: 200px; flex-shrink: 0; font-weight: 500; }
+
+    /* Chips aliments */
     .food-chip {
         display: inline-block;
-        background: rgba(66, 165, 245, 0.18);
-        color: #90caf9 !important;
-        border: 1px solid #42a5f5;
-        border-radius: 6px;
+        background: #eef2f7;
+        color: #1a3a5c;
+        border: 1px solid #c8d8e8;
         padding: 5px 13px;
         margin: 4px;
         font-size: 0.84rem;
+        font-weight: 500;
     }
+
+    /* Logo sidebar agrandi */
+    [data-testid="stSidebarHeader"] img {
+        height: 90px !important;
+        width: auto !important;
+    }
+    [data-testid="stSidebarHeader"] { padding: 1rem 1rem 0.5rem !important; }
+
+    /* Masquer chrome Streamlit */
     #MainMenu { visibility: hidden; }
     footer     { visibility: hidden; }
+    [data-testid="stDecoration"] { display: none; }
 </style>
 """, unsafe_allow_html=True)
 
 # ── Recommandations (fallback si pas de CIQUAL) ───────────────────────────────
 RECO = {
     "Healthy": {
-        "color": "#69f0ae", "border": "#00c853",
+        "color": "#1b7a4a", "border": "#2e9e60",
         "titre": "Aucune carence détectée",
         "message": "Continuez avec une alimentation variée et équilibrée.",
         "aliments": ["Fruits et légumes variés", "Céréales complètes", "Légumineuses",
@@ -193,7 +233,7 @@ RECO = {
         "conseil": "Maintenir l'exposition solaire régulière et l'activité physique.",
     },
     "Anemia": {
-        "color": "#ef9a9a", "border": "#e53935",
+        "color": "#b71c1c", "border": "#c62828",
         "titre": "Anémie (carence en fer / B12 / folate)",
         "message": "Carence probable en fer et/ou vitamine B12 ou folate.",
         "aliments": ["Foie de boeuf", "Lentilles et pois chiches", "Viande rouge",
@@ -202,7 +242,7 @@ RECO = {
                    "Éviter thé/café lors des repas.",
     },
     "Rickets_Osteomalacia": {
-        "color": "#ffcc80", "border": "#fb8c00",
+        "color": "#b45309", "border": "#d97706",
         "titre": "Rachitisme / Ostéomalacie (carence en vitamine D)",
         "message": "Carence probable en vitamine D et/ou calcium.",
         "aliments": ["Saumon, thon, maquereau", "Jaune d'oeuf", "Champignons exposés au soleil",
@@ -211,7 +251,7 @@ RECO = {
                    "pour une supplémentation en vitamine D3.",
     },
     "Night_Blindness": {
-        "color": "#fff176", "border": "#fdd835",
+        "color": "#92400e", "border": "#b45309",
         "titre": "Cécité nocturne (carence en vitamine A)",
         "message": "Carence probable en vitamine A.",
         "aliments": ["Carottes", "Patate douce", "Foie de volaille",
@@ -220,7 +260,7 @@ RECO = {
                    "Éviter les suppléments en excès (toxicité possible).",
     },
     "Scurvy": {
-        "color": "#ce93d8", "border": "#8e24aa",
+        "color": "#5b21b6", "border": "#7c3aed",
         "titre": "Scorbut (carence sévère en vitamine C)",
         "message": "Carence sévère probable en vitamine C.",
         "aliments": ["Kiwi (plus concentré)", "Poivron rouge et jaune",
@@ -239,7 +279,7 @@ def load_model():
         (os.path.join(REPO, "notebooks", "models_v3"), "v3",
          "v3 — Random Forest 21 features"),
     ]:
-        mp = os.path.join(folder, f"best_model_{suffix}.pkl")
+        mp = os.path.join(folder, f"random_forest_{suffix}.pkl") if suffix == "final" else os.path.join(folder, f"best_model_{suffix}.pkl")
         lp = os.path.join(folder, f"label_encoder_{suffix}.pkl")
         fp = os.path.join(folder, f"feature_cols_{suffix}.pkl")
         sp = os.path.join(folder, f"scaler_{suffix}.pkl")
@@ -257,23 +297,30 @@ def load_model():
 
 model, le, feature_cols, scaler, model_label = load_model()
 
-# ── Titre ─────────────────────────────────────────────────────────────────────
-st.title("Diagnostic patient")
-st.markdown("Renseignez les données cliniques pour obtenir une prédiction de carence en vitamines.")
+# ── Sidebar logo ──────────────────────────────────────────────────────────────
+if os.path.exists(LOGO_PATH):
+    st.logo(LOGO_PATH, size="large")
+
+# ── Bandeau ───────────────────────────────────────────────────────────────────
+st.markdown("""
+<div class="page-header">
+    <h2>Diagnostic patient</h2>
+    <p>Renseignez les données cliniques pour obtenir une prédiction de carence en vitamines — modèle Random Forest v5</p>
+</div>
+""", unsafe_allow_html=True)
 
 if model is None:
     st.error(
         "**Modèle introuvable.** Lancez d'abord un notebook pour générer les fichiers `.pkl` :\n\n"
-        "```\nnotebooks/modeles_IA_v3.ipynb\n```\n\n"
+        "```\nnotebooks/modeles_IA_v5_holdout_final.ipynb\n```\n\n"
         "Consultez le fichier `streamlit/LANCER_APP.md` pour les instructions complètes."
     )
     st.stop()
 
-st.markdown("---")
-
 # ═══════════════════════════════════════════════════════════════════════════════
 # FORMULAIRE
 # ═══════════════════════════════════════════════════════════════════════════════
+st.markdown('<div class="form-card">', unsafe_allow_html=True)
 with st.form("diagnostic_form"):
 
     # Apports nutritionnels
@@ -321,6 +368,7 @@ with st.form("diagnostic_form"):
     submitted = st.form_submit_button(
         "Analyser le profil patient", use_container_width=True, type="primary"
     )
+st.markdown('</div>', unsafe_allow_html=True)
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # PRÉDICTION
@@ -388,13 +436,13 @@ if submitted:
         classes = le.inverse_transform(range(len(probas)))
         for cls, prob in sorted(zip(classes, probas), key=lambda x: -x[1]):
             pct = prob * 100
-            bar_color = reco["color"] if cls == pred_label else "#bdbdbd"
+            bar_color = reco["border"] if cls == pred_label else "#c8d0d8"
             st.markdown(
                 f'<div class="prob-row">'
                 f'<span class="prob-label">{cls.replace("_"," ")}</span>'
                 f'<span style="background:{bar_color};height:12px;'
                 f'width:{pct*2.2:.0f}px;display:inline-block;border-radius:3px"></span>'
-                f'<span style="color:#555">{pct:.1f} %</span>'
+                f'<span style="color:#444;font-size:0.82rem">{pct:.1f} %</span>'
                 f'</div>',
                 unsafe_allow_html=True,
             )
@@ -407,8 +455,8 @@ if submitted:
         fig.add_trace(go.Scatterpolar(
             r=values + [values[0]], theta=cats + [cats[0]],
             fill="toself", name="Patient",
-            line=dict(color=reco["color"], width=2),
-            fillcolor="rgba(100,100,200,0.15)",
+            line=dict(color=reco["border"], width=2),
+            fillcolor="rgba(46,109,164,0.12)",
         ))
         fig.add_trace(go.Scatterpolar(
             r=[80] * len(cats) + [80], theta=cats + [cats[0]],
@@ -418,8 +466,10 @@ if submitted:
         ))
         fig.update_layout(
             polar=dict(radialaxis=dict(range=[0, 200], tickfont=dict(size=9))),
-            title=dict(text="Profil nutritionnel (% AJR)", font=dict(size=13)),
+            title=dict(text="Profil nutritionnel (% AJR)", font=dict(size=13, color="#1a3a5c")),
             legend=dict(orientation="h", y=-0.15),
+            paper_bgcolor="white",
+            plot_bgcolor="white",
             height=350,
             margin=dict(t=60, b=60),
         )
