@@ -1,8 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
 venv/
-*.csv
-*.pkl
+env/
+
+# Jupyter
 .ipynb_checkpoints/
+*.nbconvert.ipynb
+
+# Outils IDE
+.claude/
+.vscode/
+.idea/
+*.log
+
+# OS
 .DS_Store
-*.lock
-
-
+Thumbs.db
+desktop.ini
