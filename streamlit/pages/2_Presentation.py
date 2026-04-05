@@ -8,7 +8,8 @@ import plotly.express as px
 from plotly.subplots import make_subplots
 
 REPO      = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-MODEL_DIR = os.path.join(REPO, "notebooks", "models_v3")
+MODEL_DIR = os.path.join(REPO, "notebooks", "models_final")
+LOGO_PATH = os.path.join(os.path.dirname(__file__), "..", "assets", "logos", "logo2_pilule_neurone.svg")
 DATA_ODS  = os.path.join(REPO, "data_csv", "raw",
                          "vitamin_deficiency_disease_dataset_20260123.ods")
 
@@ -16,29 +17,58 @@ st.set_page_config(page_title="VitaIA — Résultats", page_icon="💊", layout=
 
 st.markdown("""
 <style>
+    /* Bandeau page */
+    .page-header {
+        background: #1a3a5c;
+        color: #fff;
+        padding: 1.6rem 2rem;
+        margin-bottom: 2rem;
+        border-bottom: 4px solid #2e6da4;
+    }
+    .page-header h2 { margin: 0 0 0.25rem; font-size: 1.7rem; font-weight: 700; letter-spacing: 0.3px; }
+    .page-header p  { margin: 0; color: #c8d8e8; font-size: 0.92rem; }
+
+    /* Séparateurs de section */
     .section-label {
-        font-size: 0.75rem; font-weight: 700; color: #90caf9;
+        font-size: 0.72rem; font-weight: 700; color: #2e6da4;
         text-transform: uppercase; letter-spacing: 1.4px;
-        border-bottom: 2px solid #42a5f5; padding-bottom: 4px;
-        margin: 1.8rem 0 1rem;
+        border-bottom: 2px solid #2e6da4; padding-bottom: 5px;
+        margin: 2rem 0 1.2rem;
     }
+
+    /* Cartes métriques */
     .metric-card {
-        background: rgba(255,255,255,0.05); border: 1px solid #42a5f5;
-        border-radius: 10px; padding: 1.1rem 0.9rem; text-align: center;
+        background: #fff;
+        border: 1px solid #d8e2ec;
+        border-top: 4px solid #2e6da4;
+        box-shadow: 0 2px 10px rgba(26,58,92,0.08);
+        padding: 1.2rem 1rem;
+        text-align: center;
     }
-    .metric-card .val { font-size: 1.8rem; font-weight: 700; color: #90caf9; }
-    .metric-card .lbl { font-size: 0.78rem; color: #b0bec5; margin-top: 3px; }
+    .metric-card .val {
+        font-size: 1.9rem; font-weight: 700; color: #1a3a5c; line-height: 1.1;
+    }
+    .metric-card .lbl {
+        font-size: 0.73rem; color: #5a6878; margin-top: 5px;
+        text-transform: uppercase; letter-spacing: 0.5px;
+    }
+
+    [data-testid="stSidebarHeader"] img {
+        height: 90px !important; width: auto !important;
+    }
+    [data-testid="stSidebarHeader"] { padding: 1rem 1rem 0.5rem !important; }
     #MainMenu { visibility: hidden; } footer { visibility: hidden; }
+    [data-testid="stDecoration"] { display: none; }
 </style>
 """, unsafe_allow_html=True)
 
 # ── Couleurs constantes ───────────────────────────────────────────────────────
 COLORS = {
-    "Anemia":               "#ef9a9a",
-    "Healthy":              "#a5d6a7",
-    "Night_Blindness":      "#fff176",
-    "Rickets_Osteomalacia": "#ffcc80",
-    "Scurvy":               "#ce93d8",
+    "Anemia":               "#c0392b",
+    "Healthy":              "#27ae60",
+    "Night_Blindness":      "#d68910",
+    "Rickets_Osteomalacia": "#e67e22",
+    "Scurvy":               "#7d3c98",
 }
 CLASSES = ["Anemia", "Healthy", "Night_Blindness", "Rickets_Osteomalacia", "Scurvy"]
 PALETTE = [COLORS[c] for c in CLASSES]
@@ -51,10 +81,12 @@ def compute_all_metrics():
     from sklearn.metrics import roc_curve, auc
     from sklearn.preprocessing import LabelBinarizer
 
-    # Charger modèle
-    model = pickle.load(open(os.path.join(MODEL_DIR, "best_model_v3.pkl"), "rb"))
-    le    = pickle.load(open(os.path.join(MODEL_DIR, "label_encoder_v3.pkl"), "rb"))
-    feats = pickle.load(open(os.path.join(MODEL_DIR, "feature_cols_v3.pkl"), "rb"))
+    # Charger modèle v5
+    model  = pickle.load(open(os.path.join(MODEL_DIR, "random_forest_final.pkl"), "rb"))
+    le     = pickle.load(open(os.path.join(MODEL_DIR, "label_encoder_final.pkl"), "rb"))
+    feats  = pickle.load(open(os.path.join(MODEL_DIR, "feature_cols_final.pkl"), "rb"))
+    scaler_path = os.path.join(MODEL_DIR, "scaler_final.pkl")
+    scaler = pickle.load(open(scaler_path, "rb")) if os.path.exists(scaler_path) else None
 
     # Charger dataset
     df = pd.read_excel(DATA_ODS, engine="odf")
@@ -65,9 +97,11 @@ def compute_all_metrics():
     X = df[feats]
     y = le.transform(df["disease_diagnosis"])
     X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=42, stratify=y
+        X, y, test_size=0.3, random_state=999, stratify=y
     )
 
+    if scaler is not None:
+        X_test = scaler.transform(X_test)
     y_pred  = model.predict(X_test)
     y_proba = model.predict_proba(X_test)
     cm      = confusion_matrix(y_test, y_pred)
@@ -83,8 +117,11 @@ def compute_all_metrics():
         roc_data[cls] = {"fpr": fpr.tolist(), "tpr": tpr.tolist(),
                          "auc": float(auc(fpr, tpr))}
 
-    # Feature importance (depuis le pipeline)
-    rf = model.steps[-1][1]
+    # Feature importance
+    try:
+        rf = model.steps[-1][1]  # Pipeline
+    except AttributeError:
+        rf = model               # Modèle direct
     fi = rf.feature_importances_
 
     # Distribution classes avant SMOTE
@@ -110,14 +147,21 @@ ABLATION = {
     "cv_f1":   [0.9232, 0.9230, 0.9651, 0.7481, 0.9244],
     "test_f1": [0.9139, 0.9222, 0.9665, 0.7403, 0.9224],
     "delta":   [0,      0.0083, 0.0526, -0.1736, 0.0085],
-    "colors":  ["#90caf9", "#80deea", "#a5d6a7", "#ef9a9a", "#80deea"],
+    "colors":  ["#2e6da4", "#5dade2", "#27ae60", "#c0392b", "#5dade2"],
 }
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # PAGE
 # ═══════════════════════════════════════════════════════════════════════════════
-st.title("Résultats de l'étude")
-st.markdown("Performances du modèle Random Forest — métriques calculées en temps réel.")
+if os.path.exists(LOGO_PATH):
+    st.logo(LOGO_PATH, size="large")
+
+st.markdown("""
+<div class="page-header">
+    <h2>Résultats de l'étude</h2>
+    <p>Performances du modèle Random Forest v5 — métriques calculées en temps réel à partir du holdout 30 %</p>
+</div>
+""", unsafe_allow_html=True)
 
 # Charger les métriques
 try:
@@ -134,7 +178,7 @@ except Exception as e:
     st.stop()
 
 # ── Métriques clés ────────────────────────────────────────────────────────────
-st.markdown('<div class="section-label">Performances globales — Random Forest v3 (test set 20%)</div>',
+st.markdown('<div class="section-label">Performances globales — Random Forest v5 final (holdout 30%)</div>',
             unsafe_allow_html=True)
 m1, m2, m3, m4, m5 = st.columns(5)
 for col, (val, lbl) in zip([m1, m2, m3, m4, m5], [
@@ -185,7 +229,7 @@ with col_f1:
         "F1":        [report[c]["f1-score"]  for c in classes],
     })
     fig_f1 = go.Figure()
-    for metric, color in [("Précision","#90caf9"), ("Rappel","#a5d6a7"), ("F1","#ffcc80")]:
+    for metric, color in [("Précision","#2e6da4"), ("Rappel","#27ae60"), ("F1","#e67e22")]:
         fig_f1.add_trace(go.Bar(
             name=metric,
             x=metrics_df["Classe"],
@@ -212,7 +256,7 @@ col_roc, col_auc = st.columns(2, gap="large")
 with col_roc:
     fig_roc = go.Figure()
     fig_roc.add_shape(type="line", x0=0, x1=1, y0=0, y1=1,
-                      line=dict(dash="dash", color="#555", width=1))
+                      line=dict(dash="dash", color="#aaa", width=1))
     for cls in classes:
         rd = roc_data[cls]
         fig_roc.add_trace(go.Scatter(
@@ -252,18 +296,25 @@ st.markdown('<div class="section-label">Importance des variables (Random Forest)
             unsafe_allow_html=True)
 
 fi_df = pd.DataFrame({"feature": feats, "importance": fi})
+# Agréger les doublons éventuels
+fi_df = fi_df.groupby("feature", as_index=False)["importance"].sum()
 fi_df = fi_df.sort_values("importance", ascending=True)
 
 # Groupes de features
+LIFESTYLE = {"age","gender","bmi","smoking_status","alcohol_consumption",
+             "exercise_level","diet_type","sun_exposure","latitude_region","income_level"}
+
 def get_group(f):
     if f.startswith("serum") or f == "hemoglobin_g_dl": return "Biomarqueur sérique"
     if f.startswith("has_"):                            return "Symptôme clinique"
+    if f in LIFESTYLE:                                  return "Variable lifestyle"
     return "Apport nutritionnel (%AJR)"
 
 fi_df["groupe"] = fi_df["feature"].apply(get_group)
-group_colors = {"Biomarqueur sérique": "#ef9a9a",
-                "Symptôme clinique":   "#90caf9",
-                "Apport nutritionnel (%AJR)": "#a5d6a7"}
+group_colors = {"Biomarqueur sérique":       "#c0392b",
+                "Symptôme clinique":         "#2e6da4",
+                "Apport nutritionnel (%AJR)":"#27ae60",
+                "Variable lifestyle":        "#e67e22"}
 
 fig_fi = go.Figure()
 for groupe, color in group_colors.items():
@@ -279,9 +330,13 @@ fig_fi.update_layout(
     barmode="stack",
     title="Importance des variables par groupe",
     xaxis_title="Importance (Gini)",
-    height=520,
-    legend=dict(orientation="h", y=1.05),
-    margin=dict(t=60, b=40, l=200),
+    height=600,
+    legend=dict(orientation="h", y=1.04),
+    margin=dict(t=60, b=40, l=240),
+    yaxis=dict(
+        categoryorder="array",
+        categoryarray=fi_df["feature"].tolist(),  # ordre global par importance
+    ),
 )
 st.plotly_chart(fig_fi, use_container_width=True)
 
@@ -296,14 +351,14 @@ with col_abl:
     fig_abl.add_trace(go.Bar(
         name="F1 validation croisée",
         x=ABLATION["config"], y=ABLATION["cv_f1"],
-        marker_color="#90caf9",
+        marker_color="#2e6da4",
         text=[f"{v:.4f}" for v in ABLATION["cv_f1"]],
         textposition="outside",
     ))
     fig_abl.add_trace(go.Bar(
         name="F1 test",
         x=ABLATION["config"], y=ABLATION["test_f1"],
-        marker_color="#a5d6a7",
+        marker_color="#27ae60",
         text=[f"{v:.4f}" for v in ABLATION["test_f1"]],
         textposition="outside",
     ))
@@ -318,7 +373,7 @@ with col_abl:
     st.plotly_chart(fig_abl, use_container_width=True)
 
 with col_delta:
-    delta_colors = ["#ffcc80" if d == 0 else "#a5d6a7" if d > 0 else "#ef9a9a"
+    delta_colors = ["#aabbcc" if d == 0 else "#27ae60" if d > 0 else "#c0392b"
                     for d in ABLATION["delta"]]
     fig_delta = go.Figure(go.Bar(
         x=ABLATION["delta"][1:],
@@ -328,7 +383,7 @@ with col_delta:
         text=[f"{d:+.4f}" for d in ABLATION["delta"][1:]],
         textposition="outside",
     ))
-    fig_delta.add_vline(x=0, line_dash="dash", line_color="#555")
+    fig_delta.add_vline(x=0, line_dash="dash", line_color="#aaa")
     fig_delta.update_layout(
         title="Variation F1 vs référence (Δ)",
         xaxis=dict(range=[-0.22, 0.08]),
@@ -376,12 +431,12 @@ with col_smote:
     fig_smote.add_trace(go.Bar(
         name="Avant SMOTE",
         x=list(avant_smote.keys()), y=list(avant_smote.values()),
-        marker_color="#90caf9", text=list(avant_smote.values()), textposition="outside",
+        marker_color="#2e6da4", text=list(avant_smote.values()), textposition="outside",
     ))
     fig_smote.add_trace(go.Bar(
         name="Après SMOTE",
         x=list(apres_smote.keys()), y=list(apres_smote.values()),
-        marker_color="#a5d6a7", text=list(apres_smote.values()), textposition="outside",
+        marker_color="#27ae60", text=list(apres_smote.values()), textposition="outside",
     ))
     fig_smote.update_layout(
         barmode="group",
@@ -401,7 +456,7 @@ models_name = ["RF v3\n(test partagé)", "SVM v3\n(test partagé)",
                "k-NN v3\n(test partagé)", "RF final v5\n(holdout propre)"]
 f1_vals     = [0.9431, 0.8926, 0.8208, 0.9406]
 acc_vals    = [0.9400, 0.8875, 0.8163, 0.9400]
-col_cmp     = ["#90caf9", "#b0bec5", "#b0bec5", "#a5d6a7"]
+col_cmp     = ["#2e6da4", "#95a5a6", "#95a5a6", "#27ae60"]
 
 fig_cmp = go.Figure()
 fig_cmp.add_trace(go.Bar(
@@ -414,8 +469,8 @@ fig_cmp.add_trace(go.Bar(
 fig_cmp.add_trace(go.Bar(
     name="Exactitude",
     x=models_name, y=acc_vals,
-    marker_color=["rgba(144,202,249,0.4)", "rgba(176,190,197,0.4)",
-                  "rgba(176,190,197,0.4)", "rgba(165,214,167,0.4)"],
+    marker_color=["rgba(46,109,164,0.3)", "rgba(149,165,166,0.3)",
+                  "rgba(149,165,166,0.3)", "rgba(39,174,96,0.3)"],
     text=[f"{v:.1%}" for v in acc_vals],
     textposition="outside",
 ))
