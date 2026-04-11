@@ -1,9 +1,35 @@
+"""
+VitaIA — Page d'accueil (Accueil)
+==================================
+Point d'entrée de l'application multi-pages Streamlit VitaIA.
+
+Affiche :
+- Bannière principale avec logo SVG (base64)
+- Cartes métriques clés du modèle Random Forest final (v5)
+- Présentation du projet et guide d'utilisation
+- Synthèse des résultats de l'étude d'ablation
+- Membres de l'équipe avec liens GitHub
+
+Sources / Références :
+    - Streamlit documentation : https://docs.streamlit.io
+    - Dataset Kaggle (Vitamin Deficiency) :
+        https://www.kaggle.com/datasets/nudratabbas/vitamin-deficiency-disease-prediction-dataset
+    - Base CIQUAL (ANSES) : https://ciqual.anses.fr
+    - Breiman, L. (2001). Random Forests. Machine Learning, 45(1), 5–32.
+    - Chawla et al. (2002). SMOTE: Synthetic Minority Over-sampling Technique.
+        Journal of Artificial Intelligence Research, 16, 321–357.
+
+Auteurs : Ibnmtar Hazem, Moutchachou Lydia, Varol Serdar, Bekakria Ahmed
+Formation : L3 MIASHS — Université Paul-Valéry Montpellier 3 — 2025/2026
+"""
+
 import streamlit as st
 import base64, os
 
 LOGO_PATH = os.path.join(os.path.dirname(__file__), "assets", "logos", "logo2_pilule_neurone.svg")
 
 def _logo_b64():
+    """Encode le logo SVG en base64 pour l'intégration HTML inline."""
     with open(LOGO_PATH, "rb") as f:
         return base64.b64encode(f.read()).decode()
 

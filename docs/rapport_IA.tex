@@ -553,6 +553,150 @@ intégration dans l'application Streamlit de recommandation alimentaire (phase
 suivante du projet).
 
 % ═══════════════════════════════════════════════════════════════════════════════
+\section{Intégration dans l'application Streamlit (VitaIA)}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+\subsection{Architecture de l'application}
+
+Le modèle final est intégré dans une application web interactive développée avec
+\textbf{Streamlit} et déployée sur Streamlit Community Cloud à l'adresse
+\url{https://vitaminia.streamlit.app}.
+
+L'application est structurée en trois pages :
+
+\begin{description}[leftmargin=2em]
+    \item[Accueil (\texttt{app.py})] Présentation du projet, métriques clés,
+        guide d'utilisation, liens équipe GitHub.
+    \item[Diagnostic (\texttt{1\_Diagnostic.py})] Formulaire de saisie des données
+        cliniques (apports nutritionnels, biomarqueurs, symptômes). Prédiction en
+        temps réel avec distribution des probabilités par classe et radar chart
+        nutritionnel. Recommandations alimentaires depuis la base CIQUAL/ANSES.
+    \item[Résultats (\texttt{2\_Presentation.py})] Tableau de bord complet des
+        performances : matrice de confusion, courbes ROC, importance des variables,
+        étude d'ablation, comparaison des algorithmes. Métriques calculées
+        \emph{en temps réel} sur le holdout 30 \% (même protocole que le notebook).
+\end{description}
+
+\subsection{Déploiement et sérialisation du modèle}
+
+Le modèle est sérialisé au format \texttt{pickle} (\texttt{.pkl}) via Python.
+Quatre artefacts sont nécessaires au déploiement :
+\begin{itemize}[leftmargin=2em]
+    \item \texttt{random\_forest\_final.pkl} — le classifieur RandomForest (15 Mo) ;
+    \item \texttt{scaler\_final.pkl} — le \texttt{StandardScaler} ajusté sur l'entraînement ;
+    \item \texttt{label\_encoder\_final.pkl} — le \texttt{LabelEncoder} des 5 classes ;
+    \item \texttt{feature\_cols\_final.pkl} — la liste ordonnée des 30 features.
+\end{itemize}
+
+La séparation scaler / modèle est importante : le scaler est ajusté
+\emph{uniquement sur les données d'entraînement} (\texttt{fit} sur
+\texttt{X\_train}) et appliqué en \texttt{transform} sur tout nouvel
+échantillon. Ce principe garantit l'absence de fuite de données (\emph{data
+leakage}) entre entraînement et inférence.
+
+\subsection{Recommandations alimentaires (CIQUAL)}
+
+Pour chaque diagnostic non-sain prédit, l'application filtre la table CIQUAL
+sur la colonne de teneur en nutriment ciblé (fer pour l'anémie, vitamine D pour
+le rachitisme, rétinol pour la cécité nocturne, vitamine C pour le scorbut),
+exclut les aliments enrichis artificiellement ou peu pratiques
+(suppléments, algues, aliments déshydratés), puis retourne un classement décroissant
+des \textbf{12 meilleures sources naturelles}.
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Justification des choix méthodologiques}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+Cette section répond de façon synthétique aux questions méthodologiques les plus
+fréquentes, en appui à la soutenance orale.
+
+\subsection{Pourquoi Random Forest plutôt que SVM ou k-NN ?}
+
+Trois raisons principales :
+\begin{enumerate}[leftmargin=2em]
+    \item \textbf{Performance supérieure.} RF obtient 94,06\,\% F1 sur le holdout,
+        contre 89,26\,\% pour le SVM et 82,08\,\% pour le k-NN (évaluation v3,
+        même protocole de comparaison).
+    \item \textbf{Robustesse aux variables hétérogènes.} Le dataset mélange variables
+        continues (biomarqueurs, apports), variables binaires (symptômes) et variables
+        catégorielles encodées (genre, régime). La forêt aléatoire gère naturellement
+        cette hétérogénéité sans hypothèse de distribution.
+    \item \textbf{Interprétabilité.} L'importance des variables par réduction de
+        l'impureté de Gini est directement calculable, ce qui permet de valider
+        la cohérence clinique du modèle (biomarqueurs en tête) et d'identifier les
+        contributions de chaque groupe.
+\end{enumerate}
+
+\subsection{Pourquoi conserver SMOTE malgré un gain marginal sur le F1 global ?}
+
+L'ablation 1 montre que retirer SMOTE augmente légèrement le F1 global
+($+$0,83\,\%). Cependant, cette métrique \emph{agrégée} masque la dégradation
+du rappel sur les classes minoritaires (\texttt{Night\_Blindness},
+\texttt{Scurvy}). L'objectif applicatif du système est \textbf{médical} : une
+cécité nocturne ou un scorbut non détecté a des conséquences plus graves qu'un
+faux positif. Maintenir SMOTE garantit la robustesse du rappel sur ces classes,
+conformément au principe de précaution clinique.
+
+\subsection{Pourquoi le holdout v5 diffère-t-il des résultats v4 ?}
+
+Les versions 1 à 4 réutilisaient le même jeu de test (\texttt{random\_state=42},
+20\,\%) à chaque itération de choix de configuration. Ce mécanisme introduit un
+\textbf{biais de sélection} (\emph{multiple testing bias}) : les performances
+observées reflètent le meilleur résultat \emph{parmi de multiples essais} sur
+ce même jeu. La version 5 crée un holdout totalement vierge
+(\texttt{random\_state=999}, 30\,\%) qui n'a \emph{jamais} orienté un choix de
+modélisation. La baisse de 2,6 points F1 (96,65\,\% $\to$ 94,06\,\%) est donc la
+correction de ce biais, non une régression du modèle.
+
+\subsection{Pourquoi les variables lifestyle améliorent-elles autant le modèle ?}
+
+L'effet contre-intuitif ($+$5,3\,\% F1) s'explique par des corrélations
+épidémiologiques documentées : l'exposition solaire faible et la région
+géographique septentrionale prédisent le rachitisme (vitamine D synthétisée par
+la peau sous UV) ; un régime végétalien et la sédentarité sont corrélés à
+l'anémie ferriprive et à la carence B12. Ces variables fournissent un signal
+\emph{contextuel} que les seuls biomarqueurs ne capturent pas toujours, car les
+taux sériques peuvent rester dans les normes malgré un risque de carence naissant.
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section*{Références bibliographiques}
+% ═══════════════════════════════════════════════════════════════════════════════
+\addcontentsline{toc}{section}{Références bibliographiques}
+
+\begin{itemize}[leftmargin=2em,label={[}]
+    \item[] Breiman, L. (2001). \emph{Random Forests}. Machine Learning, 45(1), 5–32.
+        DOI: 10.1023/A:1010933404324
+
+    \item[] Chawla, N.\,V., Bowyer, K.\,W., Hall, L.\,O., \& Kegelmeyer, W.\,P. (2002).
+        SMOTE: Synthetic Minority Over-sampling Technique.
+        \emph{Journal of Artificial Intelligence Research}, 16, 321–357.
+        DOI: 10.1613/jair.953
+
+    \item[] Cortes, C., \& Vapnik, V. (1995). Support-vector networks.
+        \emph{Machine Learning}, 20(3), 273–297.
+
+    \item[] Cover, T., \& Hart, P. (1967). Nearest neighbor pattern classification.
+        \emph{IEEE Transactions on Information Theory}, 13(1), 21–27.
+
+    \item[] Pedregosa, F. et al. (2011). Scikit-learn: Machine Learning in Python.
+        \emph{Journal of Machine Learning Research}, 12, 2825–2830.
+        \url{https://scikit-learn.org}
+
+    \item[] He, H., \& Garcia, E.\,A. (2009). Learning from Imbalanced Data.
+        \emph{IEEE Transactions on Knowledge and Data Engineering}, 21(9), 1263–1284.
+
+    \item[] ANSES (2020). \emph{Table de composition nutritionnelle des aliments
+        Ciqual 2020}. Agence nationale de sécurité sanitaire.
+        \url{https://ciqual.anses.fr}
+
+    \item[] Abbas, N. (2026). \emph{Vitamin Deficiency Disease Prediction Dataset}.
+        Kaggle. \url{https://www.kaggle.com/datasets/nudratabbas/vitamin-deficiency-disease-prediction-dataset}
+
+    \item[] Streamlit Inc. (2024). \emph{Streamlit — The fastest way to build data apps}.
+        \url{https://docs.streamlit.io}
+\end{itemize}
+
+% ═══════════════════════════════════════════════════════════════════════════════
 % ANNEXES
 % ═══════════════════════════════════════════════════════════════════════════════
 \newpage
