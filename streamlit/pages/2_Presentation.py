@@ -1,3 +1,37 @@
+"""
+VitaIA — Page Résultats de l'étude
+=====================================
+Tableau de bord complet des performances du modèle Random Forest v5 final.
+
+Affiche en temps réel (recalculé sur le holdout 30 %) :
+    - Métriques clés : F1 pondéré, exactitude, F1 par classe difficile
+    - Matrice de confusion (heatmap Plotly, effectifs + % rappel)
+    - Précision / Rappel / F1 par classe (barres groupées)
+    - Courbes ROC One-vs-Rest + AUC par classe
+    - Importance des variables Random Forest (Gini, 4 groupes colorés)
+    - Étude d'ablation à 4 dimensions (F1 CV vs F1 test + Δ)
+    - Distribution des classes et effet de SMOTE sur l'entraînement
+    - Comparaison des algorithmes RF / SVM / k-NN
+
+Sources / Références :
+    - Breiman, L. (2001). Random Forests. Machine Learning, 45(1), 5–32.
+      DOI: 10.1023/A:1010933404324
+    - Chawla, N.V. et al. (2002). SMOTE: Synthetic Minority Over-sampling Technique.
+      JAIR, 16, 321–357. DOI: 10.1613/jair.953
+    - Cortes, C. & Vapnik, V. (1995). Support-vector networks.
+      Machine Learning, 20(3), 273–297.
+    - Cover, T. & Hart, P. (1967). Nearest neighbor pattern classification.
+      IEEE Trans. Information Theory, 13(1), 21–27.
+    - Scikit-learn — sklearn.metrics (roc_curve, auc, confusion_matrix) :
+        https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics
+    - Plotly Python graphing library : https://plotly.com/python/
+    - Streamlit cache_data : https://docs.streamlit.io/library/api-reference/performance/st.cache_data
+    - Dataset Kaggle : https://www.kaggle.com/datasets/nudratabbas/vitamin-deficiency-disease-prediction-dataset
+
+Auteurs : Ibnmtar Hazem, Moutchachou Lydia, Varol Serdar, Bekakria Ahmed
+Formation : L3 MIASHS — Université Paul-Valéry Montpellier 3 — 2025/2026
+"""
+
 import os
 import pickle
 import numpy as np
@@ -76,6 +110,35 @@ PALETTE = [COLORS[c] for c in CLASSES]
 # ── Chargement modèle + calcul métriques ──────────────────────────────────────
 @st.cache_data(show_spinner="Calcul des métriques du modèle...")
 def compute_all_metrics():
+    """
+    Charge le modèle final v5 et calcule toutes les métriques de performance
+    sur le holdout 30 % (random_state=999, jamais utilisé pendant le développement).
+
+    Protocole exact reproduit depuis le notebook modeles_IA_v5_holdout_final.ipynb :
+        1. Chargement du dataset ODS (encodage catégoriel par .cat.codes)
+        2. Séparation holdout : test_size=0.3, random_state=999, stratify=y
+        3. Application du StandardScaler (ajusté sur X_train uniquement)
+        4. Prédiction sur X_test (données jamais vues lors de l'entraînement)
+
+    Métriques calculées :
+        - Matrice de confusion (sklearn.metrics.confusion_matrix)
+        - Rapport de classification par classe (precision, recall, f1)
+        - Courbes ROC One-vs-Rest + AUC par classe (sklearn.metrics.roc_curve)
+        - Importance des variables Random Forest (feature_importances_ via critère Gini)
+        - Distribution des classes dans le dataset complet
+
+    Returns:
+        dict avec clés : 'cm', 'classes', 'report', 'roc', 'fi', 'feats', 'class_dist'
+
+    Note:
+        Le modèle v5 est un RandomForestClassifier direct (non un Pipeline imbalanced-learn),
+        contrairement aux versions v1-v3. L'accès aux feature_importances_ utilise un
+        try/except pour gérer les deux cas (Pipeline.steps[-1][1] vs modèle direct).
+
+    Ref:
+        - sklearn.metrics : https://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics
+        - sklearn.preprocessing.LabelBinarizer : pour ROC multiclasse One-vs-Rest
+    """
     from sklearn.model_selection import train_test_split
     from sklearn.metrics import confusion_matrix, classification_report
     from sklearn.metrics import roc_curve, auc
@@ -305,6 +368,22 @@ LIFESTYLE = {"age","gender","bmi","smoking_status","alcohol_consumption",
              "exercise_level","diet_type","sun_exposure","latitude_region","income_level"}
 
 def get_group(f):
+    """
+    Attribue un groupe sémantique à une feature pour la colorisation du graphique.
+
+    Groupes définis selon la taxonomie du dataset (Kaggle, 4 groupes fonctionnels) :
+        - Biomarqueur sérique : mesures sanguines directes (hémoglobine, vitamines sériques)
+        - Symptôme clinique   : variables binaires has_* (symptômes déclarés)
+        - Variable lifestyle  : facteurs socio-comportementaux (âge, IMC, exposition solaire...)
+        - Apport nutritionnel : apports en % des AJR (vitamines, calcium, fer)
+
+    Args:
+        f (str): Nom de la feature (colonne du dataset).
+
+    Returns:
+        str: Nom du groupe ('Biomarqueur sérique', 'Symptôme clinique',
+             'Variable lifestyle', ou 'Apport nutritionnel (%AJR)').
+    """
     if f.startswith("serum") or f == "hemoglobin_g_dl": return "Biomarqueur sérique"
     if f.startswith("has_"):                            return "Symptôme clinique"
     if f in LIFESTYLE:                                  return "Variable lifestyle"

@@ -1,3 +1,32 @@
+"""
+VitaIA — Page Diagnostic patient
+==================================
+Formulaire de saisie des données cliniques du patient et prédiction de carence
+par le modèle Random Forest v5 (30 variables, holdout 30 %, F1 = 94,06 %).
+
+Fonctionnalités :
+    - Chargement du modèle sérialisé (pkl) avec fallback v3 si v5 absent
+    - Formulaire structuré en 3 sections : apports nutritionnels (% AJR),
+      biomarqueurs sériques, symptômes cliniques
+    - Prédiction avec probabilités par classe (distribution barres)
+    - Radar chart nutritionnel (Plotly) comparé à la référence 80 % AJR
+    - Recommandations alimentaires depuis la base CIQUAL / ANSES
+
+Sources / Références :
+    - Scikit-learn — RandomForestClassifier :
+        https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+    - Streamlit forms : https://docs.streamlit.io/library/api-reference/control-flow/st.form
+    - Base CIQUAL (ANSES) — Table de composition nutritionnelle des aliments :
+        https://ciqual.anses.fr/#/cms/telechargement/node/20
+    - Plotly Scatterpolar (radar) :
+        https://plotly.com/python/radar-chart/
+    - Stack Overflow — lecture fichiers ODS avec pandas/odfpy :
+        https://stackoverflow.com/questions/17834995/how-to-convert-opendocument-spreadsheets-to-a-csv-file-in-python
+
+Auteurs : Ibnmtar Hazem, Moutchachou Lydia, Varol Serdar, Bekakria Ahmed
+Formation : L3 MIASHS — Université Paul-Valéry Montpellier 3 — 2025/2026
+"""
+
 import sys
 import os
 import pickle
@@ -16,6 +45,18 @@ LOGO_PATH  = os.path.join(os.path.dirname(__file__), "..", "assets", "logos", "l
 # ── Chargement CIQUAL ─────────────────────────────────────────────────────────
 @st.cache_data(show_spinner="Chargement de la base CIQUAL...")
 def load_ciqual():
+    """
+    Charge et prétraite la table CIQUAL depuis le fichier ODS.
+
+    La table CIQUAL (ANSES) contient la composition nutritionnelle de plusieurs
+    milliers d'aliments français. Les colonnes numériques sont détectées et
+    converties automatiquement (gestion des virgules décimales françaises).
+
+    Returns:
+        pd.DataFrame | None: DataFrame CIQUAL ou None si fichier absent ou erreur.
+
+    Ref: ANSES (2020). Table Ciqual 2020. https://ciqual.anses.fr
+    """
     if not os.path.exists(CIQUAL_ODS):
         return None
     try:
@@ -72,7 +113,16 @@ EXCLUSIONS = [
 ]
 
 def _find_col(df, mots):
-    """Trouve la première colonne dont le nom contient un des mots-clés."""
+    """
+    Trouve la première colonne dont le nom contient un des mots-clés donnés.
+
+    Args:
+        df (pd.DataFrame): DataFrame CIQUAL.
+        mots (list[str]): Liste de sous-chaînes à rechercher dans les noms de colonnes.
+
+    Returns:
+        str | None: Nom de la première colonne correspondante, ou None.
+    """
     for mot in mots:
         matches = [c for c in df.columns if mot in c]
         if matches:
@@ -80,7 +130,25 @@ def _find_col(df, mots):
     return None
 
 def get_ciqual_aliments(disease, df_ciqual, top_n=12):
-    """Retourne les aliments CIQUAL les plus riches (sources naturelles) pour une maladie."""
+    """
+    Retourne les aliments CIQUAL les plus riches en nutriment(s) ciblés pour une carence.
+
+    Exclut les aliments enrichis artificiellement (spiruline, compléments, etc.)
+    ainsi que certains groupes alimentaires (boissons, céréales) jugés moins pertinents
+    comme sources naturelles. Trie par teneur décroissante et déduplique.
+
+    Args:
+        disease (str): Nom de la maladie/carence ('Anemia', 'Rickets_Osteomalacia',
+                       'Night_Blindness', 'Scurvy').
+        df_ciqual (pd.DataFrame): Table CIQUAL chargée par load_ciqual().
+        top_n (int): Nombre maximum d'aliments à retourner (défaut : 12).
+
+    Returns:
+        pd.DataFrame | None: Tableau avec colonnes Aliment, Groupe alimentaire,
+                             Teneur (unité/100g), ou None si aucun résultat.
+
+    Ref: Base CIQUAL ANSES — https://ciqual.anses.fr
+    """
     if df_ciqual is None or disease not in DISEASE_CIQUAL:
         return None
     info = DISEASE_CIQUAL[disease]
@@ -273,6 +341,26 @@ RECO = {
 # ── Chargement modèle ─────────────────────────────────────────────────────────
 @st.cache_resource
 def load_model():
+    """
+    Charge le modèle Random Forest sérialisé avec ses artefacts associés.
+
+    Tente d'abord le modèle final v5 (random_state=999, holdout 30 %, 30 features).
+    Si absent, bascule automatiquement sur le modèle v3 (21 features, test 20 %).
+
+    Le modèle v5 est un RandomForestClassifier direct (non Pipeline) : le scaler
+    StandardScaler est sérialisé séparément dans scaler_final.pkl et doit être
+    appliqué manuellement avant toute prédiction.
+
+    Returns:
+        tuple: (model, label_encoder, feature_cols, scaler, model_label)
+               Tous None si aucun fichier pkl n'est trouvé.
+
+    Ref:
+        - scikit-learn RandomForestClassifier :
+          https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html
+        - Python pickle : https://docs.python.org/3/library/pickle.html
+        - Streamlit cache_resource : https://docs.streamlit.io/library/api-reference/performance/st.cache_resource
+    """
     for folder, suffix, label in [
         (os.path.join(REPO, "notebooks", "models_final"), "final",
          "v5 final — Random Forest 30 features (holdout F1 = 94,06 %)"),
