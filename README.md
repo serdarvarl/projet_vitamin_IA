@@ -184,10 +184,10 @@ L'application s'ouvre automatiquement sur `http://localhost:8501`.
 
 | Membre | GitHub | Contributions |
 |---|---|---|
-| **Ibnmtar Hazem** | [@IbnmtarHazem](https://github.com/IbnmtarHazem) | Machine Learning, notebooks, étude d'ablation |
-| **Moutchachou Lydia** | [@lydiamtch](https://github.com/lydiamtch) | Analyse des données, visualisation |
-| **Varol Serdar** | [@serdarvarl](https://github.com/serdarvarl) | Développement Streamlit, déploiement |
-| **Bekakria Ahmed** | [@ahmed-abc73](https://github.com/ahmed-abc73) | Machine Learning, intégration CIQUAL, rapport |
+| **Bekakria Ahmed** | [@ahmed-abc73](https://github.com/ahmed-abc73) | Développement Machine Learning, développement web (Streamlit), choix et justification de l'algorithme, implémentation SMOTE, rédaction du rapport |
+| **Moutchachou Lydia** | [@lydiamtch](https://github.com/lydiamtch) | Visualisation de la base CIQUAL, étude d'ablation, réalisation de l'évaluation finale (holdout v5), contribution au rapport |
+| **Varol Serdar** | [@serdarvarl](https://github.com/serdarvarl) | Déploiement Streamlit Cloud, visualisation de la base principale, Machine Learning, modélisation sous Orange Data Mining, gestion GitHub et aspects techniques |
+| **Ibnmtar Hazem** | [@IbnmtarHazem](https://github.com/IbnmtarHazem) | Prétraitement et exploration des données, implémentation k-NN et SVM, validation croisée (StratifiedKFold) |
 
 ---
 
