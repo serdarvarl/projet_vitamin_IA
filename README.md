@@ -55,6 +55,28 @@ L'étude d'ablation à 4 dimensions a établi la hiérarchie des contributions :
 
 ---
 
+## Démarche : Analyse exploratoire avant le Machine Learning
+
+Avant d'attaquer la modélisation, une phase d'analyse exploratoire des données (EDA) a été réalisée dans deux notebooks dédiés :
+
+### `data_vis.ipynb` — Exploration du dataset principal
+- Distribution de la variable cible (`disease_diagnosis`) : identification du déséquilibre sévère (ratio 15,9:1 entre Healthy et Scurvy)
+- Visualisation des distributions des biomarqueurs par classe (boxplots, violin plots)
+- Analyse des apports nutritionnels moyens par type de carence
+- Corrélations entre variables (heatmap) : détection des variables redondantes
+- Distribution des variables catégorielles (genre, régime alimentaire, exposition solaire...)
+
+### `data2_vis.ipynb` — Analyse approfondie et préparation
+- Étude des outliers sur les biomarqueurs sériques
+- Analyse des symptômes cliniques : fréquence par classe de maladie
+- Vérification des valeurs manquantes et des incohérences
+- Visualisation des corrélations entre variables lifestyle et diagnostics
+- Identification des features les plus discriminantes avant modélisation
+
+Cette étape d'EDA a guidé directement nos choix : elle a révélé le déséquilibre des classes (→ SMOTE), la forte variance des biomarqueurs entre classes (→ StandardScaler), et la pertinence potentielle des variables lifestyle (→ confirmée par l'étude d'ablation).
+
+---
+
 ## Architecture du système
 
 ```
@@ -105,10 +127,13 @@ projet_vitamin_IA/
 │       └── Table_Ciqual_V2.ods                               # Base CIQUAL ANSES
 │
 ├── notebooks/
-│   ├── modeles_IA_v1.ipynb            # Exploration initiale, v1 Random Forest
-│   ├── modeles_IA_v2.ipynb            # Comparaison RF / SVM / k-NN
-│   ├── modeles_IA_v3.ipynb            # Étude d'ablation (4 configurations)
-│   ├── modeles_IA_v5_holdout_final.ipynb  # Évaluation finale non biaisée
+│   ├── data_vis.ipynb                 # EDA — Exploration & visualisation du dataset principal (Kaggle)
+│   ├── data2_vis.ipynb                # EDA — Analyse approfondie, distributions, corrélations, outliers
+│   ├── modeles_IA.ipynb               # v1 — Premier modèle Random Forest (baseline)
+│   ├── modeles_IA_v2.ipynb            # v2 — Comparaison RF / SVM / k-NN
+│   ├── modeles_IA_v3.ipynb            # v3 — Étude d'ablation (4 configurations)
+│   ├── modeles_IA_v4.ipynb            # v4 — Configuration étendue + variables lifestyle
+│   ├── modeles_IA_v5_holdout_final.ipynb  # v5 — Évaluation finale non biaisée (holdout propre)
 │   └── models_final/                  # Modèles sérialisés (pkl)
 │       ├── random_forest_final.pkl    # Modèle v5 (340 arbres, 30 variables)
 │       ├── scaler_final.pkl           # StandardScaler (ajusté sur train)

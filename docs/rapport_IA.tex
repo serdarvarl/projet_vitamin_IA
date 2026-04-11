@@ -110,6 +110,46 @@ Ce rapport couvre exclusivement la première composante.
 \section{Données}
 % ═══════════════════════════════════════════════════════════════════════════════
 
+\subsection{Analyse exploratoire préalable (EDA)}
+
+Avant toute modélisation, deux notebooks d'analyse exploratoire des données
+(\emph{Exploratory Data Analysis}) ont été réalisés : \texttt{data\_vis.ipynb}
+et \texttt{data2\_vis.ipynb}. Cette étape indispensable a permis de comprendre
+la structure du dataset avant d'engager la phase Machine Learning.
+
+\paragraph{data\_vis.ipynb — Exploration initiale.}
+\begin{itemize}[leftmargin=2em]
+    \item Visualisation de la distribution de la variable cible
+        (\texttt{disease\_diagnosis}) : identification du déséquilibre sévère
+        entre classes (ratio 15,9:1 entre \texttt{Healthy} et \texttt{Scurvy}),
+        qui a directement motivé le recours à SMOTE ;
+    \item Distributions des biomarqueurs sériques par classe (boxplots,
+        histogrammes) : mise en évidence de leur fort pouvoir discriminant,
+        anticipant les résultats de l'ablation 3 ;
+    \item Analyse des apports nutritionnels moyens par diagnostic ;
+    \item Visualisation des variables catégorielles (genre, régime alimentaire,
+        exposition solaire, région géographique).
+\end{itemize}
+
+\paragraph{data2\_vis.ipynb — Analyse approfondie.}
+\begin{itemize}[leftmargin=2em]
+    \item Heatmap des corrélations entre toutes les variables : détection des
+        redondances éventuelles et identification des features les plus corrélées
+        à la cible ;
+    \item Étude des outliers sur les biomarqueurs sériques ;
+    \item Analyse de la fréquence des symptômes cliniques par classe de maladie
+        (has\_night\_blindness, has\_bleeding\_gums, etc.) ;
+    \item Vérification des valeurs manquantes et des incohérences du dataset ;
+    \item Visualisation des relations entre variables lifestyle et diagnostics
+        (exposition solaire $\to$ rachitisme, régime végétalien $\to$ carence B12),
+        formulant l'hypothèse de leur utilité prédictive — validée ensuite par
+        l'ablation 2 ($+$5,3\,\% F1).
+\end{itemize}
+
+L'EDA a ainsi directement orienté nos choix méthodologiques : déséquilibre
+détecté $\to$ SMOTE ; variance élevée des biomarqueurs $\to$ StandardScaler ;
+pertinence des variables lifestyle $\to$ intégration dans le modèle final.
+
 \subsection{Source}
 
 Le jeu de données est issu de Kaggle
