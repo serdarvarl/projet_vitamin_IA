@@ -1,4 +1,6 @@
+Tamam! İşte guide:
 
+---
 
 ## 🚀 VitaIA — Guide de démarrage rapide
 

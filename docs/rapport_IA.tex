@@ -55,7 +55,7 @@
     {\LARGE\bfseries\color{bleu}
         Prédiction des carences en vitamines\\[0.4em]
         par apprentissage automatique}\\[2cm]
-    {\large Rapport de projet}\\[1.5cm]
+    {\large Rapport --- Partie Intelligence Artificielle}\\[1.5cm]
     \rule{\linewidth}{0.5pt}\\[1cm]
     {\normalsize
         \textbf{Équipe :} Ibnmtar Hazem, Moutchachou Lydia, Varol Serdar, Bekakria Ahmed\\[0.5em]
@@ -67,13 +67,9 @@
     \rule{\linewidth}{0.5pt}\\[2cm]
     \begin{abstract}
         \noindent
-        Ce rapport présente la conception, l'évaluation et le déploiement d'un
-        système complet d'aide au diagnostic des carences en vitamines.
-        Le système comporte deux composantes : (1) un classificateur automatique
-        prédit le type de carence à partir de données cliniques, biologiques et
-        comportementales de patients ; (2) un moteur de recommandation alimentaire
-        propose des aliments correcteurs issus de la base officielle CIQUAL (ANSES)
-        selon le diagnostic établi.
+        Ce rapport présente la conception et l'évaluation d'un système de
+        classification automatique des carences en vitamines à partir de données
+        cliniques, biologiques et comportementales de patients.
         Trois algorithmes ont été comparés --- forêt aléatoire, SVM et k-NN ---
         sur un jeu de données fortement déséquilibré (ratio 15,9:1, $n=4\,000$).
         Une étude d'ablation à quatre dimensions a permis d'identifier que
@@ -84,8 +80,6 @@
         normalisation --- est évaluée sur un \emph{holdout} propre (30\,\%, jamais vu)
         et atteint \textbf{94,06\,\% F1 pondéré} (94,00\,\% d'exactitude),
         dont une détection parfaite du scorbut (F1 = 1,00).
-        L'ensemble du système est déployé dans une application web interactive
-        (\textbf{VitaIA}) accessible sur Streamlit Community Cloud.
     \end{abstract}
 \end{titlepage}
 
@@ -109,9 +103,7 @@ Ce projet développe un tel système en deux composantes :
 (1) un classificateur qui prédit le type de carence à partir d'un profil patient,
 (2) un moteur de recommandation qui propose des aliments correcteurs issus de la
 base de référence française CIQUAL (ANSES).
-Ce rapport couvre l'intégralité du système : la conception et l'évaluation du
-classificateur, ainsi que l'intégration du moteur de recommandation alimentaire
-et le déploiement de l'application web interactive VitaIA.
+Ce rapport couvre exclusivement la première composante.
 
 
 % ═══════════════════════════════════════════════════════════════════════════════
@@ -122,199 +114,50 @@ et le déploiement de l'application web interactive VitaIA.
 
 Avant toute modélisation, deux notebooks d'analyse exploratoire des données
 (\emph{Exploratory Data Analysis}) ont été réalisés : \texttt{data\_vis.ipynb}
-portant sur le dataset patients, et \texttt{data2\_vis.ipynb} portant sur la
-base alimentaire CIQUAL. Cette étape a permis de comprendre la structure de
-chaque source de données avant d'engager la phase Machine Learning et la
-conception du moteur de recommandation.
+et \texttt{data2\_vis.ipynb}. Cette étape indispensable a permis de comprendre
+la structure du dataset avant d'engager la phase Machine Learning.
 
-% ─────────────────────────────────────────────────────────────────────────────
-\subsubsection{data\_vis.ipynb — Analyse du dataset patients}
-
-\paragraph{1. Distribution de la variable cible.}
-Le premier graphique produit est un diagramme en barres de la variable
-\texttt{disease\_diagnosis}. Il révèle immédiatement un déséquilibre sévère :
-\texttt{Healthy} représente 37,72\,\% des observations (1\,509 patients),
-\texttt{Anemia} 31,13\,\% (1\,245), \texttt{Rickets\_Osteomalacia} 25,72\,\%
-(1\,029), tandis que \texttt{Night\_Blindness} n'en représente que 3,05\,\%
-(122 patients) et \texttt{Scurvy} 2,38\,\% (95 patients).
-\textbf{Conclusion :} le ratio 15,9:1 entre la classe majoritaire et la plus
-rare montre qu'un classifieur trivial (prédisant toujours \og Healthy\fg)
-atteindrait 37,7\,\% d'exactitude sans aucune valeur diagnostique. Ce constat
-justifie directement le recours à SMOTE et le choix du F1 pondéré comme
-métrique principale.
-
-\paragraph{2. Valeurs manquantes.}
-L'analyse des valeurs manquantes montre que \texttt{symptoms\_list} présente
-33,2\,\% de valeurs nulles (1\,328 patients) et \texttt{alcohol\_consumption}
-31,95\,\% (1\,278 patients). Ces manquants ne sont pas aléatoires : ils sont
-logiquement expliqués par le fait que les patients \texttt{Healthy} n'ont
-généralement aucun symptôme à lister, et que la consommation d'alcool est une
-donnée sensible souvent non renseignée. \textbf{Conclusion :} les valeurs
-manquantes sont interprétables et ne nécessitent pas d'imputation particulière.
-
-\paragraph{3. Apports nutritionnels moyens par diagnostic --- heatmap et barres groupées.}
-Deux graphiques complémentaires ont été produits. La \textbf{heatmap} (variables
-nutritionnelles en colonnes × diagnostics en lignes, palette Viridis) montre
-visuellement que :
+\paragraph{data\_vis.ipynb — Exploration initiale.}
 \begin{itemize}[leftmargin=2em]
-    \item \texttt{Healthy} présente des valeurs élevées sur toutes les colonnes
-        (cellules claires) ;
-    \item \texttt{Night\_Blindness} affiche la valeur la plus basse pour
-        \texttt{vitamin\_a\_percent\_rda} (30,57\,\% en moyenne) ;
-    \item \texttt{Scurvy} chute à 22,11\,\% pour \texttt{vitamin\_c\_percent\_rda} ;
-    \item \texttt{Rickets\_Osteomalacia} cumule un apport en vitamine D de
-        31,41\,\% et un taux sérique de 9,52 ng/mL (niveau critique).
+    \item Visualisation de la distribution de la variable cible
+        (\texttt{disease\_diagnosis}) : identification du déséquilibre sévère
+        entre classes (ratio 15,9:1 entre \texttt{Healthy} et \texttt{Scurvy}),
+        qui a directement motivé le recours à SMOTE ;
+    \item Distributions des biomarqueurs sériques par classe (boxplots,
+        histogrammes) : mise en évidence de leur fort pouvoir discriminant,
+        anticipant les résultats de l'ablation 3 ;
+    \item Analyse des apports nutritionnels moyens par diagnostic ;
+    \item Visualisation des variables catégorielles (genre, régime alimentaire,
+        exposition solaire, région géographique).
 \end{itemize}
-Le \textbf{graphique en barres groupées} avec une ligne de seuil rouge à 30\,\%
-des AJR confirme que chaque maladie correspond exactement à son pattern de
-carence attendu. \textbf{Conclusion :} le dataset est biologiquement cohérent ;
-les patterns nutritionnels valident la qualité des données.
 
-\paragraph{4. Tests ANOVA.}
-Des tests ANOVA ont été réalisés sur toutes les colonnes vitaminiques en
-regroupant par diagnostic. Les résultats montrent des différences
-hautement significatives entre groupes (p $<$ 0,001 pour tous les biomarqueurs).
-\textbf{Conclusion :} les variables biologiques discriminent statistiquement les
-classes, ce qui anticipe leur importance prédictive (confirmée à l'ablation 3).
-
-\paragraph{5. Heatmap des corrélations entre carences et symptômes.}
-Une heatmap croisée (7 carences × 9 symptômes) révèle les associations
-les plus fortes :
+\paragraph{data2\_vis.ipynb — Analyse approfondie.}
 \begin{itemize}[leftmargin=2em]
-    \item Carence B12 $\to$ engourdissements (0,63), troubles mnésiques (0,57),
-        carences multiples (0,61) ;
-    \item Carence en fer $\to$ fatigue (0,52), pâleur cutanée (0,50) ;
-    \item Carence en vitamine D $\to$ douleurs osseuses (0,52) ;
-    \item Carence en vitamine A $\to$ cécité nocturne (0,47).
-\end{itemize}
-\textbf{Conclusion :} les symptômes cliniques sont corrélés à leurs carences
-attendues, validant leur inclusion comme features dans le modèle. La combinaison
-symptômes + biomarqueurs offre une couverture complémentaire.
-
-\paragraph{6. Analyse des co-carences.}
-En binarisant les apports (seuil 30\,\% AJR), le taux de carence par nutriment
-est calculé : vitamine B12 déficiente chez 22,1\,\% des patients, vitamine D
-chez 12,1\,\%, les autres nutriments entre 2 et 4,2\,\%. La corrélation
-B12--vitamine D atteint 0,28 (la plus élevée entre carences). \textbf{Conclusion :}
-les co-carences restent rares, ce qui légitime un modèle de classification
-mono-label.
-
-% ─────────────────────────────────────────────────────────────────────────────
-\subsubsection{data2\_vis.ipynb — Analyse de la base CIQUAL}
-
-Ce second notebook analyse la base de composition nutritionnelle CIQUAL
-(3\,484 aliments, 123 colonnes) afin de concevoir le moteur de recommandation
-alimentaire.
-
-\paragraph{1. Top 20 des aliments les plus riches.}
-Un graphique en barres horizontales (score total = somme des colonnes
-\texttt{riche\_*}) classe les aliments par richesse nutritionnelle globale.
-Les aliments en tête sont la spiruline déshydratée, la chlorelle, les algues
-(nori, dulse), les herbes séchées (persil, marjolaine, thym) et les céréales
-enrichies industriellement. \textbf{Conclusion :} les aliments les plus riches
-sont des aliments concentrés ou enrichis artificiellement, consommés en faibles
-quantités. Ce constat a conduit à les exclure des recommandations finales de
-l'application (filtrage des suppléments et algues déshydratées) au profit de
-sources naturelles plus pratiques.
-
-\paragraph{2. Prévalence des nutriments dans la base.}
-Un diagramme en barres verticales compte le nombre d'aliments riches en chaque
-nutriment. Les nutriments les plus répandus sont le sodium, l'eau et les sucres
-($\sim$35\,000 occurrences), tandis que les vitamines D2, D3 et l'acide folique
-figurent parmi les plus rares ($<$4\,000). \textbf{Conclusion :} les nutriments
-les plus rares dans la base correspondent précisément aux carences ciblées par
-le projet (rachitisme, anémie), ce qui justifie l'intérêt d'un moteur de
-recommandation guidé par le diagnostic.
-
-\paragraph{3. Heatmap nutritionnelle par groupe d'aliments.}
-Une grande heatmap (20 groupes alimentaires × 39 indicateurs nutritionnels,
-palette YlOrRd) révèle les spécialisations nutritionnelles :
-\begin{itemize}[leftmargin=2em]
-    \item \textbf{Viandes/poissons/œufs :} cellules les plus foncées pour le fer,
-        la vitamine B12 et les protéines ;
-    \item \textbf{Produits laitiers :} dominent le calcium ;
-    \item \textbf{Fruits, légumes, oléagineux :} excellents en vitamine C,
-        bêta-carotène et folates ;
-    \item \textbf{Toutes catégories :} présence généralisée du sodium (rouge vif).
-\end{itemize}
-\textbf{Conclusion :} aucun groupe alimentaire ne couvre à lui seul tous les
-besoins nutritionnels. Cette complémentarité est le fondement de la stratégie
-de recommandation multi-aliments adoptée dans l'application.
-
-\paragraph{4. Nuage de points vitamines vs minéraux.}
-Un scatter plot (score\_vitamines en abscisse, score\_mineraux en ordonnée,
-$\alpha = 0,5$) montre une relation positive modérée entre richesse vitaminique
-et richesse minérale. La majorité des aliments se concentre dans une plage de
-20 à 60 (cluster dense), avec quelques valeurs aberrantes au-delà de 100
-correspondant aux algues et superaliments déjà identifiés. \textbf{Conclusion :}
-le système de scoring est cohérent ; la richesse nutritionnelle n'est pas
-distribuée aléatoirement.
-
-\paragraph{5. Aliments recommandés par maladie.}
-Quatre graphiques en barres horizontales (un par maladie, palette colorée)
-classent les 10 meilleures sous-catégories alimentaires par score moyen :
-\begin{itemize}[leftmargin=2em]
-    \item \textbf{Anémie :} céréales infantiles/biscuits (score moyen 31),
-        barres de céréales, algues ;
-    \item \textbf{Cécité nocturne :} pommes de terre, poissons cuits, épices
-        (15--20) ;
-    \item \textbf{Rachitisme :} produits infantiles, fruits de mer ;
-    \item \textbf{Scorbut :} céréales infantiles, algues ($\sim$25).
-\end{itemize}
-\textbf{Observation transversale :} les céréales infantiles apparaissent dans
-les quatre maladies en raison de leur enrichissement industriel systématique
-en vitamines et minéraux. Ce résultat a conduit à filtrer ces aliments dans
-les recommandations finales pour ne conserver que les sources naturelles.
-
-% ─────────────────────────────────────────────────────────────────────────────
-\subsubsection{Impact de l'EDA sur les choix méthodologiques}
-
-L'analyse exploratoire a directement orienté l'ensemble des décisions du projet :
-
-\begin{description}[leftmargin=2em]
-    \item[Déséquilibre détecté $\to$ SMOTE] Le ratio 15,9:1 impose un
-        rééchantillonnage pour éviter qu'un classifieur trivial ne domine les
-        métriques globales.
-    \item[Variance élevée des biomarqueurs $\to$ StandardScaler] Les biomarqueurs
-        sériques présentent des échelles hétérogènes (ng/mL, pg/mL, g/dL) ;
-        la normalisation assure la cohérence du pipeline pour SVM et k-NN.
-    \item[Corrélations symptômes-carences validées $\to$ inclusion des symptômes]
-        Les corrélations fortes (jusqu'à 0,63) justifient l'intégration des
-        symptômes cliniques comme features, en complément des biomarqueurs.
-    \item[Variables lifestyle corrélées aux diagnostics $\to$ ablation 2]
-        L'EDA formule l'hypothèse de leur utilité prédictive
+    \item Heatmap des corrélations entre toutes les variables : détection des
+        redondances éventuelles et identification des features les plus corrélées
+        à la cible ;
+    \item Étude des outliers sur les biomarqueurs sériques ;
+    \item Analyse de la fréquence des symptômes cliniques par classe de maladie
+        (has\_night\_blindness, has\_bleeding\_gums, etc.) ;
+    \item Vérification des valeurs manquantes et des incohérences du dataset ;
+    \item Visualisation des relations entre variables lifestyle et diagnostics
         (exposition solaire $\to$ rachitisme, régime végétalien $\to$ carence B12),
-        validée ensuite par l'ablation 2 ($+$5,3\,\% F1).
-    \item[Aliments enrichis dominants $\to$ filtrage CIQUAL] La surreprésentation
-        des algues et céréales fortifiées dans les scores CIQUAL a conduit à
-        un filtrage explicite pour ne recommander que des aliments naturels
-        accessibles en consultation courante.
-\end{description}
+        formulant l'hypothèse de leur utilité prédictive — validée ensuite par
+        l'ablation 2 ($+$5,3\,\% F1).
+\end{itemize}
 
-\subsection{Sources de données}
+L'EDA a ainsi directement orienté nos choix méthodologiques : déséquilibre
+détecté $\to$ SMOTE ; variance élevée des biomarqueurs $\to$ StandardScaler ;
+pertinence des variables lifestyle $\to$ intégration dans le modèle final.
 
-Le projet repose sur deux bases de données complémentaires.
+\subsection{Source}
 
-\paragraph{Base patients --- Kaggle.}
 Le jeu de données est issu de Kaggle
-(\emph{Vitamin Deficiency Disease Prediction Dataset}, Abbas N., 2026) et contient
+(\emph{Vitamin Deficiency Disease Prediction Dataset}) et contient
 \textbf{4\,000 observations} patient décrites par \textbf{34 variables}
-réparties en quatre groupes fonctionnels. Il constitue la base d'entraînement
-et d'évaluation du classificateur.
-
-\paragraph{Base alimentaire --- CIQUAL (ANSES).}
-La table de composition nutritionnelle des aliments CIQUAL, publiée par
-l'Agence nationale de sécurité sanitaire (ANSES), recense \textbf{3\,484 aliments}
-décrits par \textbf{123 colonnes} de valeurs nutritionnelles (vitamines,
-minéraux, macronutriments). Cette base est utilisée exclusivement pour le moteur
-de recommandation alimentaire : une fois le diagnostic établi par le classifieur,
-les aliments les plus riches en nutriments ciblés sont extraits et proposés à
-l'utilisateur. Le fichier source (\texttt{Table\_Ciqual\_V2.ods}) est au format
-LibreOffice Calc et a été chargé avec la bibliothèque \texttt{odfpy}.
+réparties en quatre groupes fonctionnels.
 
 \subsection{Variables disponibles}
-
-\subsubsection{Base patients (Kaggle)}
 
 \begin{description}[leftmargin=2em]
     \item[Socio-démographiques et comportementales (10)] âge, genre, IMC,
@@ -330,27 +173,6 @@ LibreOffice Calc et a été chargé avec la bibliothèque \texttt{odfpy}.
 \end{description}
 
 La variable cible \texttt{disease\_diagnosis} prend cinq modalités.
-
-\subsubsection{Base alimentaire (CIQUAL)}
-
-\begin{description}[leftmargin=2em]
-    \item[Identification de l'aliment (3)] identifiant CIQUAL, groupe alimentaire,
-        sous-groupe alimentaire, nom de l'aliment.
-    \item[Macronutriments (5)] énergie (kcal), protéines (g), lipides (g),
-        glucides (g), fibres alimentaires (g).
-    \item[Vitamines (13)] vitamines A (rétinol, bêta-carotène), C, D (D2, D3),
-        E, K, B1, B2, B3, B5, B6, B9 (folates), B12.
-    \item[Minéraux et oligo-éléments (10)] calcium, fer, magnésium, phosphore,
-        potassium, sodium, zinc, sélénium, iode, cuivre.
-    \item[Indicateurs de richesse (colonnes \texttt{riche\_*})] variables binaires
-        ou scores calculés indiquant si l'aliment est une bonne source de chaque
-        nutriment (utilisés pour le classement des recommandations).
-\end{description}
-
-La variable clé pour le moteur de recommandation est le \textbf{score nutritionnel
-ciblé} par maladie : teneur en fer et B12 pour l'anémie, vitamine D pour le
-rachitisme, rétinol et bêta-carotène pour la cécité nocturne, vitamine C pour le
-scorbut.
 
 \subsection{Distribution des classes et déséquilibre}
 
@@ -382,21 +204,6 @@ comme métrique principale, et le recours à SMOTE pour le rééchantillonnage.
 % ═══════════════════════════════════════════════════════════════════════════════
 \section{Cadre expérimental}
 % ═══════════════════════════════════════════════════════════════════════════════
-
-\subsection{Exploration préliminaire avec Orange Data Mining}
-
-Avant d'engager la phase de modélisation en Python, une première exploration
-du dataset a été réalisée avec \textbf{Orange Data Mining}, un outil visuel
-de fouille de données. Cette étape a permis de construire des pipelines
-graphiques sans code pour tester rapidement plusieurs algorithmes (Random Forest,
-SVM, k-NN, Naive Bayes) et visualiser leurs matrices de confusion, courbes ROC
-et performances comparatives sur le dataset brut.
-
-Les résultats obtenus sous Orange ont confirmé la supériorité qualitative de la
-forêt aléatoire sur ce problème et ont renforcé l'intuition sur l'importance
-des biomarqueurs sériques, orientant ainsi la conception des notebooks Python
-qui ont suivi. Orange a donc joué le rôle d'outil de prototypage rapide,
-complémentaire à l'analyse exploratoire des notebooks.
 
 \subsection{Prétraitement}
 
@@ -501,24 +308,6 @@ Avantages : simplicité, non paramétrique.
 \paragraph{Paramètres optimisés :}
 \texttt{n\_neighbors=6}, \texttt{weights='distance'},
 \texttt{metric='manhattan'}.
-
-\subsection{Choix du modèle final : pourquoi Random Forest ?}
-
-La forêt aléatoire a été retenue comme modèle final pour trois raisons :
-\begin{enumerate}[leftmargin=2em]
-    \item \textbf{Performance supérieure.} RF obtient 94,06\,\% F1 sur le holdout
-        propre (v5), contre 89,26\,\% pour le SVM et 82,08\,\% pour le k-NN
-        (évaluation v3, même protocole de comparaison).
-    \item \textbf{Robustesse aux variables hétérogènes.} Le dataset mélange variables
-        continues (biomarqueurs, apports), variables binaires (symptômes) et variables
-        catégorielles encodées (genre, régime). La forêt aléatoire gère naturellement
-        cette hétérogénéité sans hypothèse de distribution, contrairement au SVM
-        (sensible à l'échelle) et au k-NN (sensible à la distance en grande dimension).
-    \item \textbf{Interprétabilité.} L'importance des variables par réduction de
-        l'impureté de Gini est directement calculable, ce qui permet de valider
-        la cohérence clinique du modèle (biomarqueurs en tête) et de justifier
-        les choix de features auprès d'un public non technique.
-\end{enumerate}
 
 % ═══════════════════════════════════════════════════════════════════════════════
 \section{Étude d'ablation (version 4)}
@@ -761,17 +550,19 @@ pas toujours.
 \subsection{Limites}
 
 \begin{itemize}[leftmargin=2em]
-    \item \textbf{Données non cliniques} : le jeu de données Kaggle n'est pas
-        issu d'une cohorte clinique réelle. Ses distributions présentent plusieurs
-        caractéristiques inhabituelles : (1)~les biomarqueurs sériques affichent
-        des distributions très régulières qui ne reflètent pas la variabilité
-        inter-individuelle typique d'une population hospitalière ; (2)~la séparation
-        entre classes est particulièrement nette, ce qui favorise des performances
-        élevées difficilement reproductibles sur des données réelles où les
-        frontières diagnostiques sont floues. Les conclusions méthodologiques
-        (hiérarchie des variables, apport du SMOTE) restent valides, mais les
-        performances absolues (94,06\,\% F1) doivent être interprétées avec
-        prudence avant toute transposition à un contexte clinique réel.
+    \item \textbf{Dataset synthétique} : le jeu de données Kaggle est généré
+        algorithmiquement. Cela entraîne plusieurs limitations concrètes :
+        (1)~les distributions des biomarqueurs sont trop régulières et ne
+        reflètent pas la variabilité inter-individuelle réelle d'une cohorte
+        clinique ; (2)~la séparation entre classes est artificiellement nette,
+        ce qui favorise des performances élevées difficilement reproductibles
+        sur des données réelles où les frontières diagnostiques sont floues ;
+        (3)~les valeurs numériques (ex. taux de vitamine D sérique) peuvent ne
+        pas correspondre aux plages cliniques réelles publiées dans la
+        littérature médicale. Les conclusions méthodologiques (hiérarchie des
+        variables, apport du SMOTE) restent valides, mais les performances
+        absolues (94,06\,\% F1) doivent être interprétées avec prudence avant
+        toute transposition à un contexte clinique réel.
     \item \textbf{Support des classes minoritaires} : 28 cas de scorbut dans le
         holdout --- un F1 de 1,00 sur cet effectif reste peu généralisable.
     \item \textbf{Variable cible unique} : le modèle prédit une carence par patient
@@ -797,9 +588,9 @@ Trois résultats méthodologiques sont à retenir :
         --- un biais fréquent que l'évaluation holdout permet de corriger.
 \end{enumerate}
 
-Le modèle est sérialisé (\texttt{random\_forest\_final.pkl}) et pleinement intégré
-dans l'application web VitaIA, déployée sur Streamlit Community Cloud
-(\url{https://vitaminia.streamlit.app}).
+Le modèle est sérialisé (\texttt{random\_forest\_final.pkl}) et opérationnel pour
+intégration dans l'application Streamlit de recommandation alimentaire (phase
+suivante du projet).
 
 % ═══════════════════════════════════════════════════════════════════════════════
 \section{Intégration dans l'application Streamlit (VitaIA)}
@@ -851,6 +642,61 @@ le rachitisme, rétinol pour la cécité nocturne, vitamine C pour le scorbut),
 exclut les aliments enrichis artificiellement ou peu pratiques
 (suppléments, algues, aliments déshydratés), puis retourne un classement décroissant
 des \textbf{12 meilleures sources naturelles}.
+
+% ═══════════════════════════════════════════════════════════════════════════════
+\section{Justification des choix méthodologiques}
+% ═══════════════════════════════════════════════════════════════════════════════
+
+Cette section répond de façon synthétique aux questions méthodologiques les plus
+fréquentes, en appui à la soutenance orale.
+
+\subsection{Pourquoi Random Forest plutôt que SVM ou k-NN ?}
+
+Trois raisons principales :
+\begin{enumerate}[leftmargin=2em]
+    \item \textbf{Performance supérieure.} RF obtient 94,06\,\% F1 sur le holdout,
+        contre 89,26\,\% pour le SVM et 82,08\,\% pour le k-NN (évaluation v3,
+        même protocole de comparaison).
+    \item \textbf{Robustesse aux variables hétérogènes.} Le dataset mélange variables
+        continues (biomarqueurs, apports), variables binaires (symptômes) et variables
+        catégorielles encodées (genre, régime). La forêt aléatoire gère naturellement
+        cette hétérogénéité sans hypothèse de distribution.
+    \item \textbf{Interprétabilité.} L'importance des variables par réduction de
+        l'impureté de Gini est directement calculable, ce qui permet de valider
+        la cohérence clinique du modèle (biomarqueurs en tête) et d'identifier les
+        contributions de chaque groupe.
+\end{enumerate}
+
+\subsection{Pourquoi conserver SMOTE malgré un gain marginal sur le F1 global ?}
+
+L'ablation 1 montre que retirer SMOTE augmente légèrement le F1 global
+($+$0,83\,\%). Cependant, cette métrique \emph{agrégée} masque la dégradation
+du rappel sur les classes minoritaires (\texttt{Night\_Blindness},
+\texttt{Scurvy}). L'objectif applicatif du système est \textbf{médical} : une
+cécité nocturne ou un scorbut non détecté a des conséquences plus graves qu'un
+faux positif. Maintenir SMOTE garantit la robustesse du rappel sur ces classes,
+conformément au principe de précaution clinique.
+
+\subsection{Pourquoi le holdout v5 diffère-t-il des résultats v4 ?}
+
+Les versions 1 à 4 réutilisaient le même jeu de test (\texttt{random\_state=42},
+20\,\%) à chaque itération de choix de configuration. Ce mécanisme introduit un
+\textbf{biais de sélection} (\emph{multiple testing bias}) : les performances
+observées reflètent le meilleur résultat \emph{parmi de multiples essais} sur
+ce même jeu. La version 5 crée un holdout totalement vierge
+(\texttt{random\_state=999}, 30\,\%) qui n'a \emph{jamais} orienté un choix de
+modélisation. La baisse de 2,6 points F1 (96,65\,\% $\to$ 94,06\,\%) est donc la
+correction de ce biais, non une régression du modèle.
+
+\subsection{Pourquoi les variables lifestyle améliorent-elles autant le modèle ?}
+
+L'effet contre-intuitif ($+$5,3\,\% F1) s'explique par des corrélations
+épidémiologiques documentées : l'exposition solaire faible et la région
+géographique septentrionale prédisent le rachitisme (vitamine D synthétisée par
+la peau sous UV) ; un régime végétalien et la sédentarité sont corrélés à
+l'anémie ferriprive et à la carence B12. Ces variables fournissent un signal
+\emph{contextuel} que les seuls biomarqueurs ne capturent pas toujours, car les
+taux sériques peuvent rester dans les normes malgré un risque de carence naissant.
 
 % ═══════════════════════════════════════════════════════════════════════════════
 \section*{Références bibliographiques}
